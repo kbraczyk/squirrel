@@ -1,0 +1,15 @@
+@import "Styles/_variable";
+
+.btn {
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover,
+  &:active {
+    background-color: lighten($primary-color, 10);
+    border-color: lighten($primary-color, 5);
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 10);
+  }
+}
