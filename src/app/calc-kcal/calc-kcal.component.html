@@ -1,0 +1,36 @@
+<h3 class="title">Kalkulator zapotrzebowania kalorycznego <i class="material-icons d-sm-none">
+    info
+</i></h3>
+<p class="sub-title">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
+<article>
+    <h3 class="title title-article">Dlaczego warto poznać swoje dzienne zapotrzebowanie kaloryczne?</h3>
+    <p>Pozwoli Ci to kontrolować ilość i jakość spożywanych produktów, co sprawi że dieta stanie się sumą codziennych
+        wyborów. Będą one świadome, dzięki czemu wyrobisz w sobie dobre nawyki.</p>
+    <h4>Działanie kalkulatora</h4>
+    <p>To proste! Ty podajesz dane - wzrost, wagę, wiek, płeć i cel a kalkulator wykonuję dla Ciebie obliczenia.
+        <strong> Mamy to ?</strong></p>
+    <h4>Czy moja aktywność ma znaczenie?</h4>
+    <p>Jeśli uprzedziłeś nasze pytanie - gratulujemy! Oznacza to, że masz już pewną świadomość dietetyczną. Jeśli taka
+        myśl nie przeszła Ci przez głowę - nie martw się, już tłumaczymy szczegóły. Wybór aktywności to określenie jej
+        stopnia na co dzień. Powinieneś zadeklarować jedną z poniższych opcji </p>
+    <ul>
+        <li> <strong>niska aktywność -</strong> nabijanie kroków na pewno nie definiuje twojego trybu życia. Siedząca
+            praca, bierny
+            wypoczynek. Najlepszy wypoczynek to pilot/myszka i fotel </li>
+        <li><strong>mała aktywność -</strong> siedząca praca ale coś tam robisz - wychodzisz na rolki albo rower, czasem
+            spacer. Bez
+            przesady, okazjonalnie, ale starasz się pamiętać że twoi przodkowie mieli sporo ruchu.</li>
+    </ul>
+</article>
+<form [formGroup]="calcKcalForm">
+    <mat-form-field>
+        <input id="height"  matInput placeholder="Wzrost" formControlName="height">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Waga" formControlName="weight">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Wiek" formControlName="age">
+    </mat-form-field>
+</form>
+<button mat-raised-button color="primary">Primary</button>
