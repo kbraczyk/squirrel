@@ -1,8 +1,8 @@
 <h3 class="title">Kalkulator zapotrzebowania kalorycznego <i class="material-icons d-sm-none">
-    info
-</i></h3>
+        info
+    </i></h3>
 <p class="sub-title">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
-<article>
+<article class="d-none d-md-block d-lg-block d-xl-block">
     <h3 class="title title-article">Dlaczego warto poznać swoje dzienne zapotrzebowanie kaloryczne?</h3>
     <p>Pozwoli Ci to kontrolować ilość i jakość spożywanych produktów, co sprawi że dieta stanie się sumą codziennych
         wyborów. Będą one świadome, dzięki czemu wyrobisz w sobie dobre nawyki.</p>
@@ -22,15 +22,64 @@
             przesady, okazjonalnie, ale starasz się pamiętać że twoi przodkowie mieli sporo ruchu.</li>
     </ul>
 </article>
-<form [formGroup]="calcKcalForm">
-    <mat-form-field>
-        <input id="height"  matInput placeholder="Wzrost" formControlName="height">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Waga" formControlName="weight">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Wiek" formControlName="age">
-    </mat-form-field>
+<form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm)" class="row">
+    <div class="col-5">
+        <mat-form-field>
+            <input id="height" matInput placeholder="Wzrost" formControlName="height">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Waga" formControlName="weight">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Wiek" formControlName="age">
+        </mat-form-field>
+    </div>
+    <div class="col-5">
+        <mat-form-field >
+            <mat-label>Płeć</mat-label>
+            <mat-select formControlName="sex">
+                <mat-option *ngFor="let s of sex" [value]="s">
+                    {{s}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Aktywność</mat-label>
+            <mat-select formControlName="activity">
+                <mat-option *ngFor="let active of activity" [value]="active.value">
+                    {{active.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Cel</mat-label>
+            <mat-select formControlName="target">
+                <mat-option *ngFor="let t of target" [value]="t.value">
+                    {{t.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <h4 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h4>
+    <div class="footer-form col-6">
+        <div class="unit col">
+            <p>Wagi</p>
+            <mat-slide-toggle color="primary" checked="true">
+                Kg
+            </mat-slide-toggle>
+            <mat-slide-toggle color="primary">
+                Lb
+            </mat-slide-toggle>
+        </div>
+        <button type="submit" mat-raised-button color="primary" class="col">OBLICZ</button>
+        <div class="unit col" style="align-items: flex-end;">
+            <p>Wzrostu</p>
+            <mat-slide-toggle color="primary" checked="true">
+                Cm
+            </mat-slide-toggle>
+            <mat-slide-toggle color="primary">
+                Ft/in
+            </mat-slide-toggle>
+        </div>
+    </div>
 </form>
-<button mat-raised-button color="primary">Primary</button>

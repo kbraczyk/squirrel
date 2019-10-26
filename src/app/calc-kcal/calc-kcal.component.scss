@@ -5,22 +5,35 @@
   padding-left: 60px;
   .title {
     color: $dark-text-color;
-    &-article{
-        color: $primary-color;
-        font-weight: 700;
+    &-article {
+      color: $primary-color;
+      font-weight: 700;
     }
   }
 }
 h4 {
-    color: rgb(78, 37, 107);
+  color: rgb(78, 37, 107);
 }
 
 form {
-display: flex;
-flex-direction: columns;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px;
 
-mat-form-field {
-  width: 36%;
-  margin: 30px;
-}
+  mat-form-field {
+    width: 100%;
+  }
+  .footer-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .unit {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    padding: 15px;
+  }
 }
