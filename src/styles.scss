@@ -4,7 +4,7 @@
 
 $squirrel-primary: mat-palette($mat-purple, 500, 600, 900);
 $squirrel-accent: mat-palette($mat-purple, A200, A100, A400);
-$squirrel-warn: mat-palette($mat-red, A700);
+$squirrel-warn: mat-palette($mat-orange, 900);
 $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-warn);
 
 @include angular-material-theme($squirrel-theme);
@@ -12,6 +12,7 @@ $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-
 // Import Bootstrap
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "Styles/_variable";
+
 *{
     margin: 0;
     padding: 0;

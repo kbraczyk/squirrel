@@ -1,4 +1,10 @@
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
 
 $primary-color: rgba(78, 37, 107, 1);
+$second-color: #e65100;
 $dark-text-color: rgba(75, 75, 75, 1);
 $light-text-color: rgba(112, 112, 112, 1);
+$linkcolor: rgb(248, 248, 248);

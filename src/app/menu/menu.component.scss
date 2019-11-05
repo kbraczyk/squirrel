@@ -1,14 +1,12 @@
-@import "../../styles.scss";
-
-$linkcolour: rgb(248, 248, 248);
+@import "../../styles";
+@import "../../Styles/variable";
 
 :host {
   display: inline-block;
-  // align-items: center;
   width: 100%;
   height: 65px;
   background-color: rgba(75, 75, 75, 1);
-  margin-top: -20px;
+  margin-top: -10px;
   font-size: 1em;
   ul {
     display: flex;
@@ -22,10 +20,10 @@ $linkcolour: rgb(248, 248, 248);
       height: 100%;
       &:last-child {
         height: 70%;
-        border: 2px solid #EC671B;
+        border: 2px solid $second-color;
       }
       a {
-        color: $linkcolour;
+        color: $linkcolor;
         letter-spacing: 2px;
         text-decoration: none;
         text-transform: uppercase;
@@ -36,7 +34,7 @@ $linkcolour: rgb(248, 248, 248);
         padding: 0 10px;
         cursor: pointer;
         &:hover {
-          color: darken($linkcolour, 15);
+          color: darken($linkcolor, 20);
           transition: all 1s ease-out;
         }
         i {
@@ -46,16 +44,63 @@ $linkcolour: rgb(248, 248, 248);
       .accent {
         height: 100%;
         padding: 15px;
-        color: #EC671B;
+        color: $second-color;
       }
       .active {
-        background-color: #EC671B;
+        background-color: $second-color;
       }
     }
   }
 }
-@media (max-width: 768px) {
+
+@include media-breakpoint-up(lg) {
+  :host {
+    font-size: 1.1em;
+    .input {
+      display: none;
+    }
+  }
+}
+@include media-breakpoint-down(lg) {
+  :host {
+    font-size: 0.8em;
+  }
+}
+@include media-breakpoint-down(md) {
   :host {
     font-size: 0.7em;
+    ul {
+      li {
+        &:last-child {
+          height: 100%;
+          border: none;
+          cursor: pointer;
+        }
+        a {
+          i {
+            font-size: 32px !important;
+          }
+        }
+        .accent {
+          display: none !important;
+        }
+        .input {
+          display: block;
+          color: $linkcolor;
+          line-height: 65px;
+          color: $second-color;
+          font-size: 32px;
+        }
+      }
+    }
   }
+}
+@include media-breakpoint-down(sm) {
+:host{
+  font-size: 0.6em;
+  height: 55px;
+  .input {
+    line-height: 55px !important;
+  }
+}
 }

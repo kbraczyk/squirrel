@@ -23,61 +23,67 @@
     </ul>
 </article>
 <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm)" class="row">
-    <div class="col-5">
-        <mat-form-field>
-            <input id="height" matInput placeholder="Wzrost" formControlName="height">
+    <div class="col-5-md">
+        <mat-form-field [floatLabel]="'never'">
+            <input name="height" id="height" matInput placeholder="{{heightPlaceholder}}" formControlName="height">
+            <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Waga" formControlName="weight">
+        <mat-form-field [floatLabel]="'never'">
+            <input name="weight" matInput placeholder={{weightPlaceholder}} formControlName="weight">
+            <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Wiek" formControlName="age">
+        <mat-form-field [floatLabel]="'never'">
+            <input name="age" matInput placeholder="Wiek" formControlName="age">
+            <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
         </mat-form-field>
     </div>
-    <div class="col-5">
-        <mat-form-field >
+    <div class="col-5-md">
+        <mat-form-field [floatLabel]="'never'">
             <mat-label>Płeć</mat-label>
-            <mat-select formControlName="sex">
+            <mat-select name="sex" formControlName="sex">
                 <mat-option *ngFor="let s of sex" [value]="s">
                     {{s}}
                 </mat-option>
             </mat-select>
+            <squirrel-error-form [control]="calcKcalForm.controls.sex"></squirrel-error-form>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [floatLabel]="'never'">
             <mat-label>Aktywność</mat-label>
-            <mat-select formControlName="activity">
+            <mat-select name="activity" formControlName="activity">
                 <mat-option *ngFor="let active of activity" [value]="active.value">
                     {{active.name}}
                 </mat-option>
             </mat-select>
+            <squirrel-error-form [control]="calcKcalForm.controls.activity"></squirrel-error-form>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [floatLabel]="'never'">
             <mat-label>Cel</mat-label>
-            <mat-select formControlName="target">
+            <mat-select name="target" formControlName="target">
                 <mat-option *ngFor="let t of target" [value]="t.value">
                     {{t.name}}
                 </mat-option>
             </mat-select>
+            <squirrel-error-form [control]="calcKcalForm.controls.target"></squirrel-error-form>
         </mat-form-field>
     </div>
     <h4 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h4>
     <div class="footer-form col-6">
         <div class="unit col">
             <p>Wagi</p>
-            <mat-slide-toggle color="primary" checked="true">
+            <mat-slide-toggle name="kg" (change)=toogle($event) color="primary" formControlName="kg">
                 Kg
             </mat-slide-toggle>
-            <mat-slide-toggle color="primary">
+            <mat-slide-toggle name="lb" (change)=toogle($event) color="primary" formControlName="lb">
                 Lb
             </mat-slide-toggle>
         </div>
         <button type="submit" mat-raised-button color="primary" class="col">OBLICZ</button>
         <div class="unit col" style="align-items: flex-end;">
             <p>Wzrostu</p>
-            <mat-slide-toggle color="primary" checked="true">
+            <mat-slide-toggle name="cm" (change)=toogle($event) color="primary" formControlName="cm">
                 Cm
             </mat-slide-toggle>
-            <mat-slide-toggle color="primary">
+            <mat-slide-toggle name="ft" (change)=toogle($event) color="primary" formControlName="ft">
                 Ft/in
             </mat-slide-toggle>
         </div>

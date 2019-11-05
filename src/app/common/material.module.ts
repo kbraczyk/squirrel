@@ -21,6 +21,7 @@ const materialComponent = [
   ],
   exports: [
     ...materialComponent
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule { }
