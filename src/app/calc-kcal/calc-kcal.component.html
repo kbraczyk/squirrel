@@ -3,7 +3,7 @@
 </h3>
 <p class="sub-title">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
 <squirrel-calk-kcal-info class="d-none d-md-block d-lg-block d-xl-block"></squirrel-calk-kcal-info>
-<form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm)" class="row">
+<form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
     <div class="col-5-md">
         <mat-form-field [floatLabel]="'never'">
             <input name="height" id="height" matInput placeholder="{{heightPlaceholder}}" formControlName="height">
@@ -22,8 +22,8 @@
         <mat-form-field [floatLabel]="'never'">
             <mat-label>Płeć</mat-label>
             <mat-select name="sex" formControlName="sex">
-                <mat-option *ngFor="let s of sex" [value]="s">
-                    {{s}}
+                <mat-option *ngFor="let sex of sexValues" [value]="sex">
+                    {{sex}}
                 </mat-option>
             </mat-select>
             <squirrel-error-form [control]="calcKcalForm.controls.sex"></squirrel-error-form>
@@ -31,7 +31,7 @@
         <mat-form-field [floatLabel]="'never'">
             <mat-label>Aktywność</mat-label>
             <mat-select name="activity" formControlName="activity">
-                <mat-option *ngFor="let active of activity" [value]="active.value">
+                <mat-option *ngFor="let active of activityValues" [value]="active.value">
                     {{active.name}}
                 </mat-option>
             </mat-select>
@@ -40,8 +40,8 @@
         <mat-form-field [floatLabel]="'never'">
             <mat-label>Cel</mat-label>
             <mat-select name="target" formControlName="target">
-                <mat-option *ngFor="let t of target" [value]="t.value">
-                    {{t.name}}
+                <mat-option *ngFor="let target of targetValues" [value]="target.value">
+                    {{target.name}}
                 </mat-option>
             </mat-select>
             <squirrel-error-form [control]="calcKcalForm.controls.target"></squirrel-error-form>

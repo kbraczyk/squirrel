@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CalkKcalInfoComponent } from './calk-kcal-info/calk-kcal-info.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ResultKcalComponent } from './result-kcal/result-kcal.component';
+import { TagPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Component({
@@ -11,11 +13,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CalcKcalComponent implements OnInit {
 
-  protected sex: Array<string>;
-  protected activity: Array<{}>;
-  protected target: Array<{}>;
+  protected sexValues: Array<string>;
+  protected activityValues: Array<{}>;
+  protected targetValues: Array<{}>;
   public weightPlaceholder: string;
   public heightPlaceholder: string;
+  private dialogRef: MatDialogRef<any>;
 
 
   public calcKcalForm = new FormGroup({
@@ -31,22 +34,25 @@ export class CalcKcalComponent implements OnInit {
     ft: new FormControl(null),
   });
 
-  public get height() { return this.calcKcalForm.get('height'); }
+  public get age() { return this.calcKcalForm.get('age'); }
+  public get sex() { return this.calcKcalForm.get('sex'); }
+  public get activity() { return this.calcKcalForm.get('activity'); }
+  public get target() { return this.calcKcalForm.get('target'); }
   public get kg() { return this.calcKcalForm.get('kg'); }
   public get lb() { return this.calcKcalForm.get('lb'); }
   public get cm() { return this.calcKcalForm.get('cm'); }
   public get ft() { return this.calcKcalForm.get('ft'); }
 
   constructor(private dialogService: MatDialog) {
-    this.sex = ['Mężczyzna', 'Kobieta'];
-    this.activity = [
+    this.sexValues = ['Mężczyzna', 'Kobieta'];
+    this.activityValues = [
       { value: 1.2, name: 'Niska aktywność' },
-      { value: 1.4, name: 'Mała aktywność' },
-      { value: 1.6, name: 'Średnia aktywność' },
-      { value: 1.8, name: 'Duża aktywność' },
+      { value: 1.35, name: 'Mała aktywność' },
+      { value: 1.55, name: 'Średnia aktywność' },
+      { value: 1.75, name: 'Duża aktywność' },
       { value: 2, name: ' Bardzo duża aktywność' },
     ];
-    this.target = [
+    this.targetValues = [
       { value: 0.8, name: 'Utrata wagi' },
       { value: 1, name: 'Utrzymanie wagi' },
       { value: 1.2, name: 'Zwiększenie wagi' },
@@ -56,15 +62,35 @@ export class CalcKcalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.kg.setValue(true);
-    this.kg.valueChanges.subscribe( val => val ? this.weightPlaceholder = 'Waga (kg)' : this.weightPlaceholder = 'Waga (lb)');
-    this.cm.setValue(true);
-    this.cm.valueChanges.subscribe( val => val ? this.heightPlaceholder = 'Wzrost (cm)' : this.heightPlaceholder = 'Wzrost (Ft/in)');
+    this.setPopulateUnits();
   }
 
-  calculate(form: FormGroup) {
-    console.log(form, 'Form instance');
-    console.log(this.height, 'height');
+  calculate(formValue) {
+    let bmr: number;
+    let cpm: number;
+    console.log(this.calcKcalForm, 'FROM');
+    if (formValue.sex === 'Kobieta') {
+      bmr = (9.99 * formValue.weight) + (6.25 * formValue.height - (4.92 * formValue.age)) - 161;
+    } else {
+      bmr = (9.99 * formValue.weight) + (6.25 * formValue.height - (4.92 * formValue.age)) + 5;
+    }
+    cpm = (bmr * formValue.activity + formValue.target).toFixed(0);
+
+    if (bmr && cpm && formValue && this.calcKcalForm.valid) {
+      this.dialogRef = this.dialogService.open(ResultKcalComponent, {
+        height: '250px',
+        width: '400px',
+        data: { bmr, cpm, ...formValue }
+      });
+      this.dialogRef.afterClosed().subscribe(() => {
+        this.calcKcalForm.reset();
+        Object.keys(this.calcKcalForm.controls).forEach(key => this.calcKcalForm.get(key).setErrors(null));
+        this.setPopulateUnits();
+      });
+    } else {
+      Object.keys(this.calcKcalForm.controls).forEach(key => this.calcKcalForm.get(key).markAllAsTouched());
+      return;
+    }
   }
 
   toogle(event) {
@@ -73,12 +99,21 @@ export class CalcKcalComponent implements OnInit {
     } else if (event.source.name === 'lb') {
       event.checked ? this.kg.setValue(false) : this.kg.setValue(true);
     } else if (event.source.name === 'cm') {
-      event.checked ?  this.ft.setValue(false) : this.ft.setValue(true);
+      event.checked ? this.ft.setValue(false) : this.ft.setValue(true);
     } else {
       event.checked ? this.cm.setValue(false) : this.cm.setValue(true);
     }
   }
+
   openInfo() {
-    this.dialogService.open(CalkKcalInfoComponent, {data: {name: this.height.value}});
+    this.dialogService.open(CalkKcalInfoComponent, { data: { name: 'nam' } });
   }
+
+  setPopulateUnits() {
+    this.kg.setValue(true);
+    this.kg.valueChanges.subscribe(val => val ? this.weightPlaceholder = 'Waga (kg)' : this.weightPlaceholder = 'Waga (lb)');
+    this.cm.setValue(true);
+    this.cm.valueChanges.subscribe(val => val ? this.heightPlaceholder = 'Wzrost (cm)' : this.heightPlaceholder = 'Wzrost (Ft/in)');
+  }
+
 }

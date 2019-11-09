@@ -1,4 +1,3 @@
-
 <mat-error *ngIf="control.invalid && control.errors.required && (control.touched || control.dirty)">
     Pole jest obowiązkowe!
 </mat-error>
@@ -8,13 +7,6 @@
 <mat-error *ngIf="control.invalid && control.errors.min">
     Wartość nie może być mniejszy jak {{control.errors.min.min}}
 </mat-error>
-
-<!-- <div class="text-danger" *ngIf="control && control.errors && (control.dirty || control.touched)">
-    <div *ngIf="control.errors.required"><small>This field is required</small></div>
-    <div *ngIf="control.errors.unique"><small>{{control.errors.unique}}</small></div>
-    <div *ngIf="control.errors.lessThen"><small>{{control.errors.lessThen}}</small></div>
-    <div *ngIf="control.errors.greaterThan"><small>{{control.errors.greaterThan}}</small></div>
-    <div *ngIf="control.errors.email"><small>{{control.errors.email}}</small></div>
-    <div *ngIf="control.errors.mobile"><small>{{control.errors.mobile}}</small></div>
-    <div *ngIf="control.errors.confirmPassword"><small>{{control.errors.confirmPassword}}</small></div>
-</div> -->
+<mat-error *ngIf="control.invalid && control.errors.pattern">
+    Wartość  musi być cyfrą
+</mat-error>

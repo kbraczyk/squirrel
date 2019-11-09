@@ -14,6 +14,7 @@ import { MaterialModule } from './common/material.module';
 import { CommonModule } from '@angular/common';
 import { ErrorFormComponent } from './common/components/form/error-form/error-form.component';
 import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info.component';
+import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info
     CalcKcalComponent,
     HomeComponent,
     ErrorFormComponent,
-    CalkKcalInfoComponent
+    CalkKcalInfoComponent,
+    ResultKcalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info
     MaterialModule
   ],
   providers: [],
-  entryComponents: [CalkKcalInfoComponent],
+  entryComponents: [CalkKcalInfoComponent, ResultKcalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
