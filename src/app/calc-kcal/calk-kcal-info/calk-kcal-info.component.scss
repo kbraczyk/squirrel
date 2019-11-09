@@ -1,0 +1,16 @@
+@import "../../../Styles/variable";
+
+:host {
+    display: inline-block;
+
+    .title {
+      color: $dark-text-color;
+      &-article {
+        color: $primary-color;
+        font-weight: 700;
+      }
+    }
+  }
+  h4 {
+    color: rgb(78, 37, 107);
+  }

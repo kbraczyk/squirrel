@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './common/material.module';
 import { CommonModule } from '@angular/common';
 import { ErrorFormComponent } from './common/components/form/error-form/error-form.component';
+import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ErrorFormComponent } from './common/components/form/error-form/error-fo
     MenuComponent,
     CalcKcalComponent,
     HomeComponent,
-    ErrorFormComponent
+    ErrorFormComponent,
+    CalkKcalInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { ErrorFormComponent } from './common/components/form/error-form/error-fo
     MaterialModule
   ],
   providers: [],
+  entryComponents: [CalkKcalInfoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

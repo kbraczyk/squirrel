@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { CalkKcalInfoComponent } from './calk-kcal-info/calk-kcal-info.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
   selector: 'squirrel-calc-kcal',
   templateUrl: './calc-kcal.component.html',
-  styleUrls: ['./calc-kcal.component.scss']
+  styleUrls: ['./calc-kcal.component.scss'],
 })
 export class CalcKcalComponent implements OnInit {
 
@@ -18,9 +19,9 @@ export class CalcKcalComponent implements OnInit {
 
 
   public calcKcalForm = new FormGroup({
-    height: new FormControl(null, [Validators.required, Validators.max(250), Validators.min(0)]),
-    weight: new FormControl(null, [Validators.required, Validators.max(200), Validators.min(0)]),
-    age: new FormControl(null, [Validators.required, Validators.max(99), Validators.min(0)]),
+    height: new FormControl(null, [Validators.required, Validators.max(250), Validators.min(0), Validators.pattern('^[0-9]*$')]),
+    weight: new FormControl(null, [Validators.required, Validators.max(200), Validators.min(0), Validators.pattern('^[0-9]*$')]),
+    age: new FormControl(null, [Validators.required, Validators.max(99), Validators.min(0), Validators.pattern('^[0-9]*$')]),
     sex: new FormControl(null, Validators.required),
     activity: new FormControl(null, Validators.required),
     target: new FormControl(null, Validators.required),
@@ -36,7 +37,7 @@ export class CalcKcalComponent implements OnInit {
   public get cm() { return this.calcKcalForm.get('cm'); }
   public get ft() { return this.calcKcalForm.get('ft'); }
 
-  constructor() {
+  constructor(private dialogService: MatDialog) {
     this.sex = ['Mężczyzna', 'Kobieta'];
     this.activity = [
       { value: 1.2, name: 'Niska aktywność' },
@@ -76,5 +77,8 @@ export class CalcKcalComponent implements OnInit {
     } else {
       event.checked ? this.cm.setValue(false) : this.cm.setValue(true);
     }
+  }
+  openInfo() {
+    this.dialogService.open(CalkKcalInfoComponent, {data: {name: this.height.value}});
   }
 }
