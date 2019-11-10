@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CalkKcalInfoComponent } from './calk-kcal-info/calk-kcal-info.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultKcalComponent } from './result-kcal/result-kcal.component';
-import { TagPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Component({
@@ -22,10 +21,29 @@ export class CalcKcalComponent implements OnInit {
 
 
   public calcKcalForm = new FormGroup({
-    height: new FormControl(null, [Validators.required, Validators.max(250), Validators.min(0), Validators.pattern('^[0-9]*$')]),
-    weight: new FormControl(null, [Validators.required, Validators.max(200), Validators.min(0), Validators.pattern('^[0-9]*$')]),
-    age: new FormControl(null, [Validators.required, Validators.max(99), Validators.min(0), Validators.pattern('^[0-9]*$')]),
+    height: new FormControl(null,
+      [
+        Validators.required,
+        Validators.max(250),
+        Validators.min(0),
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      ]),
+    weight: new FormControl(null,
+      [
+        Validators.required,
+        Validators.max(200),
+        Validators.min(0),
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      ]),
+    age: new FormControl(null,
+      [
+        Validators.required,
+        Validators.max(99),
+        Validators.min(0),
+        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      ]),
     sex: new FormControl(null, Validators.required),
+
     activity: new FormControl(null, Validators.required),
     target: new FormControl(null, Validators.required),
     kg: new FormControl(null),
@@ -34,10 +52,6 @@ export class CalcKcalComponent implements OnInit {
     ft: new FormControl(null),
   });
 
-  public get age() { return this.calcKcalForm.get('age'); }
-  public get sex() { return this.calcKcalForm.get('sex'); }
-  public get activity() { return this.calcKcalForm.get('activity'); }
-  public get target() { return this.calcKcalForm.get('target'); }
   public get kg() { return this.calcKcalForm.get('kg'); }
   public get lb() { return this.calcKcalForm.get('lb'); }
   public get cm() { return this.calcKcalForm.get('cm'); }
@@ -74,7 +88,7 @@ export class CalcKcalComponent implements OnInit {
     } else {
       bmr = (9.99 * formValue.weight) + (6.25 * formValue.height - (4.92 * formValue.age)) + 5;
     }
-    cpm = (bmr * formValue.activity + formValue.target).toFixed(0);
+    cpm = (bmr * formValue.activity) * formValue.target.toFixed(0);
 
     if (bmr && cpm && formValue && this.calcKcalForm.valid) {
       this.dialogRef = this.dialogService.open(ResultKcalComponent, {

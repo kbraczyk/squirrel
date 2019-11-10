@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorFormComponent } from './common/components/form/error-form/error-form.component';
 import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info.component';
 import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.component';
+import { FormaterPipe } from './common/pipe/formater.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.compone
     HomeComponent,
     ErrorFormComponent,
     CalkKcalInfoComponent,
-    ResultKcalComponent
+    ResultKcalComponent,
+    FormaterPipe
   ],
   imports: [
     BrowserModule,
