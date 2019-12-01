@@ -120,14 +120,13 @@ export class CalcKcalComponent implements OnInit {
   }
 
   openInfo() {
-    this.dialogService.open(CalkKcalInfoComponent, { data: { name: 'nam' } });
+    this.dialogRef = this.dialogService.open(CalkKcalInfoComponent);
   }
 
-  setPopulateUnits() {
+  setPopulateUnits(): any {
     this.kg.setValue(true);
     this.kg.valueChanges.subscribe(val => val ? this.weightPlaceholder = 'Waga (kg)' : this.weightPlaceholder = 'Waga (lb)');
     this.cm.setValue(true);
     this.cm.valueChanges.subscribe(val => val ? this.heightPlaceholder = 'Wzrost (cm)' : this.heightPlaceholder = 'Wzrost (Ft/in)');
   }
-
 }

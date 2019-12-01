@@ -7,6 +7,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCardModule} from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatTabsModule} from '@angular/material';
+
 
 const materialComponent = [
   MatFormFieldModule,
@@ -15,7 +22,13 @@ const materialComponent = [
   MatSelectModule,
   MatSlideToggleModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatCardModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTabsModule
 ];
 
 @NgModule({

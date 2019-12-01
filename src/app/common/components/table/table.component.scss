@@ -1,0 +1,27 @@
+@import "../../../../Styles/variable";
+
+.table {
+  margin: 30px auto;
+}
+::ng-deep mat-card {
+  margin: 50px auto;
+  mat-card-header {
+    color: $second-color;
+  }
+  mat-card-content {
+    padding: 25px;
+  }
+  .mat-tab-labels {
+justify-content: center;
+ }
+ .mat-tab-label {
+   color: $second-color;
+   opacity: 1;
+   font-size: 1.2em;
+ }
+ .mat-header-cell {
+   color: $dark-text-color;
+   font-size: 1.2em;
+ }
+}
+

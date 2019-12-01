@@ -16,6 +16,8 @@ import { ErrorFormComponent } from './common/components/form/error-form/error-fo
 import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info.component';
 import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.component';
 import { FormaterPipe } from './common/pipe/formater.pipe';
+import { TableComponent } from './common/components/table/table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { FormaterPipe } from './common/pipe/formater.pipe';
     ErrorFormComponent,
     CalkKcalInfoComponent,
     ResultKcalComponent,
-    FormaterPipe
+    FormaterPipe,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { FormaterPipe } from './common/pipe/formater.pipe';
     CommonModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   entryComponents: [CalkKcalInfoComponent, ResultKcalComponent],

@@ -22,7 +22,7 @@ $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-
 html,
 body {
   height: 100%;
-  width: 100vw;
+  width: 100% !important;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   color: $primary-color;
