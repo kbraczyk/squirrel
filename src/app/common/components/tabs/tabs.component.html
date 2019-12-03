@@ -1,0 +1,3 @@
+<div color="primary" class="row">
+    <div class="col" [ngClass]="active === i ? 'active' : ''" *ngFor="let tab of tabsOptions; let i=index" (click)="changeTab(i, $event)">{{tab.label}}</div>
+</div>

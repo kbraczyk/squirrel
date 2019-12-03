@@ -18,6 +18,7 @@ import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.compone
 import { FormaterPipe } from './common/pipe/formater.pipe';
 import { TableComponent } from './common/components/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TabsComponent } from './common/components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     CalkKcalInfoComponent,
     ResultKcalComponent,
     FormaterPipe,
-    TableComponent
+    TableComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,

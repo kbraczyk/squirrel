@@ -1,7 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DataSource } from '@angular/cdk/table';
+import { Component, OnInit } from '@angular/core';
 import { SquirrelDataSource } from './dataSource';
-import { HttpClient } from '@angular/common/http';
 import { RestService, Resource } from '../../service/rest.service';
 
 @Component({
@@ -12,28 +10,28 @@ import { RestService, Resource } from '../../service/rest.service';
 
 export class TableComponent implements OnInit {
 
-  public columnsToDisplay: string[] = ['lp', 'name', 'kcal', 'carbo', 'sugar', 'fat', 'protein'];
+  public columnsToDisplay: string[] = ['name', 'kcal', 'carbo', 'sugar', 'fat', 'protein'];
   public tabs = [
-    {value: Resource.carbo, label: 'Węglowodany'},
-    {value: Resource.fat, label: 'Tłuszcz'},
-    {value: Resource.protein, label: 'Białko'},
-    {value: Resource.fruits, label: 'Owoce'},
-    {value: Resource.vegetables, label: 'Warzywa'},
+    { value: Resource.carbo, label: 'Węglowodany' },
+    { value: Resource.fat, label: 'Tłuszcz' },
+    { value: Resource.protein, label: 'Białko' },
+    { value: Resource.fruits, label: 'Owoce' },
+    { value: Resource.vegetables, label: 'Warzywa' },
   ];
 
   public dataSource: SquirrelDataSource;
 
-  constructor( private rest: RestService) {
+  constructor(private rest: RestService) {
     this.dataSource = new SquirrelDataSource(this.rest);
   }
 
   ngOnInit() {
-  this.dataSource.loadData();
+    this.rest.setResource(this.tabs[0].value);
+    this.dataSource.loadData();
   }
 
-  onLinkClick(event) {
-    let activeTabs = this.tabs[event.index];
-    this.rest.setResource(activeTabs.value);
+  activeTab(indexTab) {
+    this.rest.setResource(this.tabs[indexTab].value);
     this.dataSource.loadData();
   }
 }
