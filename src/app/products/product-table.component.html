@@ -1,13 +1,14 @@
 <div class="col container">
   <squirrel-tabs class="col" [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
 
-  <mat-table class="col" matSort class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+  <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort class="lessons-table mat-elevation-z8"
+    [dataSource]="dataSource">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</mat-header-cell>
       <mat-cell class="description-cell" *matCellDef="let row">{{row.name}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="kcal">
+    <ng-container matColumnDef="energy">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Kcal</mat-header-cell>
       <mat-cell class="duration-cell" *matCellDef="let row">{{row.energy}}</mat-cell>
     </ng-container>
@@ -31,11 +32,18 @@
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
 
-  <mat-card *ngIf="(dataSource.isLoading$ | async) || dataSource.noContent" style="display: flex; justify-content: center; align-items: center">
+  <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
+      <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
+          <h3>
+              Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
+          </h3>
+      </mat-card-content>
+  </mat-card>
+
+
+  <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
     <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
     </mat-progress-spinner>
-    <div *ngIf="dataSource.noContent && !dataSource.isLoading$ | async">
-      Brak danych do wyświetlenia :(
-    </div>
   </mat-card>
-  <div>
+
+</div>

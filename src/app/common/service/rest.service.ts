@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SortDirection } from '@angular/material';
 
 
 @Injectable({
@@ -13,8 +14,12 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  public getAll = (): Observable<any> => {
-   return this.http.get(this.baseUrl + this.resource);
+  public getAll = (sort?: SortModel): Observable<any> => {
+    let url = this.baseUrl + this.resource;
+    if (sort) {
+      url = url + `?sort=${sort.direction === 'asc' ? '+' : '-'}${sort.field}`;
+    }
+    return this.http.get(url);
   }
   public getById = (id: number): Observable<any> => {
     return this.http.get(`${this.baseUrl + this.resource}/${id}`);
@@ -37,3 +42,7 @@ export enum Resource {
   carbo = '/carbo'
 }
 
+export class SortModel {
+    field: string;
+    direction: SortDirection;
+}

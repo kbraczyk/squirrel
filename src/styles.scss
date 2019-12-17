@@ -13,10 +13,10 @@ $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "Styles/_variable";
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -24,8 +24,14 @@ body {
   height: 100%;
   width: 100% !important;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: $primary-color;
+  button {
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 body {
   margin: 0;
@@ -33,7 +39,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-ul{
+ul {
   margin: 0;
   padding: 0;
 }

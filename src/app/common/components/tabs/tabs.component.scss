@@ -23,6 +23,10 @@
     .col {
         cursor: pointer;
         height: 100%;
+        &::after{
+            content: '';
+            width: 10px;
+        }
     }
 .active {
     background-color: whitesmoke;
