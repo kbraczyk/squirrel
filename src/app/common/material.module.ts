@@ -10,10 +10,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const materialComponent = [
   MatFormFieldModule,
@@ -28,7 +27,8 @@ const materialComponent = [
   MatCardModule,
   MatPaginatorModule,
   MatSortModule,
-  MatTabsModule
+  MatTabsModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { Resource } from '../../service/rest.service';
 })
 export class TabsComponent {
 
-  @Input() tabsOptions: { value: Resource, label: string };
+  @Input() tabsOptions: { value: Resource, label: string, icon: string };
   @Output() selectedTab = new EventEmitter();
   public active: number = 0;
 

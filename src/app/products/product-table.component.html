@@ -1,4 +1,9 @@
 <div class="col container">
+  <div class="col table">
+    <h3 class="table title">{{title}}</h3>
+    <p class="table subtitle">{{subTitle}}</p>
+    <img class="table filter" src="../../assets/icon/filter.svg" alt="">
+  </div>
   <squirrel-tabs class="col" [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
 
   <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort class="lessons-table mat-elevation-z8"
@@ -31,6 +36,8 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
+  <mat-paginator *ngIf="dataSource.hasData" [length]="dataSource.length$ | async" [pageSize]="dataSource.defaultPaginator.pageSize"
+  [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true></mat-paginator>
 
   <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
       <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
@@ -40,10 +47,8 @@
       </mat-card-content>
   </mat-card>
 
-
   <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
     <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
     </mat-progress-spinner>
   </mat-card>
-
 </div>

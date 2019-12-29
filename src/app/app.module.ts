@@ -18,6 +18,8 @@ import { FormaterPipe } from './common/pipe/formater.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { TabsComponent } from './common/components/tabs/tabs.component';
 import { ProductTableComponent } from './products/product-table.component';
+import { MatPaginatorIntl } from '@angular/material';
+import { CustomPaginator } from './common/components/table/customPaginatorConfig';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ProductTableComponent } from './products/product-table.component';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+  { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+  ],
   entryComponents: [CalkKcalInfoComponent, ResultKcalComponent],
   bootstrap: [AppComponent]
 })

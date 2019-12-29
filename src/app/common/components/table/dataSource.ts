@@ -1,15 +1,19 @@
-import { BehaviorSubject, of } from 'rxjs';
-import { finalize, catchError, } from 'rxjs/operators/';
+import { BehaviorSubject, } from 'rxjs';
+import { finalize, } from 'rxjs/operators/';
 import { RestService, SortModel } from '../../service/rest.service';
 import { MatTableDataSource, } from '@angular/material';
-import { trigger, transition, style, sequence, animate } from '@angular/animations';
 
 export class SquirrelDataSource extends MatTableDataSource<any> {
 
 
     private data$ = new BehaviorSubject<any[]>([]);
+    public length$ = new BehaviorSubject<number>(0);
     public isLoading$ = new BehaviorSubject<boolean>(true);
     public hasData: boolean = false;
+    public defaultPaginator = {
+        pageSize: 5,
+        page: 1
+    };
     constructor(private rest: RestService) {
         super();
     }
@@ -30,15 +34,16 @@ export class SquirrelDataSource extends MatTableDataSource<any> {
                 console.log(data);
                 if (data) {
                     this.hasData = true;
+                    this.length$.next(10);
                     this.data$.next(data[`data`]);
                 } else {
                     this.hasData = false;
                 }
             },
-            (err) => {
-                this.data$.next([]);
-                this.hasData = false;
-            });
+                (err) => {
+                    this.data$.next([]);
+                    this.hasData = false;
+                });
         }, 2000);
     }
 
@@ -58,13 +63,3 @@ export class SquirrelDataSource extends MatTableDataSource<any> {
     }
 
 }
-export const rowsAnimation =
-    trigger('rowsAnimation', [
-      transition('void => *', [
-        style({ height: '*', opacity: '0', transform: 'translateX(-550px)', 'box-shadow': 'none' }),
-        sequence([
-          animate(".35s ease", style({ height: '*', opacity: '.2', transform: 'translateX(0)', 'box-shadow': 'none'  })),
-          animate(".35s ease", style({ height: '*', opacity: 1, transform: 'translateX(0)' }))
-        ])
-      ])
-    ]);
