@@ -14,11 +14,16 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  public getAll = (sort?: SortModel): Observable<any> => {
+  public getAll = (pager?: PageModel, sort?: SortModel): Observable<any> => {
     let url = this.baseUrl + this.resource;
+
     if (sort) {
       url = url + `?sort=${sort.direction === 'asc' ? '+' : '-'}${sort.field}`;
     }
+    if (pager) {
+      url = url + `?per_page=${pager.perPage}&offset=${pager.offset}`;
+    }
+
     return this.http.get(url);
   }
   public getById = (id: number): Observable<any> => {
@@ -38,11 +43,15 @@ export enum Resource {
   fruits = '/fruits',
   vegetables = '/vegetables',
   protein = '/protein',
-  fat = '/fat',
+  fat = '/fats',
   carbo = '/carbo'
 }
 
 export class SortModel {
     field: string;
     direction: SortDirection;
+}
+export class PageModel {
+  perPage: number;
+  offset: number;
 }

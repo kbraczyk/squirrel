@@ -1,19 +1,15 @@
 import { BehaviorSubject, } from 'rxjs';
 import { finalize, } from 'rxjs/operators/';
-import { RestService, SortModel } from '../../service/rest.service';
-import { MatTableDataSource, } from '@angular/material';
+import { RestService, SortModel, PageModel } from '../../service/rest.service';
+import { MatTableDataSource, PageEvent, } from '@angular/material';
 
 export class SquirrelDataSource extends MatTableDataSource<any> {
-
 
     private data$ = new BehaviorSubject<any[]>([]);
     public length$ = new BehaviorSubject<number>(0);
     public isLoading$ = new BehaviorSubject<boolean>(true);
     public hasData: boolean = false;
-    public defaultPaginator = {
-        pageSize: 5,
-        page: 1
-    };
+
     constructor(private rest: RestService) {
         super();
     }
@@ -25,16 +21,16 @@ export class SquirrelDataSource extends MatTableDataSource<any> {
     disconnect() {
         this.data$.complete();
     }
-    public loadData(sort?: SortModel) {
+
+    public loadData(pager?: PageModel, sort?: SortModel) {
         this.isLoading$.next(true);
         setTimeout(() => {
-            this.rest.getAll(sort).pipe(
+            this.rest.getAll(pager, sort).pipe(
                 finalize(() => this.isLoading$.next(false))
             ).subscribe(data => {
-                console.log(data);
                 if (data) {
                     this.hasData = true;
-                    this.length$.next(10);
+                    this.length$.next(data.total);
                     this.data$.next(data[`data`]);
                 } else {
                     this.hasData = false;
@@ -55,11 +51,20 @@ export class SquirrelDataSource extends MatTableDataSource<any> {
         };
 
         sortActive.field && !sortActive.direction ? sortActive = this.setDefaultSort() : sortActive = sortActive;
-        this.loadData(sortActive);
+        this.loadData(null, sortActive);
+    }
+
+    changePage(event: PageEvent) {
+        this.isLoading$.next(true);
+        const pager: PageModel = {
+            perPage: event.pageSize,
+            offset: event.pageIndex,
+        };
+        console.log(event, ' QWE')
+        this.loadData(pager, null);
     }
 
     setDefaultSort = (): SortModel => {
         return { direction: null, field: null };
     }
-
 }

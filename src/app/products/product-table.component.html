@@ -36,8 +36,8 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
-  <mat-paginator *ngIf="dataSource.hasData" [length]="dataSource.length$ | async" [pageSize]="dataSource.defaultPaginator.pageSize"
-  [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true></mat-paginator>
+  <mat-paginator [length]="dataSource.length$ | async" [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)"></mat-paginator>
 
   <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
       <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">

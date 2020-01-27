@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SquirrelDataSource } from '../common/components/table/dataSource';
 import { RestService, Resource } from '../common/service/rest.service';
-import { MatSort, MatPaginator } from '@angular/material';
-import { trigger, transition, style, sequence, animate, state } from '@angular/animations';
+import { MatSort, MatPaginator, MatTable } from '@angular/material';
 
 @Component({
   selector: 'squirrel-product-table',
@@ -10,10 +9,10 @@ import { trigger, transition, style, sequence, animate, state } from '@angular/a
   styleUrls: ['./product-table.component.scss'],
 })
 
-export class ProductTableComponent implements OnInit {
+export class ProductTableComponent implements OnInit, AfterViewInit {
 
-  title: string = 'Polecane produkty';
-  subTitle: string = 'Lista pokazuję produkt, które warto włączyć do swojej diety';
+  public title: string = 'Polecane produkty';
+  public subTitle: string = 'Lista pokazuję produkt, które warto włączyć do swojej diety';
 
   public columnsToDisplay: string[] = ['name', 'energy', 'carbo', 'sugar', 'fat', 'protein'];
 
@@ -29,11 +28,10 @@ export class ProductTableComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
   constructor(private rest: RestService) {
     this.dataSource = new SquirrelDataSource(this.rest);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
@@ -41,9 +39,19 @@ export class ProductTableComponent implements OnInit {
     this.dataSource.loadData();
   }
 
+  ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.table.dataSource = this.dataSource;
+  }
+
   activeTab(indexTab) {
     this.rest.setResource(this.tabs[indexTab].value);
-    this.dataSource.loadData();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.table.dataSource = this.dataSource;
+    this.dataSource.loadData(null, null);
   }
+
 }
 
