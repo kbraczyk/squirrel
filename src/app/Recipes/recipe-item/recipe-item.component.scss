@@ -1,10 +1,39 @@
-:host{
-    display: block;
-    width: 100%;
-    padding: 0 20px;
-    margin: 10px;
-}
+:host {
+  display: block;
+  margin: 10px 10px 25px 10px;
+  max-width: 360px;
 
-.recipe-item {
-    max-width: 320px;
+  ::ng-deep mat-card-header {
+    text-align: center;
+    border-bottom: 2px solid #e040fb;
+    .mat-card-header-text {
+      width: 100%;
+    }
+    mat-card-subtitle {
+      display: flex;
+      height: 26px;
+      align-items: center;
+      justify-content: space-between;
+      .info-recipe {
+        display: flex;
+        align-items: center;
+        &:last-child {
+            position: relative;
+            width: 56px;
+        }
+        img {
+          position: absolute;
+          bottom: 2px;
+          right: -12px;
+          filter: invert(0.5);
+        }
+        .mat-18 {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .mat-card-content {
+    margin-top: 16px;
+  }
 }

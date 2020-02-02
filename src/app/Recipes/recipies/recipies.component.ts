@@ -11,6 +11,6 @@ export class RecipiesComponent implements OnInit {
 
   ngOnInit() {
   }
-  item = [1,2,3,4,5];
+  item = [1,2,3,4,5,6,7,8];
 
 }

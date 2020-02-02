@@ -82,7 +82,6 @@ export class CalcKcalComponent implements OnInit {
   calculate(formValue) {
     let bmr: number;
     let cpm: number;
-    console.log(this.calcKcalForm, 'FROM');
     if (formValue.sex === 'Kobieta') {
       bmr = (9.99 * formValue.weight) + (6.25 * formValue.height - (4.92 * formValue.age)) - 161;
     } else {
