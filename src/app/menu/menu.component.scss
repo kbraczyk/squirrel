@@ -6,56 +6,70 @@
   width: 100%;
   height: 60px;
   background-color: #6b6b6b;
-  margin-top: -20px;
+
   ul {
-    display: flex;
     justify-content: space-around;
-    align-items: center;
     width: 100%;
-    height: 100%;
+    font-weight: 700;
+
     li {
       list-style: none;
-      font-weight: 700;
-      height: 100%;
+      cursor: pointer;
+
       &:last-child {
         height: 70%;
         border: 2px solid $second-color;
       }
+
       a {
         color: $linkcolor;
         letter-spacing: 2px;
         text-decoration: none;
         text-transform: uppercase;
-        height: 100%;
         line-height: 100%;
-        display: flex;
-        align-items: center;
         padding: 0 10px;
-        cursor: pointer;
         &:hover {
-          color: darken($linkcolor, 20);
-          transition: all 1s ease-out;
+          color: $linkcolor;
         }
         i {
           font-size: 40px;
         }
       }
+
+      a,
+      a:hover,
+      .icon,
+      .icon:hover {
+        transition: color 0.7s ease-out;
+      }
+
       .accent {
-        height: 100%;
         padding: 15px;
         color: $second-color;
       }
+
       .active {
         background-color: $second-color;
       }
     }
+  }
+  ul,
+  li,
+  a,
+  .accent {
+    height: 100%;
+  }
+  ul,
+  a {
+    display: flex;
+    align-items: center;
   }
 }
 
 @include media-breakpoint-up(lg) {
   :host {
     font-size: 1.1em;
-    .input {
+    .icon {
       display: none;
     }
   }
@@ -73,7 +87,6 @@
         &:last-child {
           height: 100%;
           border: none;
-          cursor: pointer;
         }
         a {
           i {
@@ -83,23 +96,26 @@
         .accent {
           display: none !important;
         }
-        .input {
+        .icon {
           display: block;
-          color: $linkcolor;
           line-height: 65px;
           color: $second-color;
           font-size: 32px;
+          cursor: help;
+          &:hover {
+            color: whitesmoke;
+          }
         }
       }
     }
   }
 }
 @include media-breakpoint-down(sm) {
-:host{
-  font-size: 0.6em;
-  height: 55px;
-  .input {
-    line-height: 55px !important;
+  :host {
+    font-size: 0.6em;
+    height: 55px;
+    .icon {
+      line-height: 55px !important;
+    }
   }
-}
 }
