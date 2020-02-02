@@ -11,7 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
-import {MatTabsModule} from '@angular/material';
+import {MatTabsModule, MatTooltipModule} from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 const materialComponent = [
@@ -28,7 +28,8 @@ const materialComponent = [
   MatPaginatorModule,
   MatSortModule,
   MatTabsModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatTooltipModule
 ];
 
 @NgModule({

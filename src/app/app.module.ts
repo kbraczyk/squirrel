@@ -20,6 +20,8 @@ import { TabsComponent } from './common/components/tabs/tabs.component';
 import { ProductTableComponent } from './products/product-table.component';
 import { MatPaginatorIntl } from '@angular/material';
 import { CustomPaginator } from './common/components/table/customPaginatorConfig';
+import { RecipiesComponent } from './Recipes/recipies/recipies.component';
+import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CustomPaginator } from './common/components/table/customPaginatorConfig
     FormaterPipe,
     ProductTableComponent,
     TabsComponent,
+    RecipiesComponent,
+    RecipeItemComponent,
   ],
   imports: [
     BrowserModule,
