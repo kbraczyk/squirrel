@@ -1,3 +1,6 @@
+@import "../../../Styles/variable";
+@import "../../../Styles/mixin";
+
 :host {
   display: block;
   margin: 10px 10px 25px 10px;
@@ -10,21 +13,16 @@
       width: 100%;
     }
     mat-card-subtitle {
-      display: flex;
+      @include flex-box(row, center, space-between);
       height: 26px;
-      align-items: center;
-      justify-content: space-between;
       .info-recipe {
-        display: flex;
-        align-items: center;
+        @include flex-box(row, center);
         &:last-child {
-            position: relative;
-            width: 56px;
+          position: relative;
+          width: 56px;
         }
         img {
-          position: absolute;
-          bottom: 2px;
-          right: -12px;
+          @include absolute(null, -20px, 2px, null);
           filter: invert(0.5);
         }
         .mat-18 {

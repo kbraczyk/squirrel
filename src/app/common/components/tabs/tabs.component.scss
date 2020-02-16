@@ -1,4 +1,5 @@
 @import "../../../../Styles/variable";
+@import "../../../../Styles/mixin";
 
 :host {
   display: inline-block;
@@ -8,7 +9,7 @@
   margin: 12px 0;
   border: 2px solid rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-} 
+}
 .row {
   height: 60px;
   padding-left: 15px;
@@ -24,10 +25,8 @@
   border-radius: 5px;
   position: relative;
   &::after {
-    position: absolute;
+    @include absolute(null, null, -2px, null);
     content: "";
-    bottom: -2px;
-    left: 0;
     height: 3px;
     width: 0%;
     border-radius: 3px;
@@ -36,14 +35,10 @@
     animation-duration: 0.6s;
     animation-fill-mode: forwards;
   }
-  // transition: border .4s ease-in-out ;
 }
 
 .tab {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  @include flex-box(row,center,center,unset);
   .icon-tab {
     height: 40px;
     padding-right: 8px;

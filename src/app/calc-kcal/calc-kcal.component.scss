@@ -1,4 +1,6 @@
 @import "../../Styles/variable";
+@import "../../Styles/mixin";
+
 :host {
   display: inline-block;
   padding: 40px;
@@ -10,27 +12,22 @@
 }
 
 form {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  @include flex-box(row,unset,space-between,unset);
   padding: 40px;
 
   mat-form-field {
     width: 100%;
   }
   .footer-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @include flex-box(row,center,unset,unset);
     margin: 0 auto;
   }
   .unit {
-    display: flex;
-    flex-direction: column;
-    width: max-content;
+    @include flex-box(column,unset,unset,unset);
     padding: 15px;
   }
 }
+
 @keyframes show {
   0% {
     opacity: 0;

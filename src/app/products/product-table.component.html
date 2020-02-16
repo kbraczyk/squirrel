@@ -38,17 +38,16 @@
   </mat-table>
   <mat-paginator [length]="dataSource.length$ | async" [pageSize]="5"
   [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)"></mat-paginator>
-
-  <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
+  <!-- LOADER -->
+  <!-- <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
       <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
           <h3>
               Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
           </h3>
       </mat-card-content>
-  </mat-card>
-
-  <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
+  </mat-card> -->
+  <!-- <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
     <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
     </mat-progress-spinner>
-  </mat-card>
+  </mat-card> -->
 </div>

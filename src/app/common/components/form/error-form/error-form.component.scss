@@ -1,6 +1,6 @@
+@import "../../../../../Styles/mixin";
 :host{
     display: block;
     font-size: 75%;
-    position: absolute;
-    bottom: -20px;
+    @include absolute(null,null,-20px);
 }
