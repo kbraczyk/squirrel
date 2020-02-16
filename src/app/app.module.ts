@@ -22,6 +22,7 @@ import { MatPaginatorIntl } from '@angular/material';
 import { CustomPaginator } from './common/components/table/customPaginatorConfig';
 import { RecipiesComponent } from './Recipes/recipies/recipies.component';
 import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
+import { StorageService } from './common/service/storage.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component
     HttpClientModule
   ],
   providers: [
+    StorageService,
   { provide: MatPaginatorIntl, useValue: CustomPaginator() }
   ],
   entryComponents: [CalkKcalInfoComponent, ResultKcalComponent],
