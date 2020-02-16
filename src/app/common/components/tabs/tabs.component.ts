@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener} from '@angular/core';
 import { Resource } from '../../service/rest.service';
 
 @Component({
@@ -11,12 +11,23 @@ export class TabsComponent {
   @Input() tabsOptions: { value: Resource, label: string, icon: string };
   @Output() selectedTab = new EventEmitter();
   public active: number = 0;
+  protected showTooltip: boolean = false;
 
-  constructor() {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.setVisibilityTooltip();
   }
 
-  changeTab(indexTabs) {
+  constructor() {
+    this.setVisibilityTooltip();
+  }
+
+  private changeTab(indexTabs) {
     this.active = indexTabs;
     this.selectedTab.emit(indexTabs);
+  }
+
+  private setVisibilityTooltip(): void {
+    innerWidth < 768 ? this.showTooltip = true : this.showTooltip = false;
   }
 }

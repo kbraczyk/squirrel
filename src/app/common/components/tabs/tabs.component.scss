@@ -1,61 +1,73 @@
 @import "../../../../Styles/variable";
 
 :host {
-    display: inline-block;
-    color: $second-color;
-    font-size: 1.35em;
-    padding: 0;
-    margin: 12px 0;
-    border: 2px solid rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
+  display: inline-block;
+  color: $second-color;
+  font-size: 1.35em;
+  padding: 0;
+  margin: 12px 0;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+} 
+.row {
+  height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
 }
-    .row {
-        height: 60px;
-        padding-left: 15px;
-        padding-right: 15px;
-        align-items: center;
-    }
-    .col {
-        cursor: pointer;
-        height: 100%;
-    }
+.col {
+  cursor: pointer;
+  height: 100%;
+}
 .active {
-    background-color: whitesmoke;
-    border-radius: 5px;
-    position: relative;
-    &::after{
-        position: absolute;
-        content: '';
-        bottom: -2px;
-        left: 0;
-        height: 3px;
-        width: 0%;
-        border-radius: 3px;
-        background-color: $primary-color-light;
-        animation-name: forLeft;
-        animation-duration: 0.6s;
-        animation-fill-mode: forwards;
-    }
-    // transition: border .4s ease-in-out ;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    bottom: -2px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    border-radius: 3px;
+    background-color: $primary-color-light;
+    animation-name: forLeft;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+  }
+  // transition: border .4s ease-in-out ;
 }
 
 .tab {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    .icon-tab{
-        height: 40px;
-        padding-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  .icon-tab {
+    height: 40px;
+    padding-right: 8px;
+  }
+}
+@include media-breakpoint-down(md) {
+  .tab {
+    font-size: 18px;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .tab {
+    .label-tab {
+        display: none;
     }
+  }
 }
 
 @keyframes forLeft {
-    0% {
-        widows: 0%;
-    }
-    100% {
-        width: 100%;
-    }
-
+  0% {
+    widows: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
+
