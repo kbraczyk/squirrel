@@ -1,16 +1,16 @@
 <h3 class="title">Kalkulator zapotrzebowania kalorycznego <mat-icon class="d-md-none" (click)="openInfo()">info
     </mat-icon>
 </h3>
-<p class="sub-title">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
-<squirrel-calk-kcal-info class="d-none d-md-block d-lg-block d-xl-block"></squirrel-calk-kcal-info>
+<p class="info">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
+<squirrel-calk-kcal-info class="d-none d-md-block"></squirrel-calk-kcal-info>
 <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
-    <div class="col-5-md">
+    <div class="col-12 col-sm-12 col-md-5 ">
         <mat-form-field [floatLabel]="'never'">
-            <input name="height" id="height" matInput placeholder="{{heightPlaceholder}}" formControlName="height">
+            <input name="height" id="height" matInput [placeholder]="heightPlaceholder" formControlName="height">
             <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
         </mat-form-field>
         <mat-form-field [floatLabel]="'never'">
-            <input name="weight" matInput placeholder={{weightPlaceholder}} formControlName="weight">
+            <input name="weight" matInput [placeholder]="weightPlaceholder" formControlName="weight">
             <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
         </mat-form-field>
         <mat-form-field [floatLabel]="'never'">
@@ -18,7 +18,7 @@
             <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
         </mat-form-field>
     </div>
-    <div class="col-5-md">
+    <div class="col-12 col-sm-12 col-md-5">
         <mat-form-field [floatLabel]="'never'">
             <mat-label>Płeć</mat-label>
             <mat-select name="sex" formControlName="sex">

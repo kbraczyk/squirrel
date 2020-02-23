@@ -10,6 +10,13 @@
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.info {
+  font-size: 1.15rem;
+}
 
 form {
   @include flex-box(row,unset,space-between,unset);
