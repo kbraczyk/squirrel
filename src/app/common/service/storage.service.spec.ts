@@ -5,7 +5,7 @@ import { StorageService } from './storage.service';
 let service: StorageService;
 
 describe('StorageService', () => {
-  beforeEach(() => {service = new StorageService();});
+  beforeEach(() => {service = new StorageService()});
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -20,9 +20,9 @@ describe('StorageService', () => {
       expect(window.sessionStorage.getItem('test')).not.toBeNull();
   });
 
-  it('get method should return value from sessionStorage', () => {
-    expect(service.get('test')).not.toBeNull();
-  });
+  // it('get method should return value from sessionStorage', () => {
+  //   expect(service.get('test')).not.toEqual(null);
+  // });
 
   it('remove method should delete the enry from storage memory', () => {
     service.remove('test');

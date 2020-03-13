@@ -9,8 +9,8 @@ import { SortDirection } from '@angular/material';
 })
 export class RestService {
 
-  private baseUrl: string = ' http://localhost:3000';
-  private resource: Resource;
+  private baseUrl: string = 'http://localhost:3000';
+  private resource: Resource = null;
 
   constructor(private http: HttpClient) {}
 
