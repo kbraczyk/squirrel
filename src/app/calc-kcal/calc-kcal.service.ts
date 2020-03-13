@@ -19,17 +19,13 @@ export class CalcKcalService {
     { value: 1.2, name: 'Zwiększenie wagi' },
   ];
 
-  get sex(): Array<string> { return this._sex }
-  get activity(): Array<{ value, name }> { return this._activity }
-  get target(): Array<{ value, name }> { return this._target }
+  get sex(): Array<string> { return this._sex; }
+  get activity(): Array<{ value, name }> { return this._activity; }
+  get target(): Array<{ value, name }> { return this._target; }
 
 
   constructor() { }
 
-  /**
-   *
-   * @param value
-   */
   public calculateKcal(value): number {
     // BMR
     let basicMetabolicRate: number;

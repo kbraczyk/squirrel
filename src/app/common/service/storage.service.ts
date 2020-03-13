@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StorageService {
-  private storage: Window[storageType.locale | storageType.session] = null;
+  private _storage: Window[storageType.locale | storageType.session] = null;
 
+  get storage() {
+    return this._storage;
+  }
   constructor() {
     this.setStorageType();
    }
 
    public setStorageType(type: storageType = storageType.session) {
-     this.storage = window[type];
+     this._storage = window[type];
    }
 
   public set(key: string, value: any) {

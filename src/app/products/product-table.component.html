@@ -36,18 +36,21 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.length$ | async" [pageSize]="5"
+   <!-- LOADER -->
+   <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
+    <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
+        <h3>
+            Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
+        </h3>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
+
+  <mat-paginator *ngIf="dataSource.hasData | async" [length]="dataSource.length$ | async" [pageSize]="5"
   [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)"></mat-paginator>
-  <!-- LOADER -->
-  <!-- <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
-      <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
-          <h3>
-              Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
-          </h3>
-      </mat-card-content>
-  </mat-card> -->
-  <!-- <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
-    <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
-    </mat-progress-spinner>
-  </mat-card> -->
+
+
 </div>
