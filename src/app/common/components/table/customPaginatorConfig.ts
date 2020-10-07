@@ -8,5 +8,6 @@ export function CustomPaginator() {
   squirelPaginator.previousPageLabel = 'Poprzednia strona';
   squirelPaginator.firstPageLabel = 'Pierwsza strona';
   squirelPaginator.lastPageLabel = 'Ostatnia strona';
+
   return squirelPaginator;
 }

@@ -23,6 +23,7 @@ import { CustomPaginator } from './common/components/table/customPaginatorConfig
 import { RecipiesComponent } from './Recipes/recipies/recipies.component';
 import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
 import { StorageService } from './common/service/storage.service';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StorageService } from './common/service/storage.service';
     TabsComponent,
     RecipiesComponent,
     RecipeItemComponent,
+    ShoppingComponent,
   ],
   imports: [
     BrowserModule,
