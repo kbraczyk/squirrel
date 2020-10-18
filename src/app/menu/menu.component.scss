@@ -2,120 +2,107 @@
 @import "../../Styles/variable";
 
 :host {
-  display: inline-block;
-  width: 100%;
-  height: 60px;
-  background-color: #6b6b6b;
+  .sidebar {
+    width: 80px;
+    color: #fff;
+    background-color: $primary-color;
+    height: 100%;
+    overflow: hidden;
+    transition: width 0.5s ease-out;
 
-  ul {
-    justify-content: space-around;
-    width: 100%;
-    font-weight: 700;
+    &:hover {
+      width: 300px;
+      transition: width 0.5s ease-in;
+    }
+    .logo {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin: 10px;
+      &__img {
+        width: 62px;
+        margin-right: 15px;
+      }
+      &__text {
+        display: block;
+        white-space: nowrap;
+        margin: 0;
+      }
+    }
+    .active-user {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px 0px 15px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: none;
+      border-left: none;
+      &__name {
+        white-space: nowrap;
+        margin-left: 15px;
+      }
+    }
+  }
+  .sidebar:hover .nav li a p {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+  }
 
+  .nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
     li {
+      width: 100%;
+      display: block;
       list-style: none;
       cursor: pointer;
 
-      &:last-child {
-        height: 70%;
-        border: 2px solid $second-color;
+      &.active > a {
+        transition: background 0.2s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.23);
+        opacity: 1;
+      }
+
+      &:not(.active):hover > a {
+        transition: background 0.2s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.16);
       }
 
       a {
+        display: block;
+        padding: 10px;
+        margin: 5px 15px 0;
+        border-radius: 4px;
+        opacity: 0.86;
         color: $linkcolor;
         letter-spacing: 2px;
         text-decoration: none;
         text-transform: uppercase;
-        line-height: 100%;
-        padding: 0 10px;
-        &:hover {
-          color: $linkcolor;
-        }
+
         i {
-          font-size: 40px;
+          font-size: 30px;
+          float: left;
+          margin-right: 25px;
+          line-height: 30px;
+          width: 30px;
+          text-align: center;
         }
-      }
-
-      a,
-      a:hover,
-      .icon,
-      .icon:hover {
-        transition: color 0.7s ease-out;
-      }
-
-      .accent {
-        padding: 15px;
-        color: $second-color;
-      }
-
-      .active {
-        background-color: $second-color;
-      }
-    }
-  }
-  ul,
-  li,
-  a,
-  .accent {
-    height: 100%;
-  }
-  ul,
-  a {
-    display: flex;
-    align-items: center;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  :host {
-    font-size: 1.1em;
-    .icon {
-      display: none;
-    }
-  }
-}
-@include media-breakpoint-down(lg) {
-  :host {
-    font-size: 0.8em;
-  }
-}
-@include media-breakpoint-down(md) {
-  :host {
-    font-size: 0.7em;
-    ul {
-      li {
-        &:last-child {
-          height: 100%;
-          border: none;
-        }
-        a {
-          i {
-            font-size: 32px !important;
-          }
-        }
-        .accent {
-          display: none !important;
-        }
-        .icon {
+        p {
+          transition: opacity 0.2 ease-out;
+          margin: 0;
+          line-height: 30px;
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          white-space: nowrap;
+          position: relative;
           display: block;
-          line-height: 65px;
-          color: $second-color;
-          font-size: 32px;
-          cursor: help;
-          &:hover {
-            color: whitesmoke;
-          }
+          height: auto;
+          opacity: 0;
         }
       }
-    }
-  }
-}
-@include media-breakpoint-down(sm) {
-  :host {
-    font-size: 0.6em;
-    height: 55px;
-    .icon {
-      line-height: 55px !important;
     }
   }
 }

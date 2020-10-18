@@ -1,25 +1,47 @@
-<ul>
-    <li>
-        <a routerLink="/home" routerLinkActive="active" ><i class="material-icons">
-                home
-            </i></a> </li>
-    <li>
-        <a routerLink="/recipes" routerLinkActive="active">Przepisy</a>
-    </li>
-    <li>
-        <a routerLink="/product" routerLinkActive="active" >Produkty</a>
-    </li>
-    <li>
-        <a routerLink="/kalkulator-kcal" routerLinkActive="active">Kalkulator</a>
-    </li>
-    <li>
-        <a routerLink="/shopping" routerLinkActive="active">Lista zakupów</a>
-    </li>
-    <li>
-        <a routerLink="/e"  class="accent">Logowanie</a>
-        <i class="material-icons icon" matTooltip="Logoawnie / Rejestracja">
-            input
-        </i>
-    </li>
+<div class="sidebar">
+    <div class="logo">
+        <img class="logo__img" src="../../assets/log.png" alt="">
+        <h5 class="logo__text">Żywieniowy przyjaciel</h5>
+    </div>
+    <div class="active-user">
+        <ngx-avatar borderColor="rgba(255, 255, 255, 0.2)" src="../../assets/avatars/main.jpg"></ngx-avatar>
+        <span class="active-user__name">Krzysztof Brączyk</span>
+        <!-- <mat-icon class="material-icons">expand_more</mat-icon> -->
+    </div>
 
-</ul>
+    <div class="main-menu">
+        <ul class="nav">
+            <li>
+                <a routerLink="/home" routerLinkActive="active"><i class="material-icons">
+                        home
+                    </i>
+                    <p>Strona główna</p>
+                </a>
+            </li>
+            <li routerLink="/recipes" routerLinkActive="active">
+                <a>
+                    <i class="material-icons">article</i>
+                    <p>Przepisy</p>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/product" routerLinkActive="active">
+                    <i class="material-icons">category</i>
+                    <p>Produkty</p>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/kalkulator-kcal" routerLinkActive="active">
+                    <i class="material-icons">calculate</i>
+                    <p>Kalkulatory</p>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/shopping" routerLinkActive="active">
+                    <i class="material-icons">add_shopping_cart</i>
+                    <p>Lista zakupów</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

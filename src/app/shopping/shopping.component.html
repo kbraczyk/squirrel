@@ -1,14 +1,29 @@
-<div class="row padding">
+<div class="padding" style="display: flex; flex-wrap: wrap;">
     <div class="col-sm-12">
         <mat-card>
-            <mat-card-title>
-                Listy zakupów
-            </mat-card-title>
+            <div>
+                <!-- <mat-icon class="mat-18">list</mat-icon> -->
+                <mat-card-title>
+                    Listy zakupów
+                </mat-card-title>
+                <mat-card-subtitle>Sekcja prezentuje listy zakupów dodane przez Ciebie. Listy można edytować, usuwać,
+                    dodawać. Już nigdy nie zapomnisz najważniejszych produktów.</mat-card-subtitle>
+            </div>
+
+            <mat-form-field class="col-sm-4" appearance="fill">
+                <mat-label>Wybierz listę zakupów</mat-label>
+                 <mat-select [formControl]="shoppingListControl">
+                    <mat-option *ngFor="let list of shoppingLists$ | async" [value]="list">
+                        {{list.name}}
+                       <!-- <small>{{list.creationDate}}</small> -->
+                        <!-- <div class="date">Produktów: {{list.products.length}}</div> -->
+                   </mat-option>
+                </mat-select>
+            </mat-form-field>
             <button mat-raised-button (click)="onClick">
                 <mat-icon>add</mat-icon> Nowa Lista
             </button>
-            <mat-card-subtitle>Sekcja prezentuje listy zakupów dodane przez Ciebie. Listy można edytować, usuwać, dodawać. Już nigdy nie zapomnisz najważniejszych produktów.</mat-card-subtitle>
-            <mat-card-content>
+            <!-- <mat-card-content>
                 <mat-list role="list">
                     <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async">
                         <div class="margin-x">
@@ -25,7 +40,7 @@
                         </div>
                     </mat-list-item>
                 </mat-list>
-            </mat-card-content>
+            </mat-card-content> -->
         </mat-card>
     </div>
 </div>

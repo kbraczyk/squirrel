@@ -23,7 +23,7 @@ import { CustomPaginator } from './common/components/table/customPaginatorConfig
 import { RecipiesComponent } from './Recipes/recipies/recipies.component';
 import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
 import { StorageService } from './common/service/storage.service';
-import { ShoppingComponent } from './shopping/shopping.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { ShoppingComponent } from './shopping/shopping.component';
     TabsComponent,
     RecipiesComponent,
     RecipeItemComponent,
-    ShoppingComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +48,8 @@ import { ShoppingComponent } from './shopping/shopping.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AvatarModule
   ],
   providers: [
     StorageService,

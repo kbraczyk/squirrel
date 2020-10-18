@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -8,9 +9,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ShoppingComponent {
   public shoppingLists$ = new BehaviorSubject<Array<ShoppingListModel>>([]);
+  public shoppingListControl = new FormControl();
+
 
   constructor() {
     this.shoppingLists$.next(mockLists);
+    // this.shoppingListControl.setValue(mockLists[0])
   }
 
 }
