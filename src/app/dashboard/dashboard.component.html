@@ -5,7 +5,7 @@
             <button *ngIf="!menuOpenState" mat-mini-fab color="primary" (click)="menuOpenState = !menuOpenState">
                 <mat-icon>menu</mat-icon>
               </button>
-              <button *ngIf="menuOpenState" mat-mini-fab color="primary" (click)="menuOpenState = !menuOpenState">
+              <button class="menu__hidden" *ngIf="menuOpenState" mat-mini-fab color="primary" (click)="menuOpenState = !menuOpenState">
                 <mat-icon>menu_open</mat-icon>
               </button>
               <h5> Przepisy</h5>

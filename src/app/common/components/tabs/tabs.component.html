@@ -1,5 +1,5 @@
-<div color="primary" class="row">
-    <div class="col tab" [matTooltip]="tab.label" [matTooltipDisabled]="!showTooltip" [ngClass]="active === i ? 'active' : ''" *ngFor="let tab of tabsOptions; let i=index"
+<div class="wrapper-tabs">
+    <div class="tab" [matTooltip]="tab.label" [matTooltipDisabled]="!showTooltip" [ngClass]="active === i ? 'active' : ''" *ngFor="let tab of tabsOptions; let i=index"
         (click)="changeTab(i, $event)">
         <img class="icon-tab" [src]="tab.icon">
         <div class="label-tab">

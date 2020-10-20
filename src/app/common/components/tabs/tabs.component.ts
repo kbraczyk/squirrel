@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener} from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Resource } from '../../service/rest.service';
 
 @Component({
@@ -9,7 +9,8 @@ import { Resource } from '../../service/rest.service';
 export class TabsComponent {
 
   @Input() tabsOptions: { value: Resource, label: string, icon: string };
-  @Output() selectedTab = new EventEmitter();
+  @Output() selectedTab = new EventEmitter<number>();
+
   public active: number = 0;
   protected showTooltip: boolean = false;
 
@@ -22,7 +23,7 @@ export class TabsComponent {
     this.setVisibilityTooltip();
   }
 
-  private changeTab(indexTabs) {
+  public changeTab(indexTabs) {
     this.active = indexTabs;
     this.selectedTab.emit(indexTabs);
   }

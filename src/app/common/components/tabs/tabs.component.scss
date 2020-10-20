@@ -2,57 +2,61 @@
 @import "../../../../Styles/mixin";
 
 :host {
-  display: inline-block;
-  color: $second-color;
-  font-size: 1.35em;
-  padding: 0;
-  margin: 12px 0;
-  border: 2px solid rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-}
-.row {
-  height: 60px;
-  padding-left: 15px;
-  padding-right: 15px;
-  align-items: center;
-}
-.col {
-  cursor: pointer;
-  height: 100%;
-}
-.active {
-  background-color: whitesmoke;
-  border-radius: 5px;
-  position: relative;
-  &::after {
-    @include absolute(null, null, -2px, null);
-    content: "";
-    height: 3px;
-    width: 0%;
-    border-radius: 3px;
-    background-color: $primary-color-light;
-    animation-name: forLeft;
-    animation-duration: 0.6s;
-    animation-fill-mode: forwards;
-  }
-}
+  .wrapper-tabs {
+    display: flex;
+    background-color: $content-box-color;
+    color: #4c4744;
+    font-size: 1.35em;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 15px;
 
-.tab {
-  @include flex-box(row,center,center,unset);
-  .icon-tab {
-    height: 40px;
-    padding-right: 8px;
+    .tab {
+      @include flex-box(row, center, center, nowrap);
+      flex-grow: 1;
+      max-width: 100%;
+      padding: 12px 0;
+      cursor: pointer;
+
+      &:hover .icon-tab {
+        opacity: 1;
+        transition: opacity .4s linear;
+      }
+
+      .icon-tab {
+        height: 40px;
+        padding-right: 8px;
+        opacity: .6;
+        transition: opacity .4s linear;
+      }
+    }
+
+    .active {
+      position: relative;
+      color: $second-color;
+
+      &::after {
+        @include absolute(null, null, -2px, null);
+        content: "";
+        height: 3px;
+        width: 0%;
+        background-color: $primary-color-light;
+        animation-name: forLeft;
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+      }
+
+      .icon-tab {
+        opacity: 1;
+      }
+    }
   }
-}
-@include media-breakpoint-down(md) {
-  .tab {
-    font-size: 18px;
-  }
-}
-@include media-breakpoint-down(sm) {
-  .tab {
-    .label-tab {
+
+  @include media-breakpoint-down(sm) {
+    .tab {
+      .label-tab {
         display: none;
+      }
     }
   }
 }
@@ -61,8 +65,8 @@
   0% {
     widows: 0%;
   }
+
   100% {
     width: 100%;
   }
 }
-

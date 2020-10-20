@@ -1,10 +1,10 @@
-<div class="col container">
-  <div class="col table">
-    <h3 class="table title">{{title}}</h3>
-    <p class="table subtitle">{{subTitle}}</p>
-    <img class="table filter" src="../../assets/icon/filter.svg" alt="">
+<mat-card class="container">
+  <div class="table">
+    <h3 class="table__title">{{title}}</h3>
+    <p class="table__subtitle">{{subTitle}}</p>
+    <img class="table__filter" src="../../assets/icon/filter.svg" alt="">
   </div>
-  <squirrel-tabs class="col" [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
+  <squirrel-tabs [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
 
   <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort class="lessons-table mat-elevation-z8"
     [dataSource]="dataSource">
@@ -52,5 +52,4 @@
   <mat-paginator *ngIf="dataSource.hasData | async" [length]="dataSource.length$ | async" [pageSize]="5"
   [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)"></mat-paginator>
 
-
-</div>
+</mat-card>

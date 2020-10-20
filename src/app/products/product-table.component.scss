@@ -1,39 +1,46 @@
 @import "../../Styles/variable";
 @import "../../Styles/mixin";
 
-:host{
-  display: block;
-  margin-top: 40px;
+:host {
+  .container {
+    margin: 15px;
+    background-color: $content-box-color;
+    max-width: 98%;
+
+    .table {
+      position: relative;
+      margin: 0;
+      padding: 5px;
+      background-color: $primary-color;
+      border-radius: 5px;
+      margin-bottom: 15px;
+
+      &__title,
+      &__subtitle {
+        padding: 0 30px;
+        margin: 0;
+        color: $linkcolor;
+      }
+
+      &__subtitle {
+        opacity: 0.8;
+      }
+
+      &__filter {
+        cursor: pointer;
+        @include absolute(16px, 30px);
+        width: 35px;
+      }
+    }
+  }
 }
-.table {
-  position: relative;
-  margin: 0;
-  padding: 5px;
-  background-color: $primary-color;
-  border-radius: 5px;
-  &.title, &.subtitle {
-    padding: 0 30px;
-    margin: 0;
-    color: $linkcolor;
-  }
-  &.subtitle{
-    opacity: 0.8;
-  }
-  &.filter {
-    cursor: pointer;
-    @include absolute(10px, 30px);
-    width: 50px
-  }
-}
+
 .loader {
   width: 100%;
 }
-.container{
-  margin: 0px auto;
-}
 
 .mat-header-cell {
-  @include flex-box(column,unset);
+  @include flex-box(column, unset);
   color: $dark-text-color;
   font-size: 1.2em;
 }
