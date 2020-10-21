@@ -1,10 +1,11 @@
-@import "../../styles";
 @import "../../Styles/variable";
 
 :host {
   .sidebar {
+
     width: 80px;
     color: $menu-font-color;
+    user-select: none;
     background-color: $primary-color;
     min-height: 100vh;
     height: 100%;

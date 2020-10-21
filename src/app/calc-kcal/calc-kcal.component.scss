@@ -2,44 +2,33 @@
 @import "../../Styles/mixin";
 
 :host {
-  display: inline-block;
-  padding: 40px;
-  padding-left: 60px;
-  opacity: 0;
-  animation-name: show;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-.title {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.info {
-  font-size: 1.15rem;
+  .title {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .info {
+    font-size: 1.15rem;
+  }
 }
 
+
+
 form {
-  @include flex-box(row,unset,space-between,unset);
-  padding: 40px;
+  @include flex-box(row, unset, space-between, unset);
+  padding: 25px;
 
   mat-form-field {
     width: 100%;
   }
+
   .footer-form {
-    @include flex-box(row,center,unset,unset);
+    @include flex-box(row, center, unset, unset);
     margin: 0 auto;
   }
-  .unit {
-    @include flex-box(column,unset,unset,unset);
-    padding: 15px;
-  }
-}
 
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+  .unit {
+    @include flex-box(column, unset, unset, unset);
+    padding: 15px;
   }
 }

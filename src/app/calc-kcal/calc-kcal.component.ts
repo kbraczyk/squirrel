@@ -14,8 +14,8 @@ import { CalcKcalService } from './calc-kcal.service';
 export class CalcKcalComponent implements OnInit {
 
   protected sexValues: Array<string>;
-  protected activityValues: Array<{value, name}>;
-  protected targetValues: Array<{value, name}>;
+  protected activityValues: Array<{ value, name }>;
+  protected targetValues: Array<{ value, name }>;
   public weightPlaceholder: string;
   public heightPlaceholder: string;
   private dialogRef: MatDialogRef<any>;
@@ -76,7 +76,7 @@ export class CalcKcalComponent implements OnInit {
       this.dialogRef = this.dialogService.open(ResultKcalComponent, {
         height: '250px',
         width: '400px',
-        data: {calorieRequirment,  ...value }
+        data: { calorieRequirment, ...value }
       });
 
       this.dialogRef.afterClosed().subscribe(() => {
@@ -102,9 +102,7 @@ export class CalcKcalComponent implements OnInit {
     }
   }
 
-  openInfo() {
-    this.dialogRef = this.dialogService.open(CalkKcalInfoComponent);
-  }
+  openInfo = () => this.dialogRef = this.dialogService.open(CalkKcalInfoComponent);
 
   setPopulateUnits(): any {
     this.kg.setValue(true);
