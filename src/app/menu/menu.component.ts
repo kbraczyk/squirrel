@@ -7,5 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class MenuComponent {
   @Input() isOpen: boolean = false;
-
 }

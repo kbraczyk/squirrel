@@ -22,6 +22,7 @@ import { RecipiesComponent } from './Recipes/recipies/recipies.component';
 import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
 import { StorageService } from './common/service/storage.service';
 import { AvatarModule } from 'ngx-avatar';
+import { NoContentComponent } from './common/components/no-content/no-content.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AvatarModule } from 'ngx-avatar';
     TabsComponent,
     RecipiesComponent,
     RecipeItemComponent,
+    NoContentComponent
   ],
   imports: [
     BrowserModule,

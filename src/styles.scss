@@ -12,11 +12,13 @@ $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-
 // Import Bootstrap
 // @import "~bootstrap/dist/css/bootstrap.css";
 @import "Styles/_variable";
+@import "Styles/mixin";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 *:focus {
@@ -65,6 +67,20 @@ mat-icon {
   background-color: $content-box-color;
   border-radius: 6px;
   box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
+
+  &__header {
+    @include flex-box(row, center, unset, wrap);
+    border-bottom: 1px solid rgb(78 37 106 / 0.6);
+    padding-bottom: 15px;
+
+    mat-icon {
+      margin-right: 15px;
+    }
+  }
+}
+
+.flex {
+  display: flex;
 }
 
 ::-webkit-scrollbar {

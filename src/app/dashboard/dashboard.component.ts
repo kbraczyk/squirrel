@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { StorageService, storageType } from '../common/service/storage.service';
 
 @Component({
   selector: 'squirrel-dashboard',
@@ -7,5 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent {
   public menuOpenState: boolean = false;
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.setStorageType(storageType.locale);
+    this.menuOpenState = this.storageService.get('menuState');
+  }
+
+  changeMenuState() {
+    this.menuOpenState = !this.menuOpenState;
+    this.storageService.set('menuState', this.menuOpenState);
+  }
 }

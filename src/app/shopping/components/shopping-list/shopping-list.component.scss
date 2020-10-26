@@ -1,0 +1,40 @@
+:host {
+  .margin-x {
+    margin: 0 10px;
+  }
+
+  .mat-icon {
+    height: 32px;
+    width: 32px;
+    font-size: 32px;
+
+    &.cancel {
+      color: rgb(255 0 0 / 0.65);
+    }
+
+    &.success {
+      color: #2b9e2b;
+    }
+  }
+
+  .mat-list-item {
+    cursor: pointer;
+    padding: 8px 0px;
+    height: max-content;
+    box-sizing: content-box;
+    border-bottom: 1px solid rgb(78 37 106 / 0.6);
+
+    &:last-of-type {
+      border: none;
+    }
+
+    .name {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .date {
+      opacity: .8;
+    }
+  }
+}

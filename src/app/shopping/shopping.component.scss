@@ -1,44 +1,24 @@
-:host {
-    button{
-        position: absolute;
-        top: 17px;
-        right: 35px;
-    }
-    .padding {
-        padding: 15px;
-    }
-    .margin-x {
-        margin: 0 15px;
-    }
-    .mat-icon {
-        height: 32px;
-        width: 32px;
-        font-size: 32px;
-        &.cancel {
-            color: rgb(255 0 0 / 0.65);
-        }
-        &.success{
-            color: #2b9e2b;
-        }
-    }
-    .mat-list-item {
-        padding: 15px 0px;
-        height: max-content;
-        box-sizing: content-box;
-        border-bottom: 1px solid rgb(78 37 106 / 0.6);
-        &:last-of-type{
-            border: none;
-        }
+@import "../../Styles/variable";
 
-        .name {
-            font-size: 22px;
-            font-weight: 500;
-        }
-        .date {
-            opacity: .8;
-        }
+:host {
+  .icon-separator {
+    display: flex;
+    align-items: center;
+    opacity: .5;
+
+    .mat-icon {
+      color: $primary-color-light;
+      height: 60px;
+      width: 60px;
+      font-size: 60px;
     }
-}
-::ng-deep mat-option{
-    height: 50px !important;
+  }
+
+  .padding-r {
+    padding: 0px;
+  }
+
+  .center {
+    align-items: center;
+  }
 }

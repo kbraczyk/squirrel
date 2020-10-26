@@ -1,0 +1,20 @@
+@import '../../../../Styles/mixin';
+
+:host {
+  .no-content {
+    @include flex-box(column, center, center, nowrap);
+    min-height: 300px;
+
+    &__icon {
+      height: 65px;
+      width: 65px;
+      font-size: 65px;
+      opacity: .4;
+      margin: 10px;
+    }
+
+    &__sugestion {
+      opacity: .4;
+    }
+  }
+}
