@@ -11,9 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
-import { MatListModule, MatTabsModule, MatTooltipModule } from '@angular/material';
+import { MatDatepickerModule, MatListModule, MatNativeDateModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NoContentComponent } from './components/no-content/no-content.component';
 
 const materialComponent = [
   MatFormFieldModule,
@@ -31,7 +30,9 @@ const materialComponent = [
   MatTabsModule,
   MatPaginatorModule,
   MatTooltipModule,
-  MatListModule
+  MatListModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
@@ -41,6 +42,7 @@ const materialComponent = [
   exports: [
     ...materialComponent
   ],
-  declarations: []
+  declarations: [],
+  providers: [MatDatepickerModule]
 })
 export class MaterialModule { }

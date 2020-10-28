@@ -53,11 +53,16 @@ ul {
   padding: 0;
 }
 
+.m-r-s {
+  margin-right: 8px;
+}
+
 .title {
   color: $primary-color;
 }
 
-mat-icon {
+mat-icon,
+.slide-label {
   cursor: pointer;
 }
 

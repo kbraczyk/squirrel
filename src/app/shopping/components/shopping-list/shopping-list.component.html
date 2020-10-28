@@ -5,12 +5,19 @@
       <mat-card-title>
         Listy zakupów
       </mat-card-title>
-      <mat-card-subtitle>Sekcja prezentuje listy zakupów dodane przez Ciebie. Listy można edytować, usuwać,
-        dodawać. Już nigdy nie zapomnisz najważniejszych produktów.</mat-card-subtitle>
+      <mat-card-subtitle>Sekcja prezentuje listy zakupów dodane przez Ciebie. Już nigdy nie zapomnisz najważniejszych
+        produktów.</mat-card-subtitle>
+      <div class="actions">
+        <button mat-raised-button (click)="newList()">
+          <mat-icon>add</mat-icon>
+          Nowa lista
+        </button>
+      </div>
     </div>
     <mat-card-content>
       <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async" (click)="selectedList.emit(list)">
+        <mat-list-item role="listitem" *ngFor="let list of service.shoppingLists$ | async"
+          (click)="selectedList.emit(list)">
           <div class="margin-x">
             <mat-icon *ngIf="list.realized" class="success" matTooltip="Zrealizowana">check_circle
             </mat-icon>

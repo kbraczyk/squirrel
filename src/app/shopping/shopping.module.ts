@@ -6,9 +6,12 @@ import { MaterialModule } from '../common/material.module';
 import { ShoppingComponent } from './shopping.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingDetailsComponent } from './components/shopping-details/shopping-details.component';
+import { ShoppingService } from './shopping.service';
 
 const routes: Routes = [
-    { path: '', component: ShoppingComponent },
+    {
+        path: '', component: ShoppingComponent,
+    },
 ];
 
 @NgModule({
@@ -20,5 +23,6 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     exports: [RouterModule],
+    providers: [ShoppingService]
 })
 export class ShoppingModule { }

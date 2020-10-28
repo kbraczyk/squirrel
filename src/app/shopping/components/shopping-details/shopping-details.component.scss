@@ -17,4 +17,18 @@
       opacity: .4;
     }
   }
+
+  .form-group {
+    @include flex-box(column, unset, unset, nowrap);
+
+    &__control {
+      width: 33%;
+      margin: 7px 0px;
+
+      &--dynamic {
+        width: 100%;
+        margin: 7px -15px;
+      }
+    }
+  }
 }
