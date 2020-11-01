@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { StorageService, storageType } from '../common/service/storage.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { StorageService, storageType } from '../common/service/storage.service';
 })
 export class DashboardComponent {
   public menuOpenState: boolean = false;
+  public breadcrumb: { label: string, route: string };
+
   constructor(private storageService: StorageService) {
     this.storageService.setStorageType(storageType.locale);
     this.menuOpenState = this.storageService.get('menuState');

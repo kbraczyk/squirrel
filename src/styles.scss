@@ -61,6 +61,10 @@ ul {
   color: $primary-color;
 }
 
+.pull-right {
+  justify-content: flex-end;
+}
+
 mat-icon,
 .slide-label {
   cursor: pointer;

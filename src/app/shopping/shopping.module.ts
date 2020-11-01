@@ -10,7 +10,7 @@ import { ShoppingService } from './shopping.service';
 
 const routes: Routes = [
     {
-        path: '', component: ShoppingComponent,
+        path: '', component: ShoppingComponent, data: { breadcrumb: { label: 'Listy zakupów', route: '/shopping' } }
     },
 ];
 

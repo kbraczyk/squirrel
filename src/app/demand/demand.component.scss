@@ -1,0 +1,13 @@
+:host ::ng-deep {
+  .content-box {
+    overflow: hidden;
+  }
+
+  .mat-card-title {
+    width: 100%;
+  }
+
+  .row {
+    flex-wrap: nowrap;
+  }
+}

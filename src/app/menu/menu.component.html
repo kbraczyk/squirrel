@@ -1,47 +1,84 @@
 <div class="sidebar" [ngClass]="{'sidebar--open': isOpen}">
-    <div class="logo">
-        <img class="logo__img" src="../../assets/log.png" alt="">
-        <h5 class="logo__text">Żywieniowy przyjaciel</h5>
-    </div>
-    <div class="active-user">
-        <ngx-avatar borderColor="rgba(255, 255, 255, 0.2)" src="../../assets/avatars/main.jpg"></ngx-avatar>
-        <span class="active-user__name">Krzysztof Brączyk</span>
-        <!-- <mat-icon class="material-icons">expand_more</mat-icon> -->
-    </div>
+  <div class="logo">
+    <img class="logo__img" src="../../assets/log.png" alt="">
+    <h5 class="logo__text">Żywieniowy przyjaciel</h5>
+  </div>
+  <div class="active-user" (click)="userMenuState = !userMenuState">
+    <ngx-avatar borderColor="rgba(255, 255, 255, 0.2)" src="../../assets/avatars/main.jpg"></ngx-avatar>
+    <span class="active-user__name">Krzysztof Brączyk</span>
+    <mat-icon class="material-icons">
+      {{!userMenuState ? 'expand_more' : 'expand_less'}}
+    </mat-icon>
+  </div>
 
-    <div class="main-menu">
-        <ul class="nav">
-            <li>
-                <a routerLink="/home" routerLinkActive="active"><i class="material-icons">
-                        home
-                    </i>
-                    <p>Strona główna</p>
-                </a>
-            </li>
-            <li routerLink="/recipes" routerLinkActive="active">
-                <a>
-                    <i class="material-icons">article</i>
-                    <p>Przepisy</p>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/product" routerLinkActive="active">
-                    <i class="material-icons">category</i>
-                    <p>Produkty</p>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/kalkulator-kcal" routerLinkActive="active">
-                    <i class="material-icons">calculate</i>
-                    <p>Kalkulatory</p>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/shopping" routerLinkActive="active">
-                    <i class="material-icons">add_shopping_cart</i>
-                    <p>Lista zakupów</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+  <div class="user-menu" *ngIf="userMenuState" [@fadeInOnEnter]>
+    <ul class="nav">
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          <span>P</span>
+          <p>Profil</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          <span>MP</span>
+          <p>Moje Przepisy</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          <span>UP</span>
+          <p>Ulubione Przepisy</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          <span>P</span>
+          <p>Pomiary</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/demand" routerLinkActive="active">
+          <span>Z</span>
+          <p>Zapotrzebowanie</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-menu">
+    <ul class="nav">
+      <li>
+        <a routerLink="/home" routerLinkActive="active"><i class="material-icons">
+            home
+          </i>
+          <p>Strona główna</p>
+        </a>
+      </li>
+      <li routerLink="/recipes" routerLinkActive="active">
+        <a>
+          <i class="material-icons">article</i>
+          <p>Przepisy</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/product" routerLinkActive="active">
+          <i class="material-icons">category</i>
+          <p>Produkty</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/kalkulator-kcal" routerLinkActive="active">
+          <i class="material-icons">calculate</i>
+          <p>Kalkulatory</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/shopping" routerLinkActive="active">
+          <i class="material-icons">add_shopping_cart</i>
+          <p>Lista zakupów</p>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

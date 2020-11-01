@@ -23,6 +23,9 @@ import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component
 import { StorageService } from './common/service/storage.service';
 import { AvatarModule } from 'ngx-avatar';
 import { NoContentComponent } from './common/components/no-content/no-content.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DemandComponent } from './demand/demand.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { NoContentComponent } from './common/components/no-content/no-content.co
     TabsComponent,
     RecipiesComponent,
     RecipeItemComponent,
-    NoContentComponent
+    NoContentComponent,
+    DemandComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,11 +50,18 @@ import { NoContentComponent } from './common/components/no-content/no-content.co
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
+    NgxChartsModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
     AvatarModule,
+    SimpleNotificationsModule.forRoot({
+      position: ['top', 'right'],
+      timeOut: 4000,
+    })
+
   ],
+  exports: [],
   providers: [
     StorageService,
     { provide: MatPaginatorIntl, useValue: CustomPaginator() }

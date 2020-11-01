@@ -15,6 +15,8 @@ export class FormaterPipe implements PipeTransform {
       case 'target': {
         return targetFormatter(value);
       }
+      case 'firstWordLetter':
+        return firstWordLetter(value);
     }
     return null;
   }
@@ -55,5 +57,10 @@ export const targetFormatter = (value) => {
       return 'utrata wagi';
     }
   }
+};
+
+export const firstWordLetter = (value: string): string => {
+  if (!value) { return ''; }
+  return value.split(' ')[0];
 };
 

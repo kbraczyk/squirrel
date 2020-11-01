@@ -1,0 +1,15 @@
+<div class="content-box">
+  <div class="content-box__header">
+    <mat-card-title>
+      Zapotrzebowanie kaloryczne
+    </mat-card-title>
+    <mat-card-subtitle>Sekcja prezentuje dzienne zapotrzebowanie kaloryczne.</mat-card-subtitle>
+  </div>
+  <div class="row">
+    <div class="col-6"></div>
+    <ngx-charts-advanced-pie-chart [results]="saleData" [gradient]="false" [scheme]="colorScheme" label="Razem (g)"
+      [view]="view">
+    </ngx-charts-advanced-pie-chart>
+  </div>
+
+</div>

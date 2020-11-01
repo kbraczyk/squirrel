@@ -45,6 +45,7 @@ export class ShoppingService {
   }
 
   createNewList(data: ShoppingListModel) {
+    data.products = data.products.filter(f => f);
     this.mockLists.unshift(data);
   }
 

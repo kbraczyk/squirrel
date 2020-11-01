@@ -46,6 +46,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-right: none;
       border-left: none;
+      cursor: pointer;
 
       &__name {
         white-space: nowrap;
@@ -99,21 +100,49 @@
     }
   }
 
-  @media (max-width: 576px) {
+  .user-menu {
+    min-width: 300px;
 
-    .sidebar,
-    .sidebar:hover {
-      width: 80px;
+    a {
+      white-space: nowrap;
+      width: 100%;
+
+      &.active {
+        transition: background 0.2s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.23);
+        opacity: 1;
+      }
+
+      span {
+        margin-left: 10px;
+        width: 45px;
+        display: inline-block;
+      }
+
+      p {
+        display: inline-block;
+        text-transform: none !important;
+        font-weight: 400 !important;
+      }
     }
 
-    .sidebar {
+  }
+}
 
-      &--open,
-      &--open:hover {
-        position: absolute;
-        z-index: 10;
-        width: 300px;
-      }
+@media (max-width: 576px) {
+
+  .sidebar,
+  .sidebar:hover {
+    width: 80px;
+  }
+
+  .sidebar {
+
+    &--open,
+    &--open:hover {
+      position: absolute;
+      z-index: 10;
+      width: 300px;
     }
   }
 }

@@ -11,28 +11,31 @@
     </div>
   </div>
 
-  <div *ngIf="list">
+  <div *ngIf="list" [@fadeInOnEnter]>
     <form class="form-group" [formGroup]="form">
       <mat-form-field class="form-group__control">
         <mat-label>Nazwa listy zakupów</mat-label>
-        <input matInput name="name" formControlName="name">
+        <input matInput required name="name" formControlName="name">
       </mat-form-field>
+
       <mat-form-field class="form-group__control">
-        <!-- <mat-label>Data utworzenia</mat-label> -->
+        <mat-label>Data utworzenia</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="creationDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
       <div class="form-group__control">
         <mat-label class="slide-label" (click)="toogleStatus(slide)">Status </mat-label>
         <mat-slide-toggle #slide [color]="primary" [checked]="list.realized" [disabled]="list && !list.name">
           {{ slide.checked ? 'Zrealizowana' : 'Niezrealizowana' }}
         </mat-slide-toggle>
       </div>
+
       <div formArrayName="products" class="row form-group__control--dynamic">
         <div class="col-12 flex">
           <h5 class="m-r-s">Produkty</h5>
-          <mat-icon title="Dodaj kolejny" (click)="add()">add_circle_outline</mat-icon>
+          <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
         </div>
         <div class="col-4" *ngFor="let item of product.controls; let i=index">
           <mat-form-field>
@@ -43,12 +46,13 @@
         </div>
       </div>
     </form>
-    <button mat-raised-button color="accent"
-      (click)="create(slide, picker)">{{list && !list.name ? 'Utwórz' : 'Edytuj'}}</button>
+    <div class="flex pull-right">
+      <button mat-raised-button color="accent"
+        (click)="createOrEdit(slide)">{{list && !list.name ? 'Utwórz' : 'Edytuj'}}</button>
+    </div>
   </div>
-  <!-- <router-outlet></router-outlet> -->
 
-  <div *ngIf=!list>
+  <div *ngIf="!list" [@fadeInOnEnter]>
     <div class="no-content">
       <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
       <h4 class="no-content__info">{{noContentInfo}}</h4>
