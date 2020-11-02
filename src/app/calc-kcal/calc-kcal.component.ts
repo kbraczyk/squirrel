@@ -74,8 +74,9 @@ export class CalcKcalComponent implements OnInit {
 
     if (calorieRequirment) {
       this.dialogRef = this.dialogService.open(ResultKcalComponent, {
-        height: '250px',
-        width: '400px',
+        minWidth: '400px',
+        hasBackdrop: true,
+        disableClose: true,
         data: { calorieRequirment, ...value }
       });
 

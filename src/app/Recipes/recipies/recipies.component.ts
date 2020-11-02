@@ -6,11 +6,11 @@ import { Component, OnInit, } from '@angular/core';
   styleUrls: ['./recipies.component.scss'],
 })
 export class RecipiesComponent implements OnInit {
+  public item = [1, 2, 3, 4, 5, 6, 7, 8];
 
   constructor() { }
 
   ngOnInit() { }
 
-  item = [1, 2, 3, 4, 5, 6, 7, 8];
 
 }

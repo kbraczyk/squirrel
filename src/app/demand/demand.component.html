@@ -5,10 +5,24 @@
     </mat-card-title>
     <mat-card-subtitle>Sekcja prezentuje dzienne zapotrzebowanie kaloryczne.</mat-card-subtitle>
   </div>
-  <div class="row">
-    <div class="col-6"></div>
-    <ngx-charts-advanced-pie-chart [results]="saleData" [gradient]="false" [scheme]="colorScheme" label="Razem (g)"
-      [view]="view">
+  <div class="row" *ngIf="(demand$ | async) as demand">
+    <div class="col-md-6 col-sm-12">
+      <div class="total-value">{{demand.calories | formater: 'mathRound'}}</div>
+      <div class="total-label">Razem (kcal)</div>
+      <div class="total">Białko {{demand.protein * 4 | formater: 'mathRound'}}
+        <span class="progres-total" style="background-color: rgb(209, 144, 255);"></span>
+        <span class="progres-protein" id="progresProtein"></span>
+      </div>
+      <div class="total">Tłuszcze {{demand.fat * 9 | formater: 'mathRound'}}
+        <span class="progres-total" style="background-color: rgb(128, 128, 128);"></span>
+        <span class="progres-fat" id="progresFat"></span>
+      </div>
+      <div class="total">Węglowodany {{demand.carbs * 4 | formater: 'mathRound'}}
+        <span class="progres-total" style="background-color: rgb(251, 157, 1);"></span>
+        <span class="progres-carbs" id="progresCarbs"></span>
+      </div>
+    </div>
+    <ngx-charts-advanced-pie-chart [results]="result" [scheme]="colorScheme" label="Razem (g)" [view]="view">
     </ngx-charts-advanced-pie-chart>
   </div>
 

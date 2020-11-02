@@ -1,8 +1,41 @@
-<h2 mat-dialog-title class="title">Podsumowanie: </h2>
+<div class="dialog-header">
+  <h2 mat-dialog-title class="title">Podsumowanie obliczeń </h2>
+  <mat-icon [mat-dialog-close]="true" class="mat-18">close
+  </mat-icon>
+</div>
+
 <mat-dialog-content>
-    <p>Obliczyliśmy twoje zapotrzebowanie i wychodzi nam, że
-        <b>{{data.sex}}</b> w wieku <b>{{data.age}} lat</b>, o wadze <b>{{data.weight}} kg</b> przy wzroście
-        <b>{{data.height}} cm,</b> której aktywność w ciągu dnia jest <b>{{data.activity | formater: 'activity'}}</b>,
-        a cel to <b>{{data.target | formater: 'target'}}</b>, powinna dziennie spożywać - <b>{{data.calorieRequirment}} kcal</b>
-    </p>
+  <div class="main-value">{{data.calorieRequirment}} kcal</div>
+  <div class="row">
+    <div class="col">
+      <div class="item">
+        <span class="label">Wzrost</span>
+        <span class="value">{{data.height}} cm</span>
+      </div>
+      <div class="item">
+        <span class="label">Waga</span>
+        <span class="value">{{data.weight}} kg</span>
+      </div>
+      <div class="item">
+        <span class="label">Wiek</span>
+        <span class="value">{{data.age}} lat</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="item">
+        <span class="label">Płeć</span>
+        <span class="value">{{data.sex}}</span>
+      </div>
+      <div class="item">
+        <span class="label">Aktywność</span>
+        <span class="value">{{data.activity | formater: 'activity'}}</span>
+      </div>
+      <div class="item">
+        <span class="label">Cel</span>
+        <span class="value">{{data.target | formater: 'target'}}</span>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveResults()">Zapisz</button>
+
 </mat-dialog-content>

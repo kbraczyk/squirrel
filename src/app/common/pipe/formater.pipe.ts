@@ -17,6 +17,8 @@ export class FormaterPipe implements PipeTransform {
       }
       case 'firstWordLetter':
         return firstWordLetter(value);
+      case 'mathRound':
+        return Math.round(value);
     }
     return null;
   }

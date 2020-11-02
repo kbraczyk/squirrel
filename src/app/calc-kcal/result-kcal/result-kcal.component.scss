@@ -1,0 +1,40 @@
+@import './../../../Styles/variable';
+
+:host {
+  .dialog-header {
+    display: flex;
+    border-bottom: 1px solid rgba(78, 37, 107, 0.3);
+    align-items: center;
+  }
+
+  .title {
+    color: #363636;
+    flex: 1;
+    margin: 0;
+  }
+
+  .main-value {
+    font-size: 26px;
+    font-weight: 500;
+    color: $primary-color-light;
+  }
+
+  .item {
+    margin: 5px 0;
+
+    .label {
+      display: block;
+      font-weight: 600;
+    }
+
+    .value {
+      font-weight: 300;
+      opacity: .7;
+    }
+  }
+
+  button {
+    display: block;
+    margin: 10px auto;
+  }
+}

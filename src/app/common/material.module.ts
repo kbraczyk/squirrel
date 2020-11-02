@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule, MatListModule, MatNativeDateModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+
 const materialComponent = [
   MatFormFieldModule,
   MatButtonModule,
@@ -33,6 +34,7 @@ const materialComponent = [
   MatListModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatDialogModule,
 ];
 
 @NgModule({
