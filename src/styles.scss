@@ -9,8 +9,6 @@ $squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-
 
 @include angular-material-theme($squirrel-theme);
 
-// Import Bootstrap
-// @import "~bootstrap/dist/css/bootstrap.css";
 @import "Styles/_variable";
 @import "Styles/mixin";
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractComponent } from '../common/components/abstract.component';
+import { AbstractComponent } from '@common/components/abstract.component';
 
 @Component({
   selector: 'squirrel-shopping',

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
-import { DemandKcalService } from '../common/service/demand-kcal.service';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { DemandKcalService } from '@common/service/demand-kcal.service';
 
 @Component({
   selector: 'squirrel-demand',
@@ -10,12 +10,16 @@ export class DemandComponent implements AfterViewInit {
   public demand$ = this.kcalService.userDemand$;
   public result;
   public colorScheme = { domain: ['rgb(209, 144, 255)', 'rgb(0, 0, 0)', 'rgb(230, 81, 0)'] };
-  public view = [600, 300];
+  public view = [0, 0];
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth < 700) {
-      this.view = [300, 0]
+      this.view = [300, 0];
+    } else if (event.target.innerWidth > 1000 && event.target.innerWidth < 1200) {
+      this.view = [650, 0];
+    } else if (event.target.innerWidth < 1200) {
+      this.view = [600, 0];
     }
   }
 

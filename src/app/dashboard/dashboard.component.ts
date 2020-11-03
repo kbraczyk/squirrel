@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { StorageService, storageType } from '../common/service/storage.service';
+import { Component } from '@angular/core';
+import { StorageService, storageType } from '@common/service/storage.service';
 
 @Component({
   selector: 'squirrel-dashboard',

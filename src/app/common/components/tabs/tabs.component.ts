@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import { Resource } from '../../service/rest.service';
+import { Resource } from '@common/service/rest.service';
 
 @Component({
   selector: 'squirrel-tabs',

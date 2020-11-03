@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { SquirrelDataSource } from '../common/components/table/dataSource';
-import { RestService, Resource } from '../common/service/rest.service';
+import { SquirrelDataSource } from '@common/components/table/dataSource';
+import { RestService, Resource } from '@common/service/rest.service';
 import { MatSort, MatPaginator, MatTable } from '@angular/material';
 
 @Component({
@@ -21,14 +21,14 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
     { value: Resource.fat, label: 'Tłuszcz', icon: '../../assets/icon/fat.svg' },
     { value: Resource.protein, label: 'Białko', icon: '../../assets/icon/protein.svg' },
     { value: Resource.fruits, label: 'Owoce', icon: '../../assets/icon/frutis.svg' },
-    { value: Resource.vegetables, label: 'Warzywa', icon: '../../assets/icon/vegetable.svg'},
+    { value: Resource.vegetables, label: 'Warzywa', icon: '../../assets/icon/vegetable.svg' },
   ];
 
   public dataSource: SquirrelDataSource;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   constructor(private rest: RestService) {
     this.dataSource = new SquirrelDataSource(this.rest);
@@ -40,9 +40,9 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.table.dataSource = this.dataSource;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.table.dataSource = this.dataSource;
   }
 
   activeTab(indexTab) {

@@ -1,6 +1,6 @@
 import { BehaviorSubject, } from 'rxjs';
 import { finalize, } from 'rxjs/operators/';
-import { RestService, SortModel, PageModel } from '../../service/rest.service';
+import { RestService, SortModel, PageModel } from '@common/service/rest.service';
 import { MatTableDataSource, PageEvent, } from '@angular/material';
 
 export class SquirrelDataSource extends MatTableDataSource<any> {

@@ -4,6 +4,8 @@
   .wrapper {
     display: flex;
     flex-wrap: nowrap;
+    max-width: 100%;
+    overflow: hidden;
 
     .main-panel {
       background-color: #f5f5f5;

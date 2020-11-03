@@ -5,7 +5,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultKcalComponent } from './result-kcal/result-kcal.component';
 import { CalcKcalService } from './calc-kcal.service';
 
-
 @Component({
   selector: 'squirrel-calc-kcal',
   templateUrl: './calc-kcal.component.html',

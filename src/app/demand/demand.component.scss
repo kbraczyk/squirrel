@@ -1,3 +1,6 @@
+@import '../../Styles/variable';
+@import "../../Styles/mixin";
+
 :host ::ng-deep {
   .content-box {
     overflow: hidden;
@@ -5,10 +8,6 @@
 
   .mat-card-title {
     width: 100%;
-  }
-
-  .row {
-    flex-wrap: nowrap;
   }
 
   .total-value {
@@ -55,5 +54,4 @@
   .progres-carbs {
     background: rgb(230, 81, 0);
   }
-
 }
