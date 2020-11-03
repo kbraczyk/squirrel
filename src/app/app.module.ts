@@ -5,14 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from './common/app-routing.module';
-import { CalcKcalComponent } from './calc-kcal/calc-kcal.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './common/material.module';
 import { CommonModule } from '@angular/common';
-import { ErrorFormComponent } from './common/components/form/error-form/error-form.component';
-import { CalkKcalInfoComponent } from './calc-kcal/calk-kcal-info/calk-kcal-info.component';
-import { ResultKcalComponent } from './calc-kcal/result-kcal/result-kcal.component';
-import { FormaterPipe } from './common/pipe/formater.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { TabsComponent } from './common/components/tabs/tabs.component';
 import { ProductTableComponent } from './products/product-table.component';
@@ -24,33 +18,24 @@ import { StorageService } from './common/service/storage.service';
 import { AvatarModule } from 'ngx-avatar';
 import { NoContentComponent } from './common/components/no-content/no-content.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { DemandComponent } from './demand/demand.component';
+import { CommonSquirrelModule } from './common/common.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     MenuComponent,
-    CalcKcalComponent,
-    ErrorFormComponent,
-    CalkKcalInfoComponent,
-    ResultKcalComponent,
-    FormaterPipe,
     ProductTableComponent,
     TabsComponent,
     RecipiesComponent,
     RecipeItemComponent,
     NoContentComponent,
-    DemandComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     CommonModule,
-    ReactiveFormsModule,
-    NgxChartsModule,
+    CommonSquirrelModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
@@ -66,7 +51,6 @@ import { DemandComponent } from './demand/demand.component';
     StorageService,
     { provide: MatPaginatorIntl, useValue: CustomPaginator() }
   ],
-  entryComponents: [CalkKcalInfoComponent, ResultKcalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
