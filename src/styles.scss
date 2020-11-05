@@ -68,6 +68,11 @@ mat-icon,
   cursor: pointer;
 }
 
+mat-card-title {
+  width: 100%;
+  margin-bottom: 0px !important;
+}
+
 .content-box {
   margin: $content-box-margin;
   padding: $content-box-padding;
@@ -77,11 +82,15 @@ mat-icon,
 
   &__header {
     @include flex-box(row, center, unset, wrap);
-    border-bottom: 1px solid rgb(78 37 106 / 0.6);
+    border-bottom: 1px solid $primary-color-light;
     padding-bottom: 15px;
 
     mat-icon {
       margin-right: 15px;
+    }
+
+    mat-card-subtitle {
+      margin-bottom: -5px;
     }
   }
 }

@@ -12,8 +12,6 @@ import { TabsComponent } from './common/components/tabs/tabs.component';
 import { ProductTableComponent } from './products/product-table.component';
 import { MatPaginatorIntl } from '@angular/material';
 import { CustomPaginator } from './common/components/table/customPaginatorConfig';
-import { RecipiesComponent } from './Recipes/recipies/recipies.component';
-import { RecipeItemComponent } from './Recipes/recipe-item/recipe-item.component';
 import { StorageService } from './common/service/storage.service';
 import { AvatarModule } from 'ngx-avatar';
 import { NoContentComponent } from './common/components/no-content/no-content.component';
@@ -27,8 +25,6 @@ import { CommonSquirrelModule } from './common/common.module';
     MenuComponent,
     ProductTableComponent,
     TabsComponent,
-    RecipiesComponent,
-    RecipeItemComponent,
     NoContentComponent,
   ],
   imports: [

@@ -2,7 +2,7 @@
   <div class="table">
     <h3 class="table__title">{{title}}</h3>
     <p class="table__subtitle">{{subTitle}}</p>
-    <img class="table__filter" src="../../assets/icon/filter.svg" alt="">
+    <img class="table__filter" src="assets/icon/filter.svg" alt="ikona filtrów">
   </div>
   <squirrel-tabs [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
 
@@ -36,20 +36,21 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
-   <!-- LOADER -->
-   <mat-card *ngIf="!dataSource.hasData"  style="display: flex; justify-content: center; align-items: center" >
+  <!-- LOADER -->
+  <mat-card *ngIf="!dataSource.hasData" style="display: flex; justify-content: center; align-items: center">
     <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
-        <h3>
-            Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
-        </h3>
+      <h3>
+        Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
+      </h3>
     </mat-card-content>
-</mat-card>
-<mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
-  <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
-  </mat-progress-spinner>
-</mat-card>
+  </mat-card>
+  <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </mat-card>
 
   <mat-paginator *ngIf="dataSource.hasData | async" [length]="dataSource.length$ | async" [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)"></mat-paginator>
+    [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)">
+  </mat-paginator>
 
 </mat-card>

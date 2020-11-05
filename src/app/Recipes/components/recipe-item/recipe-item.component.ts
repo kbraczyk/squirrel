@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { bounceInAnimation } from 'angular-animations';
 
 @Component({
   selector: 'squirrel-recipe-item',
@@ -7,6 +6,7 @@ import { bounceInAnimation } from 'angular-animations';
   styleUrls: ['./recipe-item.component.scss'],
 })
 export class RecipeItemComponent implements OnInit {
+  public isFavorite: boolean = false;
 
   constructor() { }
 

@@ -5,11 +5,15 @@
     display: flex;
     flex-wrap: nowrap;
     max-width: 100%;
-    overflow: hidden;
 
     .main-panel {
       background-color: #f5f5f5;
       width: 100%;
+      overflow: hidden;
+
+      .main-content {
+        width: 100%;
+      }
 
       .header {
         position: sticky;
@@ -18,7 +22,7 @@
         align-items: center;
         padding: 0 25px;
         margin: 0 auto;
-        height: 84px;
+        height: 74px;
         z-index: 1;
         background-color: $content-box-color;
         border-bottom: 1px solid rgba(78, 37, 107, 0.3);
@@ -34,6 +38,7 @@
   }
 
   @media (max-width: 576px) {
+
     .header {
       position: relative;
 

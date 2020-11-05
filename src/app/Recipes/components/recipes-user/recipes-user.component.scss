@@ -1,0 +1,24 @@
+:host {
+  .center {
+    justify-content: center;
+    position: relative;
+  }
+
+  .content-box {
+    position: relative;
+    min-width: 380px;
+    max-height: 493px;
+    overflow: hidden;
+  }
+
+  .actions {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+  }
+
+  .row {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}

@@ -2,14 +2,14 @@
 
 :host {
   .sidebar {
-
+    position: sticky;
+    top: 0;
     width: 80px;
     color: $menu-font-color;
     user-select: none;
     background-color: $primary-color;
     min-height: 100vh;
-    height: 100%;
-    overflow: hidden;
+
     transition: width 0.5s ease-out;
 
     &--open {
@@ -28,7 +28,7 @@
     }
 
     .logo {
-      margin: 10px;
+      margin: 0 10px 10px 10px;
 
       &__img {
         width: 62px;
@@ -140,8 +140,6 @@
 
     &--open,
     &--open:hover {
-      position: absolute;
-      z-index: 10;
       width: 300px;
     }
   }
