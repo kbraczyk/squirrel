@@ -29,6 +29,56 @@
       }
     }
   }
+
+  mat-card {
+    box-shadow: none;
+  }
+
+  mat-table,
+  mat-card {
+    border: 1px solid rgba(0, 0, 0, .15);
+  }
+
+  mat-table {
+    border-bottom: none;
+  }
+
+  mat-card {
+    border-top: none;
+  }
+
+  mat-row:last-of-type {
+    border-bottom: none;
+  }
+
+  mat-row:nth-child(odd) {
+    background-color: #f4e9ff;
+  }
+
+  .no-content {
+    @include flex-box(column, center, center, nowrap);
+    min-height: 200px;
+
+    &__icon {
+      height: 65px;
+      width: 65px;
+      font-size: 65px;
+      opacity: .4;
+      margin: 10px;
+    }
+
+    &__sugestion {
+      opacity: .4;
+    }
+  }
+
+  ::ng-deep mat-paginator {
+    border-top: 1px solid rgba(0, 0, 0, .15);
+
+    .mat-paginator-container {
+      justify-content: center;
+    }
+  }
 }
 
 .loader {
@@ -43,6 +93,4 @@
 
 .mat-cell {
   font-size: 16px;
-  text-align: center;
-  justify-content: center;
 }

@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SortDirection } from '@angular/material';
-
+import { apiConfig } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
 
-  private baseUrl: string = 'http://localhost:3000';
-  private resource: Resource = null;
+  protected baseUrl: string = apiConfig.baseUrl;
+  private _resource: Resource = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   public getAll = (pager?: PageModel, sort?: SortModel): Observable<any> => {
     let url = this.baseUrl + this.resource;
@@ -30,26 +30,29 @@ export class RestService {
     return this.http.get(`${this.baseUrl + this.resource}/${id}`);
   }
 
-  public setResource = (res: Resource) => {
-    this.resource = res;
+  set resource(res: Resource) {
+    if (res) {
+      this._resource = res;
+    }
   }
-  public getResource = () => {
-    return this.resource;
+  get resource() {
+    return this._resource;
   }
 
 }
 
 export enum Resource {
-  fruits = '/fruits',
-  vegetables = '/vegetables',
-  protein = '/protein',
-  fat = '/fats',
-  carbo = '/carbo'
+  fruits = 'fruits',
+  vegetables = 'vegetables',
+  protein = 'protein',
+  fat = 'fats',
+  carbo = 'carbo',
+  auth = 'auth'
 }
 
 export class SortModel {
-    field: string;
-    direction: SortDirection;
+  field: string;
+  direction: SortDirection;
 }
 export class PageModel {
   perPage: number;

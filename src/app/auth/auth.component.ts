@@ -1,28 +1,30 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthResourceService } from '@app/shared/resource/auth/auth.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'squirrel-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
+  providers: [AuthResourceService]
 })
 export class AuthComponent {
   public form = new FormGroup({
     username: new FormControl(),
     password: new FormControl()
   });
-  constructor(private http: HttpClient) {
 
-  }
+  constructor(private authService: AuthResourceService, private notification: NotificationsService, private router: Router) { }
 
   auth() {
     const data = this.form.value;
-
-    this.http.post('http://localhost:3000/auth/login',
-      { username: data.username, password: data.password }).subscribe(
-        data => console.log(data, 'QWE')
-      );
+    this.authService.login(this.form.value).subscribe(token => {
+      this.notification.success('', 'Zostałeś zalogowany, możesz kożystać ze wszystkich funckji ;)');
+      this.router.navigate(['/recipes']);
+    },
+      error => this.notification.error('', error.error.message));
   }
 
 

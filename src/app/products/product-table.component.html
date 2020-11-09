@@ -6,51 +6,48 @@
   </div>
   <squirrel-tabs [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
 
-  <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort class="lessons-table mat-elevation-z8"
-    [dataSource]="dataSource">
+  <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort [dataSource]="dataSource">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</mat-header-cell>
-      <mat-cell class="description-cell" *matCellDef="let row">{{row.name}}</mat-cell>
+      <mat-cell class="description-cell" *matCellDef="let row">{{row.name | titlecase }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="energy">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Kcal</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.energy}}</mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.energy }} <small> kcal</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="carbo">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Węglowodany</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.carbo}}</mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.carbo}} <small> g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="sugar">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Cukier</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.sugar}}</mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.sugar}} <small> g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="fat">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Tłuszcz</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.fat}}</mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.fat}} <small> g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="protein">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Białko</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.protein}}</mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.protein}} <small> g</small> </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
-  <!-- LOADER -->
-  <mat-card *ngIf="!dataSource.hasData" style="display: flex; justify-content: center; align-items: center">
-    <mat-card-content *ngIf="!(dataSource.isLoading$ | async)">
-      <h3>
-        Przykro nam ale obecnie nie mamy Ci nic do pokazania :(
-      </h3>
-    </mat-card-content>
-  </mat-card>
-  <mat-card *ngIf="dataSource.isLoading$ | async" style="display: flex; justify-content: center; align-items: center">
-    <mat-progress-spinner *ngIf="dataSource.isLoading$ | async" color="primary" mode="indeterminate">
-    </mat-progress-spinner>
-  </mat-card>
-
-  <mat-paginator *ngIf="dataSource.hasData | async" [length]="dataSource.length$ | async" [pageSize]="5"
+  <mat-paginator *ngIf="dataSource.hasData" [length]="dataSource.length$ | async" [pageSize]="5"
     [pageSizeOptions]="[5, 10, 15, 20]" [showFirstLastButtons]=true (page)="dataSource.changePage($event)">
   </mat-paginator>
+  <!-- LOADER -->
+  <mat-card *ngIf="!dataSource.hasData" style="display: flex; justify-content: center; align-items: center">
+    <mat-card-content *ngIf="!(dataSource.isLoading$ | async)" [@fadeInOnEnter]>
+      <div>
+        <div class="no-content">
+          <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
+          <h4 class="no-content__info">Brak danych do wyświetlenia</h4>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
 </mat-card>

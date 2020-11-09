@@ -1,5 +1,5 @@
 import { BehaviorSubject, } from 'rxjs';
-import { finalize, } from 'rxjs/operators/';
+import { finalize, map, } from 'rxjs/operators/';
 import { RestService, SortModel, PageModel } from '@shared/service/rest.service';
 import { MatTableDataSource, PageEvent, } from '@angular/material';
 
@@ -24,23 +24,22 @@ export class SquirrelDataSource<T> extends MatTableDataSource<T> {
 
     public loadData(pager?: PageModel, sort?: SortModel) {
         this.isLoading$.next(true);
-        setTimeout(() => {
-            this.rest.getAll(pager, sort).pipe(
-                finalize(() => this.isLoading$.next(false))
-            ).subscribe(data => {
-                if (data) {
-                    this.hasData = true;
-                    this.length$.next(data.total);
-                    this.data$.next(data[`data`]);
-                } else {
-                    this.hasData = false;
-                }
-            },
-                (err) => {
-                    this.data$.next([]);
-                    this.hasData = false;
-                });
-        }, 2000);
+        this.rest.getAll(pager, sort).pipe(
+            finalize(() => this.isLoading$.next(false))
+        ).subscribe(data => {
+            if (data) {
+                this.hasData = true;
+                this.length$.next(data.length);
+                this.data$.next(data);
+            } else {
+                this.hasData = false;
+            }
+        },
+            (err) => {
+                this.data$.next([]);
+                this.hasData = false;
+            });
+
     }
 
     sortChange(event) {
