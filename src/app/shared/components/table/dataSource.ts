@@ -1,11 +1,11 @@
 import { BehaviorSubject, } from 'rxjs';
 import { finalize, } from 'rxjs/operators/';
-import { RestService, SortModel, PageModel } from '@common/service/rest.service';
+import { RestService, SortModel, PageModel } from '@shared/service/rest.service';
 import { MatTableDataSource, PageEvent, } from '@angular/material';
 
-export class SquirrelDataSource extends MatTableDataSource<any> {
+export class SquirrelDataSource<T> extends MatTableDataSource<T> {
 
-    private data$ = new BehaviorSubject<any[]>([]);
+    private data$ = new BehaviorSubject<Array<T>>([]);
     public length$ = new BehaviorSubject<number>(0);
     public isLoading$ = new BehaviorSubject<boolean>(true);
     public hasData: boolean = false;
@@ -60,7 +60,6 @@ export class SquirrelDataSource extends MatTableDataSource<any> {
             perPage: event.pageSize,
             offset: event.pageIndex,
         };
-        console.log(event, ' QWE')
         this.loadData(pager, null);
     }
 

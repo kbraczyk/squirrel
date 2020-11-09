@@ -3,12 +3,20 @@
     <img class="logo__img" src="assets/log.png" alt="logo">
     <h5 class="logo__text">Żywieniowy przyjaciel</h5>
   </div>
-  <div class="active-user" (click)="userMenuState = !userMenuState">
+  <div *ngIf="userExist" class="active-user" (click)="userMenuState = !userMenuState">
     <ngx-avatar borderColor="rgba(255, 255, 255, 0.2)" src="assets/avatars/main.jpg"></ngx-avatar>
     <span class="active-user__name">Krzysztof Brączyk</span>
     <mat-icon class="material-icons">
       {{!userMenuState ? 'expand_more' : 'expand_less'}}
     </mat-icon>
+  </div>
+  <div *ngIf="!userExist" class="auth">
+    <button class="button-center button-large" [routerLink]="['/auth']" mat-raised-button color="warn">Autoryzacja
+      <mat-icon class="mat-18">login</mat-icon>
+    </button>
+    <button class="button-center button-small" [routerLink]="['/auth']" mat-raised-button color="warn">
+      <mat-icon class="mat-18">login</mat-icon>
+    </button>
   </div>
 
   <div class="user-menu" *ngIf="userMenuState" [@fadeInOnEnter]>

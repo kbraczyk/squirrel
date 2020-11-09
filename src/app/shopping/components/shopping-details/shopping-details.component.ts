@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { NotificationsService } from 'angular2-notifications';
-import { AbstractComponent } from '@common/components/abstract.component';
+import { AbstractComponent } from '@shared/components/abstract.component';
 import { ShoppingService } from '../../shopping.service';
 import { ShoppingListModel } from '../shopping-list/shopping-list.component';
 

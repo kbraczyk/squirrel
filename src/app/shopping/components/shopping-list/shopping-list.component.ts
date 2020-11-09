@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { AbstractComponent } from '@common/components/abstract.component';
+import { AbstractComponent } from '@shared/components/abstract.component';
 import { ShoppingService } from '../../shopping.service';
 
 @Component({

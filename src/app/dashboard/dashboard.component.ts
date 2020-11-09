@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StorageService, storageType } from '@common/service/storage.service';
+import { StorageService, storageType } from '@shared/service/storage.service';
 
 @Component({
   selector: 'squirrel-dashboard',

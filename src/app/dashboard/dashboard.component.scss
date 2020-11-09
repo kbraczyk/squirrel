@@ -36,16 +36,4 @@
       }
     }
   }
-
-  @media (max-width: 576px) {
-
-    .header {
-      position: relative;
-
-      .menu__hidden {
-        position: absolute;
-        right: 20px;
-      }
-    }
-  }
 }

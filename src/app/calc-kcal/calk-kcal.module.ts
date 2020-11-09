@@ -4,9 +4,9 @@ import { CalcKcalComponent } from './calc-kcal.component';
 import { CalkKcalRoutingModule } from './calk-kcal-routing.module';
 import { CalkKcalInfoComponent } from './calk-kcal-info/calk-kcal-info.component';
 import { ResultKcalComponent } from './result-kcal/result-kcal.component';
-import { MaterialModule } from '@app/common/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonSquirrelModule } from '@app/common/common.module';
+import { SharedSquirrelModule } from '@app/shared/shared.module';
+import { MaterialModule } from '@app/shared/material.module';
 
 const components = [
   CalcKcalComponent,
@@ -18,7 +18,7 @@ const components = [
   declarations: [...components],
   imports: [
     CommonModule,
-    CommonSquirrelModule,
+    SharedSquirrelModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,

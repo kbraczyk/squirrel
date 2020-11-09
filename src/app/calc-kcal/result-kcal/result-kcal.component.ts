@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DemandKcalService } from 'src/app/common/service/demand-kcal.service';
+import { DemandKcalService } from '@shared/service/demand-kcal.service';
 
 @Component({
   selector: 'squirrel-result-kcal',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { SquirrelDataSource } from '@common/components/table/dataSource';
-import { RestService, Resource } from '@common/service/rest.service';
+import { SquirrelDataSource } from '@shared/components/table/dataSource';
+import { RestService, Resource } from '@shared/service/rest.service';
 import { MatSort, MatPaginator, MatTable } from '@angular/material';
 
 @Component({
@@ -24,7 +24,7 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
     { value: Resource.vegetables, label: 'Warzywa', icon: '../../assets/icon/vegetable.svg' },
   ];
 
-  public dataSource: SquirrelDataSource;
+  public dataSource: SquirrelDataSource<any>;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

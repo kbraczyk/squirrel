@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorFormComponent } from './components/form/error-form/error-form.component';
 import { MaterialModule } from './material.module';
 import { FormaterPipe } from './pipe/formater.pipe';
+
 const components = [ErrorFormComponent];
 const pipes = [FormaterPipe];
 
@@ -23,6 +24,6 @@ const pipes = [FormaterPipe];
         ...pipes
     ]
 })
-export class CommonSquirrelModule {
+export class SharedSquirrelModule {
 
 }

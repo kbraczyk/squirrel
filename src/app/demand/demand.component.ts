@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
-import { DemandKcalService } from '@common/service/demand-kcal.service';
+import { DemandKcalService } from '@shared/service/demand-kcal.service';
 
 @Component({
   selector: 'squirrel-demand',

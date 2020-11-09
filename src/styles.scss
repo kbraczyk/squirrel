@@ -99,6 +99,12 @@ mat-card-title {
   display: flex;
 }
 
+// Buttons
+html .button-center {
+  display: block;
+  margin: 0 auto;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }
