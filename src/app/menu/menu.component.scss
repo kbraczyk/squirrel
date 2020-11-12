@@ -44,7 +44,7 @@
     .active-user,
     .auth {
       padding: 15px 0px 15px 15px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       border-right: none;
       border-left: none;
       cursor: pointer;
@@ -60,15 +60,15 @@
         width: 100%;
         cursor: pointer;
 
-        &.active>a {
+        .active {
           transition: background 0.2s ease-in-out;
-          background-color: rgba(255, 255, 255, 0.23);
+          background-color: rgba(255, 255, 255, 0.45);
           opacity: 1;
         }
 
-        &:not(.active):hover>a {
+        a:not(.active):hover {
           transition: background 0.2s ease-in-out;
-          background-color: rgba(255, 255, 255, 0.16);
+          background-color: rgba(255, 255, 255, 0.3);
         }
 
         a {
@@ -76,7 +76,6 @@
           padding: 10px;
           margin: 5px 15px 0;
           border-radius: 4px;
-          opacity: 0.86;
           color: $linkcolor;
           letter-spacing: 2px;
           text-decoration: none;
@@ -88,7 +87,6 @@
           }
 
           p {
-            transition: opacity 0.2s ease-out;
             margin: 0;
             line-height: 30px;
             font-size: 13px;
