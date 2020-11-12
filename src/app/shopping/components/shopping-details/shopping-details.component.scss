@@ -1,6 +1,15 @@
 @import '../../../../Styles/mixin';
 
 :host {
+  ::ng-deep mat-card-title {
+    display: inline-block;
+    width: max-content;
+  }
+
+  ::ng-deep mat-form-field.product {
+    width: 85% !important;
+  }
+
   .no-content {
     @include flex-box(column, center, center, nowrap);
     min-height: 300px;

@@ -1,4 +1,13 @@
 :host {
+  .content-box {
+    min-width: 320px;
+  }
+
+  ::ng-deep mat-card-title {
+    display: inline-block;
+    width: max-content;
+  }
+
   .margin-x {
     margin: 0 10px;
   }

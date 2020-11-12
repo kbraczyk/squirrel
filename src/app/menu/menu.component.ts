@@ -12,7 +12,9 @@ import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animati
 })
 export class MenuComponent {
   public userMenuState: boolean = false;
+  public userExist: boolean = true;
   @Input() isOpen: boolean = false;
+
 
   constructor() {
   }

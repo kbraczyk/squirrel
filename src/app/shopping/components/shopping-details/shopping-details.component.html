@@ -38,7 +38,7 @@
           <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
         </div>
         <div class="col-4" *ngFor="let item of product.controls; let i=index">
-          <mat-form-field>
+          <mat-form-field class="product">
             <mat-label>Produkt</mat-label>
             <input name="{{i}}" matInput [formControlName]="i">
           </mat-form-field>
