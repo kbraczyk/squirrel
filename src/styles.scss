@@ -85,6 +85,10 @@ mat-card-title {
     border-bottom: 1px solid $primary-color-light;
     padding-bottom: 15px;
 
+    mat-card-title {
+      color: $primary-color-dark;
+    }
+
     mat-icon {
       margin-right: 15px;
     }

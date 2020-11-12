@@ -11,11 +11,11 @@
     </mat-icon>
   </div>
   <div *ngIf="!userExist" class="auth">
-    <button class="button-center button-large" [routerLink]="['/auth']" mat-raised-button color="warn">Zaloguj się
+    <button class="button-center button-large" [routerLink]="['/auth']" mat-raised-button>Zaloguj się
       <mat-icon class="mat-18">login</mat-icon>
     </button>
-    <button class="button-center button-small" [routerLink]="['/auth']" mat-raised-button color="warn">
-      <mat-icon class="mat-18">login</mat-icon>
+    <button class="button-center button-small" [routerLink]="['/auth']" mat-raised-button>
+      <mat-icon title="Zaloguj się" class="mat-18">login</mat-icon>
     </button>
   </div>
 
@@ -57,7 +57,7 @@
   <div class="main-menu">
     <ul class="nav">
       <li>
-        <a routerLink="/home" routerLinkActive="active"><i class="material-icons">
+        <a routerLink="/home" routerLinkActive="active"><i class="material-icons" title="Strona główna">
             home
           </i>
           <p>Strona główna</p>
@@ -65,26 +65,26 @@
       </li>
       <li>
         <a routerLink="/recipes" routerLinkActive="active">
-          <i class="material-icons">article</i>
+          <i class="material-icons" title="Baza przepisów">article</i>
           <p>Baza przepisów</p>
         </a>
       </li>
       <li>
         <a routerLink="/product" routerLinkActive="active">
-          <i class="material-icons">category</i>
+          <i class="material-icons" title="Produkty">category</i>
           <p>Produkty</p>
         </a>
       </li>
       <li>
         <a routerLink="/calc-kcal" routerLinkActive="active">
-          <i class="material-icons">calculate</i>
+          <i class="material-icons" title="Obliczenia">calculate</i>
           <p>Obliczenia</p>
         </a>
       </li>
       <li>
         <a routerLink="/shopping" routerLinkActive="active">
-          <i class="material-icons">add_shopping_cart</i>
-          <p>Lista zakupów</p>
+          <i class="material-icons" title="Listy zakupów">add_shopping_cart</i>
+          <p>Listy zakupów</p>
         </a>
       </li>
     </ul>
