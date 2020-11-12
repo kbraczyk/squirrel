@@ -1,11 +1,57 @@
+@import '../../Styles/variable';
+@import '../../Styles/mixin';
+
 :host {
   .auth {
-    display: inline-block;
-    min-width: 425px;
+    display: block;
+    min-width: 390px;
+    width: max-content;
+    margin: 25px auto;
+    padding: 0px 15px 10px 15px;
+    border-bottom: 5px solid $second-color-light;
+
+    &__header {
+      @include flex-box();
+      position: relative;
+      min-height: 225px;
+      background-color: $primary-color;
+      background-image: linear-gradient($primary-color, $primary-color-light);
+      border-radius: 7px;
+      border-bottom: 5px solid $second-color-light;
+
+      h3 {
+        display: inline-block;
+        margin-left: 10px;
+        color: $light-text-color;
+      }
+
+      img {
+        width: 120px;
+      }
+
+      span {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: $light-text-color;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 2px;
+        font-size: 12px;
+        padding: 7px;
+        border-radius: 7px;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, .4);
+          transition: background .3s ease-out;
+        }
+      }
+    }
 
     &__form {
       display: flex;
       flex-direction: column;
+      margin: 15px 0;
 
       button {
         width: max-content;

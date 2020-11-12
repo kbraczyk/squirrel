@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthResourceService } from '@app/shared/resource/auth/auth.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -12,8 +12,8 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class AuthComponent {
   public form = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl()
+    username: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required])
   });
 
   constructor(private authService: AuthResourceService, private notification: NotificationsService, private router: Router) { }
