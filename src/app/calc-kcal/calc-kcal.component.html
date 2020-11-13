@@ -7,22 +7,22 @@
   <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
     <div class="col-12 col-sm-12 col-md-5 ">
       <mat-form-field>
-        <input name="height" matInput [placeholder]="heightPlaceholder" formControlName="height">
+        <input matInput [placeholder]="heightPlaceholder" formControlName="height">
         <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
-        <input name="weight" matInput [placeholder]="weightPlaceholder" formControlName="weight">
+        <input matInput [placeholder]="weightPlaceholder" formControlName="weight">
         <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
-        <input name="age" matInput placeholder="Wiek" formControlName="age">
+        <input matInput placeholder="Wiek" formControlName="age">
         <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
       </mat-form-field>
     </div>
     <div class="col-12 col-sm-12 col-md-5">
       <mat-form-field>
         <mat-label>Płeć</mat-label>
-        <mat-select name="sex" formControlName="sex">
+        <mat-select formControlName="sex">
           <mat-option *ngFor="let sex of sexValues" [value]="sex">
             {{sex}}
           </mat-option>
@@ -31,7 +31,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Aktywność</mat-label>
-        <mat-select name="activity" formControlName="activity">
+        <mat-select formControlName="activity">
           <mat-option *ngFor="let active of activityValues" [value]="active.value">
             {{active.name}}
           </mat-option>
@@ -40,7 +40,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Cel</mat-label>
-        <mat-select name="target" formControlName="target">
+        <mat-select formControlName="target">
           <mat-option *ngFor="let target of targetValues" [value]="target.value">
             {{target.name}}
           </mat-option>

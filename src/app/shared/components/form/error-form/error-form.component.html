@@ -1,12 +1,18 @@
 <mat-error *ngIf="control.invalid && control.errors.required && (control.touched || control.dirty)">
-    Pole jest obowiązkowe!
+  Pole jest obowiązkowe!
 </mat-error>
 <mat-error *ngIf="control.invalid && control.errors.max">
-    Wartość nie może być większa jak {{control.errors.max.max}}.
+  Wartość nie może być większa jak {{control.errors.max.max}}.
+</mat-error>
+<mat-error *ngIf="control.invalid && control.errors.email">
+  Wprowadzony adres e-mail jest niepoprawny.
 </mat-error>
 <mat-error *ngIf="control.invalid && control.errors.min">
-    Wartość nie może być mniejsza jak {{control.errors.min.min}}.
+  Wartość nie może być mniejsza jak {{control.errors.min.min}}.
+</mat-error>
+<mat-error *ngIf="control.invalid && control.errors.minlength">
+  Wprowadzona wartość musi posiadać minimum {{control.errors.minlength.requiredLength}} znaków.
 </mat-error>
 <mat-error *ngIf="control.invalid && control.errors.pattern">
-    Wartość  musi być cyfrą.
+  Wartość musi być cyfrą.
 </mat-error>

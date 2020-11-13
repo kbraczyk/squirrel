@@ -11,7 +11,6 @@ export interface UserCreateModel extends UserLoginModel {
     email: string;
     name?: string;
     lastName?: string;
-    phone?: number;
-    age?: number;
+    showPesonalData: boolean;
 }
 

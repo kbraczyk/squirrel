@@ -73,6 +73,11 @@ mat-card-title {
   margin-bottom: 0px !important;
 }
 
+mat-form-field {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
 .content-box {
   margin: $content-box-margin;
   padding: $content-box-padding;
