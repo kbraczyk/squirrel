@@ -29,7 +29,7 @@ export class SquirrelDataSource<T> extends MatTableDataSource<T> {
         ).subscribe(data => {
             if (data) {
                 this.hasData = true;
-                this.length$.next(data.length);
+                this.length$.next(25);
                 this.data$.next(data);
             } else {
                 this.hasData = false;

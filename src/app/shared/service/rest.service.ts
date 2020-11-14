@@ -21,7 +21,7 @@ export class RestService {
       url = url + `?sort=${sort.direction === 'asc' ? '+' : '-'}${sort.field}`;
     }
     if (pager) {
-      url = url + `?per_page=${pager.perPage}&offset=${pager.offset}`;
+      url = url + `?pageSize=${pager.perPage}&pageIndex=${pager.offset}`;
     }
 
     return this.http.get(url);
