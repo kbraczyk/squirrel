@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { CalorieDemandModel } from '@app/shared/resource/calorie-demand/calorie-demand.interface';
+import { CalorieDemandResourceService } from '@app/shared/resource/calorie-demand/calorie-demand.service';
 import { DemandKcalService } from '@shared/service/demand-kcal.service';
 
 @Component({
@@ -7,9 +9,9 @@ import { DemandKcalService } from '@shared/service/demand-kcal.service';
   styleUrls: ['./demand.component.scss']
 })
 export class DemandComponent implements AfterViewInit {
-  public demand$ = this.kcalService.userDemand$;
-  public result;
-  public colorScheme = { domain: ['rgb(209, 144, 255)', 'rgb(0, 0, 0)', 'rgb(230, 81, 0)'] };
+  public result: CalorieDemandModel;
+  public resultChar: Array<{ name: string, value: number }>;
+  public colorScheme = { domain: ['rgb(149, 0, 255)', 'rgb(255, 214, 1)', 'rgb(231, 0, 0)'] };
   public view = [0, 0];
 
   @HostListener('window:resize', ['$event'])
@@ -23,8 +25,12 @@ export class DemandComponent implements AfterViewInit {
     }
   }
 
-  constructor(private kcalService: DemandKcalService) {
-    this.demand$.subscribe(data => this.result = this.mapData(data));
+  constructor(private kcalService: DemandKcalService, private demand: CalorieDemandResourceService) {
+    this.demand.getAll().subscribe(data => {
+      this.resultChar = this.mapData(data);
+      this.result = data;
+    });
+
   }
 
   ngAfterViewInit() {
@@ -38,6 +44,6 @@ export class DemandComponent implements AfterViewInit {
     return [
       { name: 'Białka', value: data.protein },
       { name: 'Tłuszcze', value: data.fat },
-      { name: 'Węglowoadny', value: data.carbs }];
+      { name: 'Węglowoadny', value: data.carbo }];
   }
 }

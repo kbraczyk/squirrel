@@ -4,7 +4,9 @@ import { Resource, RestService } from '@app/shared/service/rest.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginModel, UserCreateModel, UserLoginModel } from './auth.interface';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthResourceService extends RestService {
 
     constructor(http: HttpClient) {
@@ -19,7 +21,4 @@ export class AuthResourceService extends RestService {
     createUser(data: UserCreateModel): Observable<any> {
         return this.http.post(this.baseUrl + this.resource + '/register', data);
     }
-
-
-
 }

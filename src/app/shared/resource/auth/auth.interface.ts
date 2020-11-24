@@ -1,5 +1,5 @@
 export interface LoginModel {
-    token: string;
+    access_token: string;
 }
 
 export interface UserLoginModel {

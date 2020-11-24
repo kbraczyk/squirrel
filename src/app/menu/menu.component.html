@@ -22,35 +22,41 @@
   <div class="user-menu" *ngIf="userMenuState" [@fadeInOnEnter]>
     <ul class="nav">
       <li>
-        <a routerLink="/home" routerLinkActive="active">
-          <span>P</span>
+        <a routerLink="/profile" routerLinkActive="active">
+          <i class="material-icons small-icon" title="Moje dane">
+            person_outline
+          </i>
           <p>Moje dane</p>
         </a>
       </li>
       <li>
         <a routerLink="/home" routerLinkActive="active">
-          <span>MP</span>
+          <i class="material-icons small-icon" title="Moje przepisy">
+            receipt_long </i>
           <p>Moje Przepisy</p>
         </a>
       </li>
       <li>
         <a routerLink="/home" routerLinkActive="active">
-          <span>UP</span>
+          <i class="material-icons small-icon" title="Ulubione przepisy">
+            favorite_border
+          </i>
           <p>Ulubione Przepisy</p>
         </a>
       </li>
       <li>
         <a routerLink="/home" routerLinkActive="active">
-          <span>P</span>
+          <i class="material-icons small-icon" title="Pomiary">
+            show_chart
+          </i>
           <p>Pomiary</p>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a routerLink="/demand" routerLinkActive="active">
-          <span>Z</span>
           <p>Zapotrzebowanie</p>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 

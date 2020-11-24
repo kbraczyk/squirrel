@@ -47,7 +47,8 @@ export enum Resource {
   protein = 'protein',
   fat = 'fats',
   carbo = 'carbo',
-  auth = 'auth'
+  auth = 'auth',
+  calorieDemand = 'calorie_demand'
 }
 
 export class SortModel {

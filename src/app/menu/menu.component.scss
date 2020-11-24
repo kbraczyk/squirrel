@@ -7,7 +7,7 @@
     width: 80px;
     color: $menu-font-color;
     user-select: none;
-    background-color: $primary-color;
+    background-color: $primary-color-dark;
     min-height: 100vh;
 
     transition: width 0.5s ease-out;
@@ -17,7 +17,6 @@
     }
 
     &:hover {
-      // width: 300px;
       transition: width 0.5s ease-in;
     }
 
@@ -86,6 +85,13 @@
             margin-right: 25px;
           }
 
+          i.small-icon {
+            font-size: 22px;
+            padding-left: 5px;
+            margin-right: 30px;
+            color: $second-color-light;
+          }
+
           p {
             margin: 0;
             line-height: 30px;
@@ -100,11 +106,8 @@
   }
 
   .user-menu {
-    min-width: 300px;
-
     a {
       white-space: nowrap;
-      width: 100%;
 
       &.active {
         transition: background 0.2s ease-in-out;

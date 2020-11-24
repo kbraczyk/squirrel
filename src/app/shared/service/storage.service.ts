@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StorageService {
-  private _storage: Window[storageType.locale | storageType.session] = null;
+  private _storage: Window[StorageType.locale | StorageType.session] = null;
 
   get storage() {
     return this._storage;
   }
   constructor() {
     this.setStorageType();
-   }
+  }
 
-   public setStorageType(type: storageType = storageType.session) {
-     this._storage = window[type];
-   }
+  public setStorageType(type: StorageType = StorageType.session) {
+    this._storage = window[type];
+  }
 
   public set(key: string, value: any) {
     if (!key || !value) {
@@ -23,8 +23,8 @@ export class StorageService {
   }
 
   public get(key: string) {
-   const value =  this.storage.getItem(key);
-   return value ? JSON.parse(value) : null;
+    const value = this.storage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
 
   public remove(key: string) {
@@ -37,7 +37,7 @@ export class StorageService {
 
 }
 
-export enum storageType {
-  locale =  'localStorage',
+export enum StorageType {
+  locale = 'localStorage',
   session = 'sessionStorage'
 }

@@ -16,7 +16,7 @@ export class MenuComponent {
 
   @Input() isOpen: boolean = false;
 
-
   constructor() {
+    this.userExist = !!window.localStorage.getItem('token');
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StorageService, storageType } from '@shared/service/storage.service';
+import { StorageService, StorageType } from '@shared/service/storage.service';
 
 @Component({
   selector: 'squirrel-dashboard',
@@ -11,7 +11,7 @@ export class DashboardComponent {
   public breadcrumb: { label: string, route: string };
 
   constructor(private storageService: StorageService) {
-    this.storageService.setStorageType(storageType.locale);
+    this.storageService.setStorageType(StorageType.locale);
     this.menuOpenState = this.storageService.get('menuState');
   }
 

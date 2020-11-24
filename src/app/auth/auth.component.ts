@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SessionService } from '@app/shared/service/session.service';
 import { AuthResourceService } from '@shared/resource/auth/auth.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -8,31 +9,39 @@ import { NotificationsService } from 'angular2-notifications';
   selector: 'squirrel-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  providers: [AuthResourceService]
 })
 export class AuthComponent {
   public formType: AuthFormType = AuthFormType.login;
 
   public form = new FormGroup({
     username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(8)])
+    password: new FormControl(null, [Validators.required, Validators.minLength(1)])
   });
 
-  constructor(private authService: AuthResourceService, private notification: NotificationsService, private router: Router) { }
+  constructor(
+    private authService: AuthResourceService,
+    private notification: NotificationsService,
+    private router: Router,
+    private session: SessionService,
+  ) { }
 
   auth() {
     const data = this.form.value;
     this.formType === AuthFormType.login ?
       this.authService.login(this.form.value).subscribe(token => {
-        this.notification.success('', 'Zostałeś zalogowany, możesz kożystać ze wszystkich funckji.');
-        this.router.navigate(['/recipes']);
+        this.successAuth('Zostałeś zalogowany, możesz kożystać ze wszystkich funckji.', token.access_token);
       },
         error => this.notification.error('', error.error.message)) :
       this.authService.createUser(data).subscribe(token => {
-        this.notification.success('', 'Konto zostało utworzone, możesz kożystać ze wszystkich funckji.');
-        this.router.navigate(['/recipes']);
+        this.successAuth('Konto zostało utworzone, możesz kożystać ze wszystkich funckji.', token.access_token);
       },
         error => this.notification.error('', error.error.message));
+  }
+
+  private successAuth(message: string, token: string) {
+    this.router.navigate(['/recipes']);
+    this.notification.success('', message);
+    this.session.setSession(token);
   }
 
   changeFormType() {

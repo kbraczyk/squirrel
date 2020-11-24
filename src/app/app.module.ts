@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductTableComponent } from './products/product-table.component';
 import { MatPaginatorIntl } from '@angular/material';
 import { AvatarModule } from 'ngx-avatar';
@@ -19,6 +19,7 @@ import { MaterialModule } from '@shared/material.module';
 import { StorageService } from '@shared/service/storage.service';
 import { CustomPaginator } from '@shared/components/table/customPaginatorConfig';
 import { TabsComponent } from '@shared/components/tabs/tabs.component';
+import { HttpConfigInterceptor } from './httpConfig.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { TabsComponent } from '@shared/components/tabs/tabs.component';
   exports: [],
   providers: [
     StorageService,
-    { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })
