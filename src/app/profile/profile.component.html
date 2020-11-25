@@ -1,0 +1,42 @@
+<div class="content-box">
+  <div class="content-box__header">
+    <mat-icon class="content-box__header__icon">person_outline</mat-icon>
+    <div>
+      <mat-card-title>
+        Profil użytkownika
+      </mat-card-title>
+      <mat-card-subtitle>informacje o twoim profilu</mat-card-subtitle>
+    </div>
+  </div>
+  <form class="auth__form" [formGroup]="form" (ngSubmit)="auth()">
+    <div class="row">
+      <mat-form-field class="col-md-6">
+        <mat-label>Imie</mat-label>
+        <input type="text" formControlName="firstName" matInput>
+        <squirrel-error-form [control]="form.controls.firstName"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Nazwisko</mat-label>
+        <input type="text" formControlName="lastName" matInput>
+        <squirrel-error-form [control]="form.controls.lastName"></squirrel-error-form>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-md-6">
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput formControlName="username">
+        <squirrel-error-form [control]="form.controls.username"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Adres e-mail</mat-label>
+        <input type="email" formControlName="email" matInput>
+        <squirrel-error-form [control]="form.controls.email"></squirrel-error-form>
+      </mat-form-field>
+    </div>
+
+    <mat-checkbox color="primary" formControlName="showPersonalData">Ukryj moję imię i nazwisko dla innych
+      użytkowników.
+    </mat-checkbox>
+    <!-- <button type="submit" mat-raised-button color="primary">{{!formType ? 'Zaloguj' : 'Załóż konto'}}</button> -->
+  </form>
+</div>

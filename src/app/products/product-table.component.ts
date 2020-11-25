@@ -34,7 +34,7 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
-  constructor(private rest: RestService) {
+  constructor(private rest: RestService<any>) {
     this.dataSource = new SquirrelDataSource(this.rest);
   }
 

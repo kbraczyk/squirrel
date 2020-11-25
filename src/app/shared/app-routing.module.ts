@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'product', component: ProductTableComponent, data: { breadcrumb: { label: 'Lista dobrych produktów', route: '/products' } } },
   { path: 'recipes', loadChildren: () => import('../Recipes/recipes.module').then(m => m.RecipesModule) },
   { path: 'shopping', loadChildren: () => import('../shopping/shopping.module').then(m => m.ShoppingModule) },
-  { path: 'demand', loadChildren: () => import('../demand/demand.module').then(m => m.DemandModule) }
+  { path: 'demand', loadChildren: () => import('../demand/demand.module').then(m => m.DemandModule) },
+  { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) }
 ];
 
 @NgModule({

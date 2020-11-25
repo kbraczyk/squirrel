@@ -7,14 +7,14 @@ import { apiConfig } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class RestService {
+export class RestService<T> {
 
   protected baseUrl: string = apiConfig.baseUrl;
   private _resource: Resource = null;
 
   constructor(public http: HttpClient) { }
 
-  public getAll = (pager?: PageModel, sort?: SortModel): Observable<any> => {
+  public getAll = (pager?: PageModel, sort?: SortModel): Observable<T> => {
     let url = this.baseUrl + this.resource;
 
     if (sort) {
@@ -24,7 +24,7 @@ export class RestService {
       url = url + `?pageSize=${pager.perPage}&pageIndex=${pager.offset}`;
     }
 
-    return this.http.get(url);
+    return this.http.get(url) as Observable<T>;
   }
   public getById = (id: number): Observable<any> => {
     return this.http.get(`${this.baseUrl + this.resource}/${id}`);
@@ -48,7 +48,8 @@ export enum Resource {
   fat = 'fats',
   carbo = 'carbo',
   auth = 'auth',
-  calorieDemand = 'calorie_demand'
+  calorieDemand = 'calorie_demand',
+  profile = 'profile'
 }
 
 export class SortModel {

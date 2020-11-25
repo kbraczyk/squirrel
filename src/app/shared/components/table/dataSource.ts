@@ -10,7 +10,7 @@ export class SquirrelDataSource<T> extends MatTableDataSource<T> {
     public isLoading$ = new BehaviorSubject<boolean>(true);
     public hasData: boolean = false;
 
-    constructor(private rest: RestService) {
+    constructor(private rest: RestService<any>) {
         super();
     }
 

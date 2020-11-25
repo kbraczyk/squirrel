@@ -7,7 +7,7 @@ import { LoginModel, UserCreateModel, UserLoginModel } from './auth.interface';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthResourceService extends RestService {
+export class AuthResourceService extends RestService<any> {
 
     constructor(http: HttpClient) {
         super(http);

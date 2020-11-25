@@ -83,6 +83,7 @@ mat-form-field {
   padding: $content-box-padding;
   background-color: $content-box-color;
   border-radius: 6px;
+  border-top: 3px solid $second-color-light;
   box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
 
   &__header {
@@ -94,12 +95,16 @@ mat-form-field {
       color: $primary-color-dark;
     }
 
-    mat-icon {
+    &__icon {
       margin-right: 15px;
+      font-size: 32px;
+      width: 32px !important;
+      height: 32px !important;
+      opacity: .7;
     }
 
     mat-card-subtitle {
-      margin-bottom: -5px;
+      display: block;
     }
   }
 }
