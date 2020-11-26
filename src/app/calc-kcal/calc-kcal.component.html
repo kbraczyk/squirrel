@@ -1,11 +1,15 @@
 <div class="content-box">
-  <h3 class="title">Kalkulator zapotrzebowania kalorycznego <mat-icon class="d-md-none" (click)="openInfo()">info
-    </mat-icon>
-  </h3>
-  <p class="info">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
-  <squirrel-calk-kcal-info class="d-none d-md-block"></squirrel-calk-kcal-info>
+  <div class="content-box__header">
+    <mat-icon class="content-box__header__icon">{{headerIcon}}</mat-icon>
+    <div>
+      <mat-card-title>
+        {{headerTitle}}
+      </mat-card-title>
+      <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
+    </div>
+  </div>
   <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
-    <div class="col-12 col-sm-12 col-md-5 ">
+    <div class="col-sm-12 col-md-6">
       <mat-form-field>
         <input matInput [placeholder]="heightPlaceholder" formControlName="height">
         <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
@@ -19,7 +23,7 @@
         <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
       </mat-form-field>
     </div>
-    <div class="col-12 col-sm-12 col-md-5">
+    <div class="col-12 col-sm-12 col-md-6">
       <mat-form-field>
         <mat-label>Płeć</mat-label>
         <mat-select formControlName="sex">
@@ -48,7 +52,7 @@
         <squirrel-error-form [control]="calcKcalForm.controls.target"></squirrel-error-form>
       </mat-form-field>
     </div>
-    <h4 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h4>
+    <h5 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h5>
     <div class="footer-form col-sm-12 col-md-8 col-lg-6">
       <div class="unit col">
         <p>Wagi</p>

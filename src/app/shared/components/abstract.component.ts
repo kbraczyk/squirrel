@@ -1,8 +1,15 @@
 export class AbstractComponent {
+    // Content header config
+    public headerTitle: string = null;
+    public headerSubtitle: string = null;
+    public headerIcon: string = null;
+
+    // no content data
     public noContentInfo: string = null;
     public sugestionInfo: string = null;
 
     private _isLoading: boolean;
+
     private _activeProduct: any = null;
 
     get activeProduct() {

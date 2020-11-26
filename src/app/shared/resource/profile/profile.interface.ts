@@ -4,7 +4,7 @@ export interface UserProfile {
     firstName: string;
     lastName: string;
     showPersonalData: boolean;
-    user: User;
+    user?: User;
 }
 
 export interface User {

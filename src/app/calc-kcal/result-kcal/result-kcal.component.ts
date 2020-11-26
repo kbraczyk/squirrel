@@ -14,6 +14,6 @@ export class ResultKcalComponent {
     public dialogRef: MatDialogRef<ResultKcalComponent>,
     private kcalService: DemandKcalService) { }
 
-  saveResults = () => this.kcalService.setData(this.data);
+  saveResults = () => this.kcalService.setData(this.data.calorieRequirment);
 
 }

@@ -12,4 +12,8 @@ export class CalorieDemandResourceService extends RestService<CalorieDemandModel
         super(http);
         this.resource = Resource.calorieDemand;
     }
+
+    saveCalorieDemand(data) {
+        return this.http.post(this.baseUrl + this.resource, data);
+    }
 }

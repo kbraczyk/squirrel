@@ -39,6 +39,6 @@ export class CalcKcalService {
     }
 
     totalMetabolicRate = (basicMetabolicRate * value.activity) * value.target;
-    return totalMetabolicRate;
+    return totalMetabolicRate as number;
   }
 }

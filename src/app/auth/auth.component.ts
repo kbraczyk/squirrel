@@ -1,6 +1,8 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnimationsDirective } from '@app/shared/directives/animations.directive';
 import { SessionService } from '@app/shared/service/session.service';
 import { AuthResourceService } from '@shared/resource/auth/auth.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -9,6 +11,7 @@ import { NotificationsService } from 'angular2-notifications';
   selector: 'squirrel-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
+  animations: [AnimationsDirective.inOutAnimations]
 })
 export class AuthComponent {
   public formType: AuthFormType = AuthFormType.login;

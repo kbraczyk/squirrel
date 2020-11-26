@@ -55,6 +55,10 @@ ul {
   margin-right: 8px;
 }
 
+.p-r-l {
+  padding-right: 25px;
+}
+
 .title {
   color: $primary-color;
 }
@@ -83,7 +87,7 @@ mat-form-field {
   padding: $content-box-padding;
   background-color: $content-box-color;
   border-radius: 6px;
-  border-top: 3px solid $second-color-light;
+  border-top: 4px solid $second-color-light;
   box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
 
   &__header {
@@ -134,6 +138,7 @@ html .button-center {
 @include media-breakpoint-down(sm) {
   .content-box {
     margin: $content-box-margin - 10px;
+    overflow: hidden;
   }
 }
 

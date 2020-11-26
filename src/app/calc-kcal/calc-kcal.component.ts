@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CalkKcalInfoComponent } from './calk-kcal-info/calk-kcal-info.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultKcalComponent } from './result-kcal/result-kcal.component';
 import { CalcKcalService } from './calc-kcal.service';
+import { AbstractComponent } from '@app/shared/components/abstract.component';
+import { DemandKcalService } from '@app/shared/service/demand-kcal.service';
 
 @Component({
   selector: 'squirrel-calc-kcal',
   templateUrl: './calc-kcal.component.html',
   styleUrls: ['./calc-kcal.component.scss'],
 })
-export class CalcKcalComponent implements OnInit {
+export class CalcKcalComponent extends AbstractComponent implements OnInit {
 
   protected sexValues: Array<string>;
   protected activityValues: Array<{ value, name }>;
@@ -56,7 +57,11 @@ export class CalcKcalComponent implements OnInit {
   public get cm() { return this.calcKcalForm.get('cm'); }
   public get ft() { return this.calcKcalForm.get('ft'); }
 
-  constructor(private dialogService: MatDialog, private calcService: CalcKcalService) {
+  constructor(private dialogService: MatDialog, private calcService: CalcKcalService, private demandService: DemandKcalService) {
+    super();
+    this.headerTitle = 'Kalkulator zapotrzebowania kalorycznego';
+    this.headerSubtitle = 'Oblicz swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu';
+    this.headerIcon = 'calculate';
     this.weightPlaceholder = 'Waga (kg)';
     this.heightPlaceholder = 'Wzrost (cm)';
     this.sexValues = calcService.sex;
@@ -69,7 +74,8 @@ export class CalcKcalComponent implements OnInit {
   }
 
   calculate(value) {
-    const calorieRequirment = this.calcService.calculateKcal(value).toFixed(0);
+    const data = this.calcService.calculateKcal(value);
+    const calorieRequirment = this.demandService.transformKcalToMakro(data);
 
     if (calorieRequirment) {
       this.dialogRef = this.dialogService.open(ResultKcalComponent, {
@@ -101,8 +107,6 @@ export class CalcKcalComponent implements OnInit {
       event.checked ? this.cm.setValue(false) : this.cm.setValue(true);
     }
   }
-
-  openInfo = () => this.dialogRef = this.dialogService.open(CalkKcalInfoComponent);
 
   setPopulateUnits(): any {
     this.kg.setValue(true);

@@ -25,19 +25,20 @@ export class DemandComponent implements AfterViewInit {
     }
   }
 
-  constructor(private kcalService: DemandKcalService, private demand: CalorieDemandResourceService) {
+  constructor(private demand: CalorieDemandResourceService) {
     this.demand.getAll().subscribe(data => {
-      this.resultChar = this.mapData(data);
       this.result = data;
+      this.resultChar = this.mapData(data);
     });
 
   }
 
   ngAfterViewInit() {
-    document.getElementById('progresProtein').style.width = '32%';
-    document.getElementById('progresFat').style.width = '22%';
-    document.getElementById('progresCarbs').style.width = '45%';
-
+    setTimeout(() => {
+      document.getElementById('progresProtein').style.width = '32%';
+      document.getElementById('progresFat').style.width = '22%';
+      document.getElementById('progresCarbs').style.width = '45%';
+    }, 300);
   }
 
   mapData(data) {

@@ -17,7 +17,7 @@
       <input type="password" formControlName="password" matInput>
       <squirrel-error-form [control]="form.controls.password"></squirrel-error-form>
     </mat-form-field>
-    <div *ngIf="formType">
+    <div *ngIf="formType" @inOutAnimation>
       <mat-form-field>
         <mat-label>Powtórz hasło</mat-label>
         <input type="password" formControlName="repeatPassword" matInput>
