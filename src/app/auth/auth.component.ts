@@ -1,11 +1,12 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { AnimationsDirective } from '@app/shared/directives/animations.directive';
 import { SessionService } from '@app/shared/service/session.service';
 import { AuthResourceService } from '@shared/resource/auth/auth.service';
 import { NotificationsService } from 'angular2-notifications';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'squirrel-auth',
@@ -13,7 +14,7 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: ['./auth.component.scss'],
   animations: [AnimationsDirective.inOutAnimations]
 })
-export class AuthComponent {
+export class AuthComponent extends AbstractComponent {
   public formType: AuthFormType = AuthFormType.login;
 
   public form = new FormGroup({
@@ -26,24 +27,28 @@ export class AuthComponent {
     private notification: NotificationsService,
     private router: Router,
     private session: SessionService,
-  ) { }
+  ) {
+    super();
+  }
 
   auth() {
-    const data = this.form.value;
+    this.isLoading = true;
     this.formType === AuthFormType.login ?
-      this.authService.login(this.form.value).subscribe(token => {
+      this.authService.login(this.form.value).pipe(finalize(() => this.isLoading = false)).subscribe(token => {
         this.successAuth('Zostałeś zalogowany, możesz kożystać ze wszystkich funckji.', token.access_token);
       },
-        error => this.notification.error('', error.error.message)) :
-      this.authService.createUser(data).subscribe(token => {
+        error => {
+          this.notification.error(null, error.error.message);
+        }
+      ) : this.authService.createUser(this.form.value).pipe(finalize(() => this.isLoading = false)).subscribe(token => {
         this.successAuth('Konto zostało utworzone, możesz kożystać ze wszystkich funckji.', token.access_token);
       },
-        error => this.notification.error('', error.error.message));
+        error => this.notification.error(null, error.error.message));
   }
 
   private successAuth(message: string, token: string) {
     this.router.navigate(['/recipes']);
-    this.notification.success('', message);
+    this.notification.success(null, message);
     this.session.setSession(token);
   }
 

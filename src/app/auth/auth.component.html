@@ -7,42 +7,44 @@
     <span (click)="changeFormType()">{{!formType ? 'Chce zostać nowym użytkownikiem!' : 'Powrót do logowania'}}</span>
   </div>
   <form class="auth__form" [formGroup]="form" (ngSubmit)="auth()">
-    <mat-form-field>
-      <mat-label>Nazwa użytkownika</mat-label>
-      <input matInput formControlName="username">
-      <squirrel-error-form [control]="form.controls.username"></squirrel-error-form>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Hasło</mat-label>
-      <input type="password" formControlName="password" matInput>
-      <squirrel-error-form [control]="form.controls.password"></squirrel-error-form>
-    </mat-form-field>
-    <div *ngIf="formType" @inOutAnimation>
+    <app-transparent-loader-container [loading]="isLoading">
       <mat-form-field>
-        <mat-label>Powtórz hasło</mat-label>
-        <input type="password" formControlName="repeatPassword" matInput>
-        <squirrel-error-form [control]="form.controls.repeatPassword"></squirrel-error-form>
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput formControlName="username">
+        <squirrel-error-form [control]="form.controls.username"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Adres e-mail</mat-label>
-        <input type="email" formControlName="email" matInput>
-        <squirrel-error-form [control]="form.controls.email"></squirrel-error-form>
+        <mat-label>Hasło</mat-label>
+        <input type="password" formControlName="password" matInput>
+        <squirrel-error-form [control]="form.controls.password"></squirrel-error-form>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Imie</mat-label>
-        <input type="text" formControlName="firstName" matInput>
-        <squirrel-error-form [control]="form.controls.firstName"></squirrel-error-form>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Nazwisko</mat-label>
-        <input type="text" formControlName="lastName" matInput>
-        <squirrel-error-form [control]="form.controls.lastName"></squirrel-error-form>
-      </mat-form-field>
-      <mat-checkbox color="primary" formControlName="showPersonalData">Ukryj moję imię i nazwisko dla innych
-        użytkowników.
-      </mat-checkbox>
-    </div>
-    <button type="submit" mat-raised-button color="primary">{{!formType ? 'Zaloguj' : 'Załóż konto'}}</button>
+      <div *ngIf="formType" @inOutAnimation>
+        <mat-form-field>
+          <mat-label>Powtórz hasło</mat-label>
+          <input type="password" formControlName="repeatPassword" matInput>
+          <squirrel-error-form [control]="form.controls.repeatPassword"></squirrel-error-form>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Adres e-mail</mat-label>
+          <input type="email" formControlName="email" matInput>
+          <squirrel-error-form [control]="form.controls.email"></squirrel-error-form>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Imie</mat-label>
+          <input type="text" formControlName="firstName" matInput>
+          <squirrel-error-form [control]="form.controls.firstName"></squirrel-error-form>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nazwisko</mat-label>
+          <input type="text" formControlName="lastName" matInput>
+          <squirrel-error-form [control]="form.controls.lastName"></squirrel-error-form>
+        </mat-form-field>
+        <mat-checkbox color="primary" formControlName="showPersonalData">Ukryj moję imię i nazwisko dla innych
+          użytkowników.
+        </mat-checkbox>
+      </div>
+      <button type="submit" mat-raised-button color="primary">{{!formType ? 'Zaloguj' : 'Załóż konto'}}</button>
+    </app-transparent-loader-container>
   </form>
 
 </section>

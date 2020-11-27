@@ -19,7 +19,7 @@ export class StorageService {
     if (!key || !value) {
       return;
     }
-    this.storage.setItem(key, JSON.stringify(value));
+    this.storage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
   }
 
   public get(key: string) {

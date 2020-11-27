@@ -7,7 +7,10 @@ export class SquirrelDataSource<T> extends MatTableDataSource<T> {
 
     private data$ = new BehaviorSubject<Array<T>>([]);
     public length$ = new BehaviorSubject<number>(0);
-    public isLoading$ = new BehaviorSubject<boolean>(true);
+
+    private isLoading$ = new BehaviorSubject<boolean>(true);
+    get isLoading() { return this.isLoading$; }
+
     public hasData: boolean = false;
 
     constructor(private rest: RestService<any>) {

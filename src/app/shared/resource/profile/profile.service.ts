@@ -6,7 +6,7 @@ import { UserProfile } from './profile.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileRestService extends RestService<any> {
+export class ProfileRestService extends RestService<UserProfile> {
 
   constructor(http: HttpClient) {
     super(http);

@@ -1,14 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
-
+import { AnimationsDirective } from '@app/shared/directives/animations.directive';
+import { SessionService } from '@app/shared/service/session.service';
 @Component({
   selector: 'squirrel-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [
-    fadeInOnEnterAnimation({ duration: 500 }),
-    fadeOutOnLeaveAnimation({ duration: 500 })
-  ],
+  animations: [AnimationsDirective.inOutAnimations]
 })
 export class MenuComponent {
   public userMenuState: boolean = false;
@@ -16,7 +13,13 @@ export class MenuComponent {
 
   @Input() isOpen: boolean = false;
 
-  constructor() {
+  constructor(private session: SessionService) {
     this.userExist = !!window.localStorage.getItem('token');
+  }
+
+  logOut() {
+    this.session.clearSession();
+    this.userMenuState = false;
+    this.userExist = false;
   }
 }

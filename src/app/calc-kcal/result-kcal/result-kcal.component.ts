@@ -1,19 +1,30 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DemandKcalService } from '@shared/service/demand-kcal.service';
+import { AbstractComponent } from '@app/shared/components/abstract.component';
+import { CalorieDemandResourceService } from '@app/shared/resource/calorie-demand/calorie-demand.service';
+import { NotificationsService } from 'angular2-notifications';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'squirrel-result-kcal',
   templateUrl: './result-kcal.component.html',
   styleUrls: ['./result-kcal.component.scss']
 })
-export class ResultKcalComponent {
+export class ResultKcalComponent extends AbstractComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ResultKcalComponent>,
-    private kcalService: DemandKcalService) { }
+    private notification: NotificationsService, private demandResource: CalorieDemandResourceService) {
+    super();
+  }
 
-  saveResults = () => this.kcalService.setData(this.data.calorieRequirment);
+  saveResults = () => {
+    this.isLoading = true;
+    this.demandResource.saveCalorieDemand(this.data.calorieRequirment).pipe(finalize(() => this.isLoading = false)).subscribe(() => {
+      this.notification.success(null, 'Obliczone zapotrzebowanie zostało przypisane do profilu.');
+    },
+      error => this.notification.error(null, 'Wystąpił problem podczas zapisu danych'));
+  }
 
 }

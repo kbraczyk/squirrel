@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -19,7 +19,14 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
 
         return next.handle(request).pipe(
+            catchError(error => {
+                if (error && error.error && !error.error.message) {
+                    error.error.message = 'Błąd systemu';
+                }
+                return throwError(error);
+            }),
             map((event: HttpEvent<any>) => {
+                console.log(event);
                 return event;
             }));
     }

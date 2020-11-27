@@ -1,0 +1,8 @@
+<div class="loader-container {{extraClass}}">
+    <ng-container>
+        <div class="loader" *ngIf="isLoading">
+            <mat-spinner [diameter]="size"></mat-spinner>
+        </div>
+        <ng-content></ng-content>
+    </ng-container>
+</div>

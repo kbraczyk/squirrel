@@ -4,22 +4,20 @@
     <h5 class="logo__text">Żywieniowy przyjaciel</h5>
   </div>
   <div *ngIf="userExist" class="active-user" (click)="userMenuState = !userMenuState">
-    <ngx-avatar borderColor="rgba(255, 255, 255, 0.2)" src="assets/avatars/main.jpg"></ngx-avatar>
+    <ngx-avatar src="assets/avatars/main.jpg"></ngx-avatar>
     <span class="active-user__name">Krzysztof Brączyk</span>
-    <mat-icon class="material-icons">
-      {{!userMenuState ? 'expand_more' : 'expand_less'}}
-    </mat-icon>
+    <mat-icon class="material-icons expand" [ngClass]="{'expand--less': userMenuState}">expand_more</mat-icon>
   </div>
   <div *ngIf="!userExist" class="auth">
     <button class="button-center button-large" [routerLink]="['/auth']" mat-raised-button>Zaloguj się
       <mat-icon class="mat-18">login</mat-icon>
     </button>
-    <button class="button-center button-small" [routerLink]="['/auth']" mat-raised-button>
-      <mat-icon title="Zaloguj się" class="mat-18">login</mat-icon>
+    <button title="Zaloguj się" class="button-center button-small" [routerLink]="['/auth']" mat-raised-button>
+      <mat-icon class="mat-18">login</mat-icon>
     </button>
   </div>
 
-  <div class="user-menu" *ngIf="userMenuState" [@fadeInOnEnter]>
+  <div class="user-menu" *ngIf="userMenuState" [@inOutAnimation]>
     <ul class="nav">
       <li>
         <a routerLink="/profile" routerLinkActive="active">
@@ -58,6 +56,12 @@
         </a>
       </li> -->
     </ul>
+    <button class="button-center button-large mt-3 mb-3" mat-raised-button (click)="logOut()">Wylogowywanie
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+    <button title="Wylogowywanie" class="button-center button-small mt-3 mb-3" mat-raised-button (click)="logOut()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
   </div>
 
   <div class="main-menu">

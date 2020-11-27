@@ -5,37 +5,39 @@
 </div>
 
 <mat-dialog-content>
-  <div class="main-value">{{data.calorieRequirment.energy}} kcal</div>
-  <div class="row">
-    <div class="col">
-      <div class="item">
-        <span class="label">Wzrost</span>
-        <span class="value">{{data.height}} cm</span>
+  <app-transparent-loader-container [loading]="isLoading">
+    <div class="main-value">{{data.calorieRequirment.energy}} kcal</div>
+    <div class="row">
+      <div class="col">
+        <div class="item">
+          <span class="label">Wzrost</span>
+          <span class="value">{{data.height}} cm</span>
+        </div>
+        <div class="item">
+          <span class="label">Waga</span>
+          <span class="value">{{data.weight}} kg</span>
+        </div>
+        <div class="item">
+          <span class="label">Wiek</span>
+          <span class="value">{{data.age}} lat</span>
+        </div>
       </div>
-      <div class="item">
-        <span class="label">Waga</span>
-        <span class="value">{{data.weight}} kg</span>
-      </div>
-      <div class="item">
-        <span class="label">Wiek</span>
-        <span class="value">{{data.age}} lat</span>
+      <div class="col">
+        <div class="item">
+          <span class="label">Płeć</span>
+          <span class="value">{{data.sex}}</span>
+        </div>
+        <div class="item">
+          <span class="label">Aktywność</span>
+          <span class="value">{{data.activity | formater: 'activity'}}</span>
+        </div>
+        <div class="item">
+          <span class="label">Cel</span>
+          <span class="value">{{data.target | formater: 'target'}}</span>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="item">
-        <span class="label">Płeć</span>
-        <span class="value">{{data.sex}}</span>
-      </div>
-      <div class="item">
-        <span class="label">Aktywność</span>
-        <span class="value">{{data.activity | formater: 'activity'}}</span>
-      </div>
-      <div class="item">
-        <span class="label">Cel</span>
-        <span class="value">{{data.target | formater: 'target'}}</span>
-      </div>
-    </div>
-  </div>
-  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveResults()">Zapisz</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveResults()">Zapisz</button>
+  </app-transparent-loader-container>
 
 </mat-dialog-content>

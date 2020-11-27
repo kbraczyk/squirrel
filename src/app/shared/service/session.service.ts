@@ -21,4 +21,8 @@ export class SessionService {
   public getSessionToken(): string | null {
     return this.storage.get('token');
   }
+
+  public sessionExist(): boolean {
+    return !!this.getSessionToken();
+  }
 }

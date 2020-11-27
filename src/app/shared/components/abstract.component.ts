@@ -1,3 +1,5 @@
+import { BehaviorSubject } from 'rxjs';
+
 export class AbstractComponent {
     // Content header config
     public headerTitle: string = null;
@@ -8,7 +10,7 @@ export class AbstractComponent {
     public noContentInfo: string = null;
     public sugestionInfo: string = null;
 
-    private _isLoading: boolean;
+    private _isLoading: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     private _activeProduct: any = null;
 
@@ -21,10 +23,10 @@ export class AbstractComponent {
     }
 
     get isLoading() {
-        return this._isLoading;
+        return this._isLoading as any;
     }
 
     set isLoading(value: boolean) {
-        this._isLoading = value;
+        this._isLoading.next(value);
     }
 }

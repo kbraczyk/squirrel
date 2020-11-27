@@ -24,10 +24,10 @@ export class RestService<T> {
       url = url + `?pageSize=${pager.perPage}&pageIndex=${pager.offset}`;
     }
 
-    return this.http.get(url) as Observable<T>;
+    return this.http.get<T>(url) as Observable<T>;
   }
   public getById = (id: number): Observable<any> => {
-    return this.http.get(`${this.baseUrl + this.resource}/${id}`);
+    return this.http.get<T>(`${this.baseUrl + this.resource}/${id}`);
   }
 
   set resource(res: Resource) {

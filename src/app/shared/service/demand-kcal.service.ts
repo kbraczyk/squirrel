@@ -7,14 +7,7 @@ import { CalorieDemandResourceService } from '../resource/calorie-demand/calorie
   providedIn: 'root'
 })
 export class DemandKcalService {
-  constructor(private notification: NotificationsService, private demandResource: CalorieDemandResourceService) {
-  }
-
-  public setData(data) {
-    this.demandResource.saveCalorieDemand(data).subscribe(() => {
-      this.notification.success(null, 'Obliczone zapotrzebowanie zostało przypisane do profilu.');
-    },
-      error => this.notification.error('', 'Wystąpił problem podczas zapisu danych'));
+  constructor() {
   }
 
   public transformKcalToMakro(calories: number) {

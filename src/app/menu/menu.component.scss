@@ -43,14 +43,22 @@
     .active-user,
     .auth {
       padding: 15px 0px 15px 15px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-right: none;
-      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
       cursor: pointer;
 
       &__name {
         white-space: nowrap;
         margin-left: 15px;
+      }
+
+      .expand {
+        transition: transform .2s ease;
+
+        &--less {
+          transform: rotate(180deg);
+          transition: transform .2s ease;
+        }
       }
     }
 
@@ -106,6 +114,9 @@
   }
 
   .user-menu {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+
     a {
       white-space: nowrap;
 

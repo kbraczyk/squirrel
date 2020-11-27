@@ -9,7 +9,7 @@ export abstract class AnimationsDirective {
         ':enter',
         [
           style({ height: 0, opacity: 0 }),
-          animate('.5s ease-in',
+          animate('.4s ease-in',
             style({ height: '*', opacity: 1 })),
         ],
 
@@ -18,7 +18,7 @@ export abstract class AnimationsDirective {
         ':leave',
         [
           style({ height: '*', opacity: 1 }),
-          animate('.5s ease-out',
+          animate('.4s ease-out',
             style({ height: 0, opacity: 0 }))
         ]
       )
