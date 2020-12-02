@@ -1,12 +1,12 @@
 <div class="content-box">
   <div>
     <div class="content-box__header">
-      <mat-icon>list</mat-icon>
+      <mat-icon>{{headerIcon}}</mat-icon>
       <mat-card-title>
-        Szczegóły Listy zakupów
+        {{headerTitle}}
       </mat-card-title>
-      <mat-card-subtitle>Sekcja umożliwia wykonywanie akcji na liście zakupów. Z tego miejsca możesz dodać, edytować lub
-        przeglądnąć szczegóły wybranej listy zakupów.
+      <mat-card-subtitle>
+        {{headerSubtitle}}
       </mat-card-subtitle>
     </div>
   </div>
@@ -20,14 +20,14 @@
 
       <mat-form-field class="form-group__control">
         <mat-label>Data utworzenia</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="creationDate">
+        <input matInput [matDatepicker]="picker" formControlName="created_date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <div class="form-group__control">
         <mat-label class="slide-label" (click)="toogleStatus(slide)">Status </mat-label>
-        <mat-slide-toggle #slide [color]="primary" [checked]="list.realized" [disabled]="list && !list.name">
+        <mat-slide-toggle #slide [color]="primary" [checked]="list.isRealized" [disabled]="list && !list.name">
           {{ slide.checked ? 'Zrealizowana' : 'Niezrealizowana' }}
         </mat-slide-toggle>
       </div>
@@ -37,7 +37,7 @@
           <h5 class="m-r-s">Produkty</h5>
           <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
         </div>
-        <div class="col-4" *ngFor="let item of product.controls; let i=index">
+        <div class="col-4" *ngFor="let item of products.controls; let i=index">
           <mat-form-field class="product">
             <mat-label>Produkt</mat-label>
             <input name="{{i}}" matInput [formControlName]="i">

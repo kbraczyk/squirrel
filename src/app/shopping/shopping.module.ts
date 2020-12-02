@@ -8,6 +8,7 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 import { ShoppingDetailsComponent } from './components/shopping-details/shopping-details.component';
 import { ShoppingService } from './shopping.service';
 import { ShoppingRoutingModule } from './shopping-routing.module';
+import { SharedSquirrelModule } from '@app/shared/shared.module';
 
 @NgModule({
     declarations: [ShoppingComponent, ShoppingListComponent, ShoppingDetailsComponent],
@@ -15,6 +16,7 @@ import { ShoppingRoutingModule } from './shopping-routing.module';
         MaterialModule,
         ReactiveFormsModule,
         CommonModule,
+        SharedSquirrelModule,
         ShoppingRoutingModule
     ],
     exports: [RouterModule],

@@ -1,36 +1,35 @@
 <div class="content-box">
-  <div>
-    <div class="content-box__header">
-      <mat-icon>list</mat-icon>
-      <mat-card-title>
-        Listy zakupów
-      </mat-card-title>
-      <mat-card-subtitle>czyli listy zakupów, które utworzyłeś</mat-card-subtitle>
-      <div class="actions">
-        <button mat-raised-button (click)="newList()">
-          <mat-icon>add</mat-icon>
-          Nowa lista
-        </button>
-      </div>
+  <div class="content-box__header">
+    <mat-icon>{{headerIcon}}</mat-icon>
+    <mat-card-title>
+      {{headerTitle}}
+    </mat-card-title>
+    <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
+    <div class="actions">
+      <button mat-raised-button (click)="newList()">
+        <mat-icon>add</mat-icon>
+        Nowa lista
+      </button>
     </div>
-    <mat-card-content>
+  </div>
+  <mat-card-content>
+    <app-transparent-loader-container [loading]="isLoading">
       <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let list of service.shoppingLists$ | async"
-          (click)="selectedList.emit(list)">
+        <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async" (click)="selectedList.emit(list)">
           <div class="margin-x">
-            <mat-icon *ngIf="list.realized" class="success" matTooltip="Zrealizowana">check_circle
+            <mat-icon *ngIf="list.isRealized" class="success" matTooltip="Zrealizowana">check_circle
             </mat-icon>
-            <mat-icon *ngIf="!list.realized" class="cancel" matTooltip="Niezrealizowana">
+            <mat-icon *ngIf="!list.isRealized" class="cancel" matTooltip="Niezrealizowana">
               cancel</mat-icon>
           </div>
           <div class="col-sm-12">
             <div class="name">{{list.name}}</div>
-            <div class="date">Utworzona: {{list.creationDate}}</div>
-            <div *ngIf="list.realized" class="date">Zrealizowano: {{list.realizationDate}}</div>
+            <div class="date">Utworzona: {{list.created_date | date : 'short'}}</div>
+            <div *ngIf="list.realized" class="date">Zrealizowano: {{list.realize_date | date : 'short'}}</div>
             <div class="date">Produktów: {{list.products.length}}</div>
           </div>
         </mat-list-item>
       </mat-list>
-    </mat-card-content>
-  </div>
+    </app-transparent-loader-container>
+  </mat-card-content>
 </div>

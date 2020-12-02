@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductTableComponent } from './products/product-table.component';
 import { MatPaginatorIntl } from '@angular/material';
@@ -20,6 +20,10 @@ import { StorageService } from '@shared/service/storage.service';
 import { CustomPaginator } from '@shared/components/table/customPaginatorConfig';
 import { TabsComponent } from '@shared/components/tabs/tabs.component';
 import { HttpConfigInterceptor } from './httpConfig.interceptor';
+import { LOCALE_ID } from '@angular/core';
+import localePl from '@angular/common/locales/pl';
+registerLocaleData(localePl);
+
 
 @NgModule({
   declarations: [
@@ -52,8 +56,8 @@ import { HttpConfigInterceptor } from './httpConfig.interceptor';
   providers: [
     StorageService,
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
-
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'pl-PL' }
   ],
   bootstrap: [AppComponent]
 })

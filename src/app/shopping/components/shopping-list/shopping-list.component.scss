@@ -3,9 +3,26 @@
     min-width: 320px;
   }
 
+  mat-card-content {
+    min-height: 150px;
+    display: block;
+    position: relative;
+  }
+
+  ::ng-deep app-transparent-loader-container {
+    .loader-container {
+      position: unset;
+    }
+  }
+
   ::ng-deep mat-card-title {
     display: inline-block;
     width: max-content;
+  }
+
+  ::ng-deep mat-card-subtitle {
+    display: block;
+    width: 100%;
   }
 
   .margin-x {
@@ -48,7 +65,7 @@
   }
 
   .actions {
-    margin: 10px auto;
+    margin: 5px auto;
 
     mat-icon {
       font-size: 24px;

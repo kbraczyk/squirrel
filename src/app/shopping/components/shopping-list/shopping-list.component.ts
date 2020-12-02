@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
+import { ShopList } from '@app/shared/resource/shop-list/shop-list.interface';
+import { ShopListResourceService } from '@app/shared/resource/shop-list/shop-list.service';
 import { AbstractComponent } from '@shared/components/abstract.component';
+import { finalize } from 'rxjs/operators';
 import { ShoppingService } from '../../shopping.service';
 
 @Component({
@@ -8,25 +11,22 @@ import { ShoppingService } from '../../shopping.service';
   styleUrls: ['./shopping-list.component.scss']
 })
 export class ShoppingListComponent extends AbstractComponent {
+  public shoppingLists$ = this.resource.getAll().pipe(finalize(() => { this.isLoading = false; }));
 
-  // tslint:disable-next-line: no-output-rename
-  @Output('selected') selectedList = new EventEmitter<ShoppingListModel>();
+  @Output('selected') selectedList = new EventEmitter<ShopList>();
 
-  constructor(public service: ShoppingService) {
+  constructor(public service: ShoppingService, private resource: ShopListResourceService) {
     super();
+    this.headerTitle = 'Listy zakupów ';
+    this.headerSubtitle = 'czyli listy zakupów, które utworzyłeś';
+    this.headerIcon = 'list';
+    this.isLoading = true;
   }
 
   newList() {
-    this.selectedList.emit({} as ShoppingListModel);
+    this.selectedList.emit({} as ShopList);
   }
 }
 
-export interface ShoppingListModel {
-  name: string;
-  creationDate: string;
-  products: Array<string>;
-  realized: boolean;
-  realizationDate?: string;
-}
 
 

@@ -93,7 +93,7 @@ mat-form-field {
   &__header {
     @include flex-box(row, center, unset, wrap);
     border-bottom: 1px solid $primary-color-light;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 
     mat-card-title {
       color: $primary-color-dark;

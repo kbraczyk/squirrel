@@ -49,6 +49,7 @@ export enum Resource {
   carbo = 'carbo',
   auth = 'auth',
   calorieDemand = 'calorie_demand',
+  shopList = 'shop_list',
   profile = 'profile'
 }
 
