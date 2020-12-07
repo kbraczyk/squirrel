@@ -11,7 +11,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         if (token) {
             request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
         }
-
         if (!request.headers.has('Content-Type')) {
             request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
         }

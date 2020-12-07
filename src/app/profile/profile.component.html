@@ -42,4 +42,10 @@
       </div>
     </app-transparent-loader-container>
   </form>
+
+  <div class="form-group">
+    <img [src]="avatarPreview" alt="">
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+    <button mat-raised-button (click)="uploadFileToActivity()">Zmień avatar</button>
+  </div>
 </div>
