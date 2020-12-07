@@ -6,7 +6,7 @@
     </mat-card-title>
     <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
     <div class="actions">
-      <button mat-raised-button (click)="newList()">
+      <button mat-raised-button (click)="setListData()">
         <mat-icon>add</mat-icon>
         Nowa lista
       </button>
@@ -15,13 +15,11 @@
   <mat-card-content>
     <app-transparent-loader-container [loading]="isLoading">
       <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async" (click)="selectedList.emit(list)">
-          <div class="margin-x">
-            <mat-icon *ngIf="list.isRealized" class="success" matTooltip="Zrealizowana">check_circle
-            </mat-icon>
-            <mat-icon *ngIf="!list.isRealized" class="cancel" matTooltip="Niezrealizowana">
-              cancel</mat-icon>
-          </div>
+        <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async" (click)="setListData(list)">
+          <mat-icon *ngIf="list.isRealized" class="success" matTooltip="Zrealizowana">check_circle
+          </mat-icon>
+          <mat-icon *ngIf="!list.isRealized" class="cancel" matTooltip="Niezrealizowana">
+            cancel</mat-icon>
           <div class="col-sm-12">
             <div class="name">{{list.name}}</div>
             <div class="date">Utworzona: {{list.created_date | date : 'short'}}</div>

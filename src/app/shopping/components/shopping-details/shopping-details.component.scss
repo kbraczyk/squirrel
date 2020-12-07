@@ -10,6 +10,14 @@
     width: 85% !important;
   }
 
+  .button--delete {
+    margin-right: 10px;
+
+    .button-icon {
+      opacity: .7;
+    }
+  }
+
   .no-content {
     @include flex-box(column, center, center, nowrap);
     min-height: 300px;

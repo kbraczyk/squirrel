@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { ProfileRestService } from '@app/shared/resource/profile/profile.service';
 import { NotificationsService } from 'angular2-notifications';
-import { finalize } from 'rxjs/operators';
+import { filter, finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'squirrel-profile',
@@ -15,7 +15,7 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
   avatarPreview = '';
 
   public form = new FormGroup({
-    username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    username: new FormControl({ value: null, disabled: true }, [Validators.required, Validators.minLength(3)]),
     email: new FormControl(null, [Validators.email]),
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),
@@ -31,13 +31,7 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.profileService.getAll().pipe(finalize(() => this.isLoading = false))
-      .subscribe(data => {
-        data = { ...data, ...data.user };
-        Object.keys(this.form.controls).forEach(control => {
-          this.form.controls[control].setValue(data[control]);
-        });
-      });
+    this.getProfileData();
   }
 
   updateData() {
@@ -46,6 +40,18 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
       .subscribe(() => this.growl.success(null, 'Dane zostały pomyślnie zmodyfikowane'),
         error => this.growl.error(null, 'Błąd podczas edytowania danych')
       );
+  }
+
+  getProfileData() {
+    this.profileService.getAll().pipe(
+      filter(data => !!data),
+      map(data => ({ ...data, ...data.user })),
+      finalize(() => this.isLoading = false))
+      .subscribe(data => {
+        Object.keys(this.form.controls).forEach(control => {
+          this.form.controls[control].setValue(data[control]);
+        });
+      });
   }
 
   handleFileInput(files: FileList) {

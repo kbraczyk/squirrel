@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { AnimationsDirective } from '@app/shared/directives/animations.directive';
+import { EventService, EventSquirrel } from '@app/shared/service/event.service';
 import { SessionService } from '@app/shared/service/session.service';
 import { AuthResourceService } from '@shared/resource/auth/auth.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -27,6 +28,7 @@ export class AuthComponent extends AbstractComponent {
     private notification: NotificationsService,
     private router: Router,
     private session: SessionService,
+    private eventService: EventService,
   ) {
     super();
   }
@@ -50,6 +52,7 @@ export class AuthComponent extends AbstractComponent {
     this.router.navigate(['/recipes']);
     this.notification.success(null, message);
     this.session.setSession(token);
+    this.eventService.emitEvent(EventSquirrel.login);
   }
 
   changeFormType() {

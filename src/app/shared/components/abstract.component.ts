@@ -1,6 +1,11 @@
-import { BehaviorSubject } from 'rxjs';
+import { OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
-export class AbstractComponent {
+export class AbstractComponent implements OnDestroy {
+
+    private _subs: Array<any> = [];
+    get sub() { return this._subs; }
+
     // Content header config
     public headerTitle: string = null;
     public headerSubtitle: string = null;
@@ -29,4 +34,9 @@ export class AbstractComponent {
     set isLoading(value: boolean) {
         this._isLoading.next(value);
     }
+
+    ngOnDestroy(): void {
+        this._subs.forEach(event => event.unsubscribe());
+    }
+
 }

@@ -17,7 +17,11 @@ export class ShopListResourceService extends RestService<ShopList> {
         return this.http.post(this.baseUrl + this.resource, data);
     }
 
-    public update(listId, data) {
+    public update(listId: number, data) {
         return this.http.patch(this.baseUrl + this.resource + '/' + String(listId), data);
+    }
+
+    public remove(listId: number) {
+        return this.http.delete(this.baseUrl + this.resource + `/${String(listId)}`);
     }
 }

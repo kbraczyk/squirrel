@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div *ngIf="list" [@fadeInOnEnter]>
+  <div *ngIf="shopList" [@fadeInOnEnter]>
     <form class="form-group" [formGroup]="form">
       <mat-form-field class="form-group__control">
         <mat-label>Nazwa listy zakupów</mat-label>
@@ -26,8 +26,9 @@
       </mat-form-field>
 
       <div class="form-group__control">
-        <mat-label class="slide-label" (click)="toogleStatus(slide)">Status </mat-label>
-        <mat-slide-toggle #slide [color]="primary" [checked]="list.isRealized" [disabled]="list && !list.name">
+        <mat-label class="slide-label" (click)="toogleStatus(slide)">Status</mat-label>
+        <mat-slide-toggle #slide [color]="primary" [checked]="shopList.isRealized"
+          [disabled]="shopList && !shopList.id">
           {{ slide.checked ? 'Zrealizowana' : 'Niezrealizowana' }}
         </mat-slide-toggle>
       </div>
@@ -47,12 +48,16 @@
       </div>
     </form>
     <div class="flex pull-right">
+      <button mat-raised-button class="button--delete" *ngIf="shopList && shopList.id" (click)="delete()">
+        <mat-icon class="button-icon">delete_outline</mat-icon>
+        Usuń
+      </button>
       <button mat-raised-button color="primary"
-        (click)="createOrEdit(slide)">{{list && !list.name ? 'Utwórz' : 'Edytuj'}}</button>
+        (click)="createOrEdit(slide.checked)">{{shopList && !shopList.id ? 'Utwórz' : 'Edytuj'}}</button>
     </div>
   </div>
 
-  <div *ngIf="!list" [@fadeInOnEnter]>
+  <div *ngIf="!shopList" [@fadeInOnEnter]>
     <div class="no-content">
       <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
       <h4 class="no-content__info">{{noContentInfo}}</h4>

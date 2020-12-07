@@ -1,7 +1,8 @@
-import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
-import { ShopList } from '@app/shared/resource/shop-list/shop-list.interface';
+import { Component, OnDestroy } from '@angular/core';
 import { ShopListResourceService } from '@app/shared/resource/shop-list/shop-list.service';
+import { EventService, EventSquirrel } from '@app/shared/service/event.service';
 import { AbstractComponent } from '@shared/components/abstract.component';
+import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { ShoppingService } from '../../shopping.service';
 
@@ -10,22 +11,35 @@ import { ShoppingService } from '../../shopping.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss']
 })
-export class ShoppingListComponent extends AbstractComponent {
-  public shoppingLists$ = this.resource.getAll().pipe(finalize(() => { this.isLoading = false; }));
+export class ShoppingListComponent extends AbstractComponent implements OnDestroy {
+  public shoppingLists$ = new BehaviorSubject(null);
 
-  @Output('selected') selectedList = new EventEmitter<ShopList>();
-
-  constructor(public service: ShoppingService, private resource: ShopListResourceService) {
+  constructor(public service: ShoppingService, private resource: ShopListResourceService, private eventService: EventService) {
     super();
     this.headerTitle = 'Listy zakupów ';
     this.headerSubtitle = 'czyli listy zakupów, które utworzyłeś';
     this.headerIcon = 'list';
     this.isLoading = true;
+
+    this.resource.getAll().pipe(
+      finalize(() => this.isLoading = false))
+      .subscribe(data => this.shoppingLists$.next(data));
+
+    this.sub.push(this.eventService.getEvent(EventSquirrel.updateShopList).subscribe(() => this.getListData()));
   }
 
-  newList() {
-    this.selectedList.emit({} as ShopList);
+  ngOnDestroy() { super.ngOnDestroy(); }
+
+  setListData(data?: any) {
+    this.eventService.emitEvent(EventSquirrel.newShopList, data ? data : {});
   }
+
+  getListData() {
+    this.resource.getAll().pipe(
+      finalize(() => this.isLoading = false))
+      .subscribe(data => this.shoppingLists$.next(data));
+  }
+
 }
 
 
