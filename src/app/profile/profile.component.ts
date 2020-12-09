@@ -4,6 +4,7 @@ import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { ProfileRestService } from '@app/shared/resource/profile/profile.service';
 import { NotificationsService } from 'angular2-notifications';
 import { filter, finalize, map } from 'rxjs/operators';
+import { apiConfig } from 'src/environments/environment';
 
 @Component({
   selector: 'squirrel-profile',
@@ -51,12 +52,14 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
         Object.keys(this.form.controls).forEach(control => {
           this.form.controls[control].setValue(data[control]);
         });
+        this.avatarPreview = apiConfig.baseUrl + 'profile/avatar/' + data.avatar;
       });
   }
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     this.preview();
+    this.uploadFileToActivity();
   }
 
   preview() {
@@ -74,9 +77,12 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
 
   uploadFileToActivity() {
     this.profileService.changeAvatar(this.fileToUpload).subscribe(data => {
-      console.log('RARA');
     }, error => {
       console.log(error);
     });
+  }
+
+  getAvatar() {
+    return this.profileService.getAvatar();
   }
 }

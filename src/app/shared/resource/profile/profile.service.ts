@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resource, RestService } from '@app/shared/service/rest.service';
 import { UserProfile } from './profile.interface';
@@ -19,12 +19,12 @@ export class ProfileRestService extends RestService<UserProfile> {
 
   changeAvatar(fileToUpload: File) {
     const formData: FormData = new FormData();
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
     formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post(this.baseUrl + this.resource + '/avatar', formData, {
-      headers
-    });
+    return this.http.post(this.baseUrl + this.resource + '/avatar', formData);
+  }
+
+  getAvatar() {
+    return this.http.get(this.baseUrl + this.resource + '/avatar')
   }
 
 }

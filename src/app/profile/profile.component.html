@@ -43,9 +43,23 @@
     </app-transparent-loader-container>
   </form>
 
-  <div class="form-group">
-    <img [src]="avatarPreview" alt="">
-    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
-    <button mat-raised-button (click)="uploadFileToActivity()">Zmień avatar</button>
-  </div>
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Avatar
+        </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <img [src]="avatarPreview">
+        <input #file type="file" accept=".jpg,.png,.jpeg" (change)="handleFileInput($event.target.files)">
+        <button mat-raised-button (click)="file.click()">Zmień avatar</button>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

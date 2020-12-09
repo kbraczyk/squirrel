@@ -1,0 +1,43 @@
+<div class="content-box">
+  <div class="content-box__header">
+    <mat-icon class="content-box__header__icon">{{headerIcon}}</mat-icon>
+    <div>
+      <mat-card-title>
+        {{headerTitle}}
+      </mat-card-title>
+      <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
+    </div>
+  </div>
+  <form class="auth__form" [formGroup]="form" (ngSubmit)="updateData()">
+    <app-transparent-loader-container [loading]="isLoading">
+      <div>
+        <mat-icon class="mat-18">add</mat-icon>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <mat-label>Nazwa przepisu</mat-label>
+          <input type="text" formControlName="name" matInput>
+          <squirrel-error-form [control]="form.controls.name"></squirrel-error-form>
+        </mat-form-field>
+
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <mat-label>Czas przygotowania</mat-label>
+          <input type="number" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <mat-label>Liczba porcji</mat-label>
+          <input type="number" formControlName="portions" matInput>
+          <squirrel-error-form [control]="form.controls.portions"></squirrel-error-form>
+        </mat-form-field>
+      </div>
+
+      <mat-label>Sposób przygotowania </mat-label>
+      <ckeditor [editor]="Editor"></ckeditor>
+
+    </app-transparent-loader-container>
+  </form>
+</div>

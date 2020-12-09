@@ -30,6 +30,7 @@ export class ShoppingDetailsComponent extends AbstractComponent {
     private notification: NotificationsService,
     private eventService: EventService) {
     super();
+
     this.headerTitle = 'Szczegóły Listy zakupów';
     this.headerSubtitle = `Sekcja umożliwia wykonywanie akcji na liście zakupów. Z tego miejsca możesz dodać, edytować lub
     przeglądnąć szczegóły wybranej listy zakupów.`;

@@ -3,6 +3,25 @@
     margin: 15px 5px;
   }
 
+  .mat-expansion-panel-header-description {
+    justify-content: flex-end;
+  }
+
+  .form-group {
+    padding-top: 12px;
+
+    img {
+      width: 150px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+
+    input {
+      display: none;
+    }
+  }
+
   mat-card-title {
     width: 100%;
     display: block;
