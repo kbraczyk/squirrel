@@ -1,0 +1,42 @@
+:host ::ng-deep {
+  .ck-editor__editable_inline {
+    min-height: 250px;
+    border: 1px solid rgb(165, 165, 165) !important;
+
+  }
+
+  ol,
+  ul,
+  li {
+    margin-left: 20px;
+  }
+
+  .form {
+    padding-top: 15px;
+  }
+
+  .mock {
+    background-color: rgb(221, 221, 221);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &--off {
+      padding: 0;
+    }
+
+    &__image {
+      width: 50px;
+      height: 50px;
+      font-size: 50px;
+    }
+  }
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}

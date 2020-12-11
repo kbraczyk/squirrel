@@ -8,36 +8,86 @@
       <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
     </div>
   </div>
-  <form class="auth__form" [formGroup]="form" (ngSubmit)="updateData()">
+  <form class="form" [formGroup]="form" (ngSubmit)="updateData()">
     <app-transparent-loader-container [loading]="isLoading">
-      <div>
-        <mat-icon class="mat-18">add</mat-icon>
-      </div>
-
       <div class="row">
-        <mat-form-field class="col-md-6">
+        <mat-form-field class="col-md-4">
           <mat-label>Nazwa przepisu</mat-label>
           <input type="text" formControlName="name" matInput>
           <squirrel-error-form [control]="form.controls.name"></squirrel-error-form>
         </mat-form-field>
 
-      </div>
-      <div class="row">
-        <mat-form-field class="col-md-6">
-          <mat-label>Czas przygotowania</mat-label>
-          <input type="number" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
-        </mat-form-field>
-        <mat-form-field class="col-md-6">
+        <mat-form-field class="col-md-2">
           <mat-label>Liczba porcji</mat-label>
-          <input type="number" formControlName="portions" matInput>
+          <input type="text" formControlName="portions" matInput>
           <squirrel-error-form [control]="form.controls.portions"></squirrel-error-form>
         </mat-form-field>
+
+        <mat-form-field class="col-md-2">
+          <mat-label>Czas przygotowania</mat-label>
+          <input type="text" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>Stopień trudności</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let hard of hardPrep" [value]="hard.value">
+              {{hard.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
 
-      <mat-label>Sposób przygotowania </mat-label>
-      <ckeditor [editor]="Editor"></ckeditor>
+      <div class="row">
+        <mat-form-field class="col-md-3">
+          <mat-label>Kalorie</mat-label>
+          <input type="text" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
 
+        <mat-form-field class="col-md-3">
+          <mat-label>Węglowodany</mat-label>
+          <input type="text" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>Tłuszcz</mat-label>
+          <input type="text" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>Białko</mat-label>
+          <input type="text" matInput formControlName="prep_time">
+          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+        </mat-form-field>
+
+        <!-- <div formArrayName="products" class="row form-group__control--dynamic">
+          <div class="col-12 flex">
+            <h5 class="m-r-s">Składniki</h5>
+            <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
+          </div>
+          <div class="col-4" *ngFor="let item of products?.controls; let i=index">
+            <mat-form-field class="product">
+              <mat-label>Produkt</mat-label>
+              <input name="{{i}}" matInput [formControlName]="i">
+            </mat-form-field>
+            <mat-icon title="Usuń" (click)="remove(i)">delete_outline</mat-icon>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="row">
+        <ckeditor class="col-md-8" [editor]="editor" [config]="ckeConfig"></ckeditor>
+        <div class="col-md-4 d-flex mock" [ngClass]="{'mock--off': input.value}" (click)="input.click()">
+          <mat-icon *ngIf="!input.value" class="mock__image">image_search
+          </mat-icon>
+          <input #input type="file" accept=".png,.jpg,.jpeg" hidden (change)="handleFileInput($event.target.files)">
+          <img *ngIf="avatarPreview" [src]="avatarPreview" alt="">
+        </div>
+      </div>
     </app-transparent-loader-container>
   </form>
 </div>

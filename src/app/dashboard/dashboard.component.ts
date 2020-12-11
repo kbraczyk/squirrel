@@ -8,7 +8,6 @@ import { StorageService, StorageType } from '@shared/service/storage.service';
 })
 export class DashboardComponent {
   public menuOpenState: boolean = false;
-  public breadcrumb: { label: string, route: string };
 
   constructor(private storageService: StorageService) {
     this.storageService.setStorageType(StorageType.locale);

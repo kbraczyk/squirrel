@@ -10,7 +10,6 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
-
 const components = [
   RecipiesComponent,
   RecipeItemComponent,
@@ -30,6 +29,6 @@ const components = [
     MaterialModule,
     RecipesRoutingModule,
     CKEditorModule
-  ]
+  ],
 })
 export class RecipesModule { }

@@ -24,7 +24,6 @@ export class MenuComponent extends AbstractComponent implements OnDestroy {
     this.sub.push(this.eventService.getEvent(EventSquirrel.login).subscribe(data => {
       this.userExist = !!window.localStorage.getItem('token');
     }));
-
   }
 
   ngOnDestroy() {

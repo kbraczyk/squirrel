@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, } from '@angular/router';
 import { AuthComponent } from '@app/auth/auth.component';
+import { SessionGuard } from '@app/session.guard';
 import { ProductTableComponent } from '../products/product-table.component';
 
 const routes: Routes = [
@@ -10,8 +11,8 @@ const routes: Routes = [
   { path: 'product', component: ProductTableComponent, data: { breadcrumb: { label: 'Lista dobrych produktów', route: '/products' } } },
   { path: 'recipes', loadChildren: () => import('../Recipes/recipes.module').then(m => m.RecipesModule) },
   { path: 'shopping', loadChildren: () => import('../shopping/shopping.module').then(m => m.ShoppingModule) },
-  { path: 'demand', loadChildren: () => import('../demand/demand.module').then(m => m.DemandModule) },
-  { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) }
+  { path: 'demand', loadChildren: () => import('../demand/demand.module').then(m => m.DemandModule), canActivate: [SessionGuard] },
+  { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule), canActivate: [SessionGuard] }
 ];
 
 @NgModule({

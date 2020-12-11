@@ -56,7 +56,7 @@
 
       <div class="form-group">
         <img [src]="avatarPreview">
-        <input #file type="file" accept=".jpg,.png,.jpeg" (change)="handleFileInput($event.target.files)">
+        <input #file type="file" accept=".jpg,.png,.jpeg" hidden (change)="handleFileInput($event.target.files)">
         <button mat-raised-button (click)="file.click()">Zmień avatar</button>
       </div>
 
