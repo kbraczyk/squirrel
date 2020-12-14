@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
+import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 import { ckeConfig } from 'src/environments/environment.js';
 import Editor from '../.../../../../../assets/ckeditor.js';
 @Component({
@@ -16,6 +17,8 @@ export class RecipeFormComponent extends AbstractComponent {
   public avatarPreview = null;
   public readonly hardPrep = [{ value: 1, label: 'Łatwy' }, { value: 2, label: 'Średni' }, { value: 3, label: 'Trudny' }];
 
+  @ViewChild('cke', { static: false }) cke: any;
+
   public form: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     prep_time: new FormControl(null, [Validators.required]),
@@ -24,10 +27,10 @@ export class RecipeFormComponent extends AbstractComponent {
     carbo: new FormControl(null, [Validators.required]),
     fat: new FormControl(null, [Validators.required]),
     protein: new FormControl(null, [Validators.required]),
-    products: new FormArray([])
+    ingredient: new FormControl(null)
   });
 
-  constructor() {
+  constructor(private resource: RecipeRestService) {
     super();
     this.headerIcon = 'add';
     this.headerTitle = 'Dodawanie nowego przepisu';
@@ -50,6 +53,16 @@ export class RecipeFormComponent extends AbstractComponent {
     reader.onload = (_event) => {
       this.avatarPreview = reader.result as string;
     };
+  }
+
+  updateData() {
+    this.isLoading = true;
+    const formValue = this.form.value;
+    const description = this.cke.editorInstance.getData();
+    formValue.preparation = description;
+    this.resource.createRecipe(formValue).subscribe(data => {
+      this.resource.uploadImage(this.fileToUpload, data['id']).subscribe(image => { console.log(image, 'QWE'); });
+    });
   }
 
 }

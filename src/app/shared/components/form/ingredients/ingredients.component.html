@@ -1,0 +1,19 @@
+<div class="d-flex">
+  <mat-form-field class="col-md-6">
+    <mat-label>Nazwa składnika</mat-label>
+    <input matInput matFormF type="text" (change)="addEvent($event)" [(ngModel)]="name" [value]="name" />
+  </mat-form-field>
+  <span class="separator">:</span>
+  <mat-form-field class="col-md-3">
+    <mat-label>Ilość</mat-label>
+    <input matInput type="text" (change)="addEvent($event)" [(ngModel)]="quantity" [value]="quantity" />
+  </mat-form-field>
+  <mat-form-field class="col-md-3">
+    <mat-label>Jednostka</mat-label>
+    <mat-select required>
+      <mat-option *ngFor="let unit of unitOptions" [value]="unit">
+        {{unit}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

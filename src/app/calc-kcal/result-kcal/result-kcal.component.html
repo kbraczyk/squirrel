@@ -37,7 +37,8 @@
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveResults()">Zapisz</button>
+    <button mat-raised-button [disabled]="!userExist" color="primary" [mat-dialog-close]="true"
+      (click)="saveResults()">Zapisz</button>
   </app-transparent-loader-container>
 
 </mat-dialog-content>

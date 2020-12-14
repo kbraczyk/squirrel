@@ -50,7 +50,8 @@ export enum Resource {
   auth = 'auth',
   calorieDemand = 'calorie_demand',
   shopList = 'shop_list',
-  profile = 'profile'
+  profile = 'profile',
+  recipe = 'recipes'
 }
 
 export class SortModel {

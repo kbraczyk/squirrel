@@ -22,6 +22,7 @@ import { TabsComponent } from '@shared/components/tabs/tabs.component';
 import { HttpConfigInterceptor } from './httpConfig.interceptor';
 import { LOCALE_ID } from '@angular/core';
 import localePl from '@angular/common/locales/pl';
+import { FormModule } from './shared/form.module';
 registerLocaleData(localePl);
 
 
@@ -41,6 +42,7 @@ registerLocaleData(localePl);
     BrowserAnimationsModule,
     CommonModule,
     SharedSquirrelModule,
+    FormModule,
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,

@@ -23,7 +23,7 @@ export class StorageService {
   }
 
   public get(key: string) {
-    const value = this.storage.getItem(key);
+    const value = JSON.stringify(this.storage.getItem(key));
     return value ? JSON.parse(value) : null;
   }
 

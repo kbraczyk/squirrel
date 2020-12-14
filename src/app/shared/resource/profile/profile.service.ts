@@ -24,7 +24,7 @@ export class ProfileRestService extends RestService<UserProfile> {
   }
 
   getAvatar() {
-    return this.http.get(this.baseUrl + this.resource + '/avatar')
+    return this.http.get(this.baseUrl + this.resource + '/avatar');
   }
 
 }

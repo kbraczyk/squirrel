@@ -2,7 +2,6 @@
   .ck-editor__editable_inline {
     min-height: 250px;
     border: 1px solid rgb(165, 165, 165) !important;
-
   }
 
   ol,
@@ -13,6 +12,10 @@
 
   .form {
     padding-top: 15px;
+
+    button {
+      margin-top: 10px;
+    }
   }
 
   .mock {
@@ -38,5 +41,9 @@
     width: 100%;
     border-radius: 15px;
     cursor: pointer;
+  }
+
+  .mat-accordion {
+    margin: 0 15px 15px 15px;
   }
 }

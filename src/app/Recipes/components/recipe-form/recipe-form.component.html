@@ -42,45 +42,42 @@
       <div class="row">
         <mat-form-field class="col-md-3">
           <mat-label>Kalorie</mat-label>
-          <input type="text" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+          <input type="text" matInput formControlName="energy">
+          <squirrel-error-form [control]="form.controls.energy"></squirrel-error-form>
         </mat-form-field>
 
         <mat-form-field class="col-md-3">
           <mat-label>Węglowodany</mat-label>
-          <input type="text" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+          <input type="text" matInput formControlName="carbo">
+          <squirrel-error-form [control]="form.controls.carbo"></squirrel-error-form>
         </mat-form-field>
 
         <mat-form-field class="col-md-3">
           <mat-label>Tłuszcz</mat-label>
-          <input type="text" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+          <input type="text" matInput formControlName="fat">
+          <squirrel-error-form [control]="form.controls.fat"></squirrel-error-form>
         </mat-form-field>
 
         <mat-form-field class="col-md-3">
           <mat-label>Białko</mat-label>
-          <input type="text" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+          <input type="text" matInput formControlName="protein">
+          <squirrel-error-form [control]="form.controls.protein"></squirrel-error-form>
         </mat-form-field>
 
-        <!-- <div formArrayName="products" class="row form-group__control--dynamic">
-          <div class="col-12 flex">
-            <h5 class="m-r-s">Składniki</h5>
-            <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
-          </div>
-          <div class="col-4" *ngFor="let item of products?.controls; let i=index">
-            <mat-form-field class="product">
-              <mat-label>Produkt</mat-label>
-              <input name="{{i}}" matInput [formControlName]="i">
-            </mat-form-field>
-            <mat-icon title="Usuń" (click)="remove(i)">delete_outline</mat-icon>
-          </div>
-        </div> -->
+        <mat-accordion multi class="colr-md-6">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Składniki niezbędne do wykonania przepisu
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <squirrel-ingredients formControlName="ingredient"></squirrel-ingredients>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
 
       <div class="row">
-        <ckeditor class="col-md-8" [editor]="editor" [config]="ckeConfig"></ckeditor>
+        <ckeditor #cke class="col-md-8" [editor]="editor" [config]="ckeConfig"></ckeditor>
         <div class="col-md-4 d-flex mock" [ngClass]="{'mock--off': input.value}" (click)="input.click()">
           <mat-icon *ngIf="!input.value" class="mock__image">image_search
           </mat-icon>
@@ -88,6 +85,8 @@
           <img *ngIf="avatarPreview" [src]="avatarPreview" alt="">
         </div>
       </div>
+      <button type="submit" mat-raised-button color="primary">Dodaj
+        przepis</button>
     </app-transparent-loader-container>
   </form>
 </div>

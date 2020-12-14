@@ -11,7 +11,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
-import { MatAccordion, MatCheckboxModule, MatDatepickerModule, MatExpansionModule, MatListModule, MatNativeDateModule, MatTabsModule, MatTooltipModule } from '@angular/material';
+import {
+  MatCheckboxModule, MatDatepickerModule,
+  MatExpansionModule, MatListModule, MatNativeDateModule, MatTabsModule, MatTooltipModule
+} from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 

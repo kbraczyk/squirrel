@@ -9,6 +9,7 @@ import { SharedSquirrelModule } from '@app/shared/shared.module';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { FormModule } from '@app/shared/form.module';
 
 const components = [
   RecipiesComponent,
@@ -28,7 +29,8 @@ const components = [
     SharedSquirrelModule,
     MaterialModule,
     RecipesRoutingModule,
-    CKEditorModule
+    CKEditorModule,
+    FormModule
   ],
 })
 export class RecipesModule { }
