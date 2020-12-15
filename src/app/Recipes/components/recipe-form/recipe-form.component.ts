@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
+import { NotificationsService } from 'angular2-notifications';
+import { catchError, finalize } from 'rxjs/operators';
 import { ckeConfig } from 'src/environments/environment.js';
 import Editor from '../.../../../../../assets/ckeditor.js';
 @Component({
@@ -30,7 +32,7 @@ export class RecipeFormComponent extends AbstractComponent {
     ingredient: new FormControl(null)
   });
 
-  constructor(private resource: RecipeRestService) {
+  constructor(private resource: RecipeRestService, private growl: NotificationsService) {
     super();
     this.headerIcon = 'add';
     this.headerTitle = 'Dodawanie nowego przepisu';
@@ -55,14 +57,20 @@ export class RecipeFormComponent extends AbstractComponent {
     };
   }
 
-  updateData() {
-    this.isLoading = true;
-    const formValue = this.form.value;
-    const description = this.cke.editorInstance.getData();
-    formValue.preparation = description;
-    this.resource.createRecipe(formValue).subscribe(data => {
-      this.resource.uploadImage(this.fileToUpload, data['id']).subscribe(image => { console.log(image, 'QWE'); });
-    });
+  createRecipe() {
+    if (this.form.valid) {
+      this.isLoading = true;
+      const formValue = this.form.value;
+      const description = this.cke.editorInstance.getData();
+      formValue.preparation = description;
+      this.resource.createRecipe(formValue).pipe(finalize(() => this.isLoading = false)).subscribe(data => {
+        this.resource.uploadImage(this.fileToUpload, data.id).pipe(finalize(() => this.isLoading = false)).subscribe(
+          () => this.growl.success(null, 'Przepis został dodany poprawnie'),
+          err => this.growl.error(null, 'Wystąpił błąd podczas dodawania przepisu')
+        );
+      },
+        err => this.growl.error(null, 'Wystąpił błąd podczas dodawania przepisu'));
+    }
   }
 
 }

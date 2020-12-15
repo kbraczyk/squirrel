@@ -6,12 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 import { filter, finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'squirrel-recipes-user',
-  templateUrl: './recipes-user.component.html',
-  styleUrls: ['./recipes-user.component.scss']
+  selector: 'squirrel-recipe-own',
+  templateUrl: './recipe-own.component.html',
+  styleUrls: ['./recipe-own.component.scss']
 })
-export class RecipesUserComponent extends AbstractComponent {
-  public recipes$: BehaviorSubject<Array<RecipeModel>> = new BehaviorSubject([]);
+export class RecipeOwnComponent extends AbstractComponent {
+  recipes$: BehaviorSubject<Array<RecipeModel>> = new BehaviorSubject([]);
 
   constructor(private resource: RecipeRestService) {
     super();

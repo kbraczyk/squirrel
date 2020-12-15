@@ -8,7 +8,7 @@
       <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
     </div>
   </div>
-  <form class="form" [formGroup]="form" (ngSubmit)="updateData()">
+  <form class="form" [formGroup]="form">
     <app-transparent-loader-container [loading]="isLoading">
       <div class="row">
         <mat-form-field class="col-md-4">
@@ -85,7 +85,7 @@
           <img *ngIf="avatarPreview" [src]="avatarPreview" alt="">
         </div>
       </div>
-      <button type="submit" mat-raised-button color="primary">Dodaj
+      <button type="button" mat-raised-button color="primary" (click)="createRecipe()">Dodaj
         przepis</button>
     </app-transparent-loader-container>
   </form>

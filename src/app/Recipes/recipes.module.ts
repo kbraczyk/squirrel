@@ -10,6 +10,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormModule } from '@app/shared/form.module';
+import { RecipeOwnComponent } from './components/recipe-own/recipe-own.component';
 
 const components = [
   RecipiesComponent,
@@ -21,6 +22,7 @@ const components = [
 @NgModule({
   declarations: [
     ...components,
+    RecipeOwnComponent,
   ],
   imports: [
     CommonModule,

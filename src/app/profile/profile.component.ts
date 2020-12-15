@@ -23,6 +23,11 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
     showPersonalData: new FormControl()
   });
 
+  public passwordForm = new FormGroup({
+    password: new FormControl(),
+    repeadPassword: new FormControl()
+  });
+
   constructor(private profileService: ProfileRestService, private growl: NotificationsService) {
     super();
     this.headerIcon = 'person_outline';
@@ -78,11 +83,15 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
   uploadFileToActivity() {
     this.profileService.changeAvatar(this.fileToUpload).subscribe(data => {
     }, error => {
-      console.log(error);
     });
   }
 
   getAvatar() {
     return this.profileService.getAvatar();
+  }
+
+  changePassword() {
+    this.growl.success(null, 'Hasło został zmienione');
+    return;
   }
 }

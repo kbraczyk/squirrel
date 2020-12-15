@@ -15,13 +15,15 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError(error => {
+                if (error && error.status === 401) {
+                    localStorage.removeItem('token');
+                }
                 if (error && error.error && !error.error.message) {
                     error.error.message = 'Błąd systemu';
                 }
                 return throwError(error);
             }),
             map((event: HttpEvent<any>) => {
-                console.log(event);
                 return event;
             }));
     }

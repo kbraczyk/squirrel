@@ -8,8 +8,8 @@
       <mat-card-subtitle>{{headerSubtitle}}</mat-card-subtitle>
     </div>
   </div>
-  <form class="auth__form" [formGroup]="form" (ngSubmit)="updateData()">
-    <app-transparent-loader-container [loading]="isLoading">
+  <app-transparent-loader-container [loading]="isLoading">
+    <form class="auth__form" [formGroup]="form" (ngSubmit)="updateData()">
       <div class="row">
         <mat-form-field class="col-md-6">
           <mat-label>Imie</mat-label>
@@ -40,26 +40,53 @@
       <div class="row pull-right p-r-l">
         <button type="submit" mat-raised-button color="primary">Edytuj</button>
       </div>
-    </app-transparent-loader-container>
-  </form>
+    </form>
 
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Avatar
-        </mat-panel-title>
-        <mat-panel-description>
-          <mat-icon>account_circle</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="col-md-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Avatar
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-      <div class="form-group">
-        <img [src]="avatarPreview">
-        <input #file type="file" accept=".jpg,.png,.jpeg" hidden (change)="handleFileInput($event.target.files)">
-        <button mat-raised-button (click)="file.click()">Zmień avatar</button>
-      </div>
+        <div class="form-group">
+          <img [src]="avatarPreview">
+          <input #file type="file" accept=".jpg,.png,.jpeg" hidden (change)="handleFileInput($event.target.files)">
+          <button mat-raised-button (click)="file.click()">Zmień avatar</button>
+        </div>
+      </mat-expansion-panel>
 
-    </mat-expansion-panel>
-  </mat-accordion>
+      <mat-expansion-panel class="col-md-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zmiana hasła
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>security</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form class="auth__form" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+          <div class="row">
+            <mat-form-field class="col-md-6">
+              <mat-label>Hasło</mat-label>
+              <input type="password" formControlName="password" matInput>
+              <squirrel-error-form [control]="passwordForm.controls.password"></squirrel-error-form>
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+              <mat-label>Powtórz hasło</mat-label>
+              <input type="password" formControlName="repeadPassword" matInput>
+              <squirrel-error-form [control]="passwordForm.controls.repeadPassword"></squirrel-error-form>
+            </mat-form-field>
+          </div>
+          <button class="pull-center" type="submit" mat-raised-button>Zmień hasło</button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </app-transparent-loader-container>
+
 </div>

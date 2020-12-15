@@ -5,6 +5,7 @@ import { SharedSquirrelModule } from '@app/shared/shared.module';
 import { MaterialModule } from '@app/shared/material.module';
 import { ProfileComponent } from './profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormModule } from '@app/shared/form.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileRoutingModule,
     SharedSquirrelModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormModule
   ]
 })
 export class ProfileModule { }

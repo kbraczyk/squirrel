@@ -1,18 +1,23 @@
 <div class="recipe">
   <mat-card class="recipe-item mat-elevation-z8">
-    <img mat-card-image src="assets/pizza-on-plate-2271194.jpg" alt="Zdjęcie potrawy">
+    <img mat-card-image src="{{'http://localhost:3000/recipes/'+ recipe.photo}}" alt="Zdjęcie potrawy">
     <mat-icon class="favorite" (click)="isFavorite = !isFavorite">{{isFavorite ? 'favorite':'favorite_border'}}
     </mat-icon>
     <mat-card-header>
-      <mat-card-title class="recipe__title">Pizza z pieca</mat-card-title>
+      <mat-card-title class="recipe__title">{{recipe.name}}</mat-card-title>
       <mat-card-subtitle>
-        <div class="info-recipe" matTooltip="Ilość porcji">2<mat-icon class="mat-18">restaurant_menu</mat-icon>
+        <div class="info-recipe" matTooltip="Ilość porcji">{{recipe.portions}}<mat-icon class="mat-18">restaurant_menu
+          </mat-icon>
         </div>
-        <div class="info-recipe" matTooltip="Ilość kcal">450 <mat-icon class="mat-18">directions_run</mat-icon>
+        <div class="info-recipe" matTooltip="Ilość kcal">{{recipe.energy}}<mat-icon class="mat-18">directions_run
+          </mat-icon>
         </div>
-        <div class="info-recipe" matTooltip="Czas przygotowania">60 min <mat-icon class="mat-18">timelapse</mat-icon>
+        <div class="info-recipe" matTooltip="Czas przygotowania">{{recipe.prep_time}} min<mat-icon class="mat-18">
+            timelapse
+          </mat-icon>
         </div>
-        <div class="info-recipe" matTooltip="Trudność wykonania">Łatwe <img class="mat-18" src="assets/icon/chef.svg"
+        <div class="info-recipe" matTooltip="Trudność wykonania">
+          {{recipe.prep_difficulty | formater: 'dificultyRecipe'}}<img class="mat-18" src="assets/icon/chef.svg"
             alt="czapka kucharza">
         </div>
       </mat-card-subtitle>

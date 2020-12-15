@@ -6,6 +6,7 @@ import { ResultKcalComponent } from './result-kcal/result-kcal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedSquirrelModule } from '@app/shared/shared.module';
 import { MaterialModule } from '@app/shared/material.module';
+import { FormModule } from '@app/shared/form.module';
 
 const components = [
   CalcKcalComponent,
@@ -20,7 +21,8 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    CalkKcalRoutingModule
+    CalkKcalRoutingModule,
+    FormModule
   ],
   entryComponents: [ResultKcalComponent]
 })

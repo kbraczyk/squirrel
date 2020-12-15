@@ -9,16 +9,20 @@ export class FormaterPipe implements PipeTransform {
     const [type] = args;
 
     switch (type) {
-      case 'activity': {
+      case 'activity':
         return activityFormatter(value);
-      }
-      case 'target': {
+
+      case 'target':
         return targetFormatter(value);
-      }
+
       case 'firstWordLetter':
         return firstWordLetter(value);
+
       case 'mathRound':
         return Math.round(value);
+
+      case 'dificultyRecipe':
+        return dificultyRecipe(value);
     }
     return null;
   }
@@ -26,38 +30,43 @@ export class FormaterPipe implements PipeTransform {
 
 export const activityFormatter = (value) => {
   switch (value) {
-    case 1.2: {
+    case 1.2:
       return 'niska';
-    }
-    case 1.35: {
+    case 1.35:
       return 'mała';
-    }
-    case 1.55: {
+    case 1.55:
       return 'średnia';
-    }
-    case 1.75: {
+    case 1.75:
       return 'duża';
-    }
-    case 2: {
+    case 2:
       return 'bardzo duża';
-    }
-    default: {
+    default:
       return 'nieznana';
-    }
+  }
+};
+
+export const dificultyRecipe = (value) => {
+  switch (value) {
+    case 0:
+      return 'Łatwe';
+    case 1:
+      return 'Średnie';
+    case 2:
+      return 'Trudne';
+    default:
+      return value;
+
   }
 };
 
 export const targetFormatter = (value) => {
   switch (value) {
-    case 1: {
+    case 1:
       return 'utrzymanie wagi';
-    }
-    case 1.2: {
+    case 1.2:
       return 'podniesienie wagi';
-    }
-    default: {
+    default:
       return 'utrata wagi';
-    }
   }
 };
 
