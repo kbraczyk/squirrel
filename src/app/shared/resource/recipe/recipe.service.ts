@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resource, RestService } from '@app/shared/service/rest.service';
 import { Observable } from 'rxjs';
-import { RecipeModel } from './recipe.interface';
+import { FavoriteRecipeModel, RecipeModel } from './recipe.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,15 @@ export class RecipeRestService extends RestService<any> {
     this.resource = Resource.recipe;
   }
 
-  public getOwnRecipe() {
-    return this.http.get<RecipeModel>(this.baseUrl + this.resource + '/own');
+  public getRecipes() {
+    return this.http.get<Array<RecipeModel>>(this.baseUrl + this.resource);
+  }
+
+  public getOwnRecipes() {
+    return this.http.get<Array<RecipeModel>>(this.baseUrl + this.resource + '/own');
+  }
+  public getFavoriteRecipe() {
+    return this.http.get<Array<FavoriteRecipeModel>>(this.baseUrl + this.resource + '/favorite');
   }
 
   public createRecipe(data) {

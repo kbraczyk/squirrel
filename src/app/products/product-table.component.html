@@ -14,23 +14,23 @@
 
     <ng-container matColumnDef="energy">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Kcal</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.energy }} <small> kcal</small></mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.energy}}<small>&nbsp;kcal</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="carbo">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Węglowodany</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.carbo}} <small> g</small></mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.carbo}}<small>&nbsp;g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="sugar">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Cukier</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.sugar}} <small> g</small></mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.sugar}}<small>&nbsp;g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="fat">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Tłuszcz</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.fat}} <small> g</small></mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.fat}}<small>&nbsp;g</small></mat-cell>
     </ng-container>
     <ng-container matColumnDef="protein">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Białko</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let row">{{row.protein}} <small> g</small> </mat-cell>
+      <mat-cell class="duration-cell" *matCellDef="let row">{{row.protein}}<small>&nbsp;g</small> </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay">

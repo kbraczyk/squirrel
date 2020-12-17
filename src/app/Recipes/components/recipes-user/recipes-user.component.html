@@ -14,7 +14,7 @@
   <app-transparent-loader-container [loading]="isLoading">
     <div class="row">
       <div class="recipe" *ngFor=" let recipe of recipes$ | async">
-        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+        <squirrel-recipe-item [recipe]="recipe" [availableFavorite]="availableFavorite"></squirrel-recipe-item>
       </div>
     </div>
   </app-transparent-loader-container>
@@ -35,7 +35,7 @@
   <app-transparent-loader-container [loading]="isLoading">
     <div class="row">
       <div class="recipe" *ngFor="let recipe of  recipes$ | async">
-        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+        <squirrel-recipe-item [availableFavorite]="availableFavorite" [recipe]="recipe"></squirrel-recipe-item>
       </div>
     </div>
   </app-transparent-loader-container>
@@ -56,7 +56,7 @@
   <app-transparent-loader-container [loading]="isLoading">
     <div class="row">
       <div class="recipe" *ngFor="let recipe of recipes$ | async">
-        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+        <squirrel-recipe-item [recipe]="recipe" [availableFavorite]="availableFavorite"></squirrel-recipe-item>
       </div>
     </div>
   </app-transparent-loader-container>
@@ -78,7 +78,7 @@
   <app-transparent-loader-container [loading]="isLoading">
     <div class="row">
       <div class="recipe" *ngFor="let recipe of  recipes$ | async">
-        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+        <squirrel-recipe-item [recipe]="recipe" [availableFavorite]="availableFavorite"></squirrel-recipe-item>
       </div>
     </div>
   </app-transparent-loader-container>

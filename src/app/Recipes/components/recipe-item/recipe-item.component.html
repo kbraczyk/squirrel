@@ -1,7 +1,8 @@
 <div class="recipe">
   <mat-card class="recipe-item mat-elevation-z8">
     <img mat-card-image src="{{'http://localhost:3000/recipes/'+ recipe.photo}}" alt="Zdjęcie potrawy">
-    <mat-icon class="favorite" (click)="isFavorite = !isFavorite">{{isFavorite ? 'favorite':'favorite_border'}}
+    <mat-icon *ngIf="availableFavorite" class="favorite" (click)="isFavorite = !isFavorite">
+      {{recipe.isFavorite ? 'favorite':'favorite_border'}}
     </mat-icon>
     <mat-card-header>
       <mat-card-title class="recipe__title">{{recipe.name}}</mat-card-title>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resource, RestService } from '@app/shared/service/rest.service';
-import { UserProfile } from './profile.interface';
+import { AvatarModel, UserProfile } from './profile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class ProfileRestService extends RestService<UserProfile> {
   }
 
   getAvatar() {
-    return this.http.get(this.baseUrl + this.resource + '/avatar');
+    return this.http.get<AvatarModel>(this.baseUrl + this.resource + '/avatar');
   }
 
 }

@@ -43,9 +43,9 @@ export class CalcKcalComponent extends AbstractComponent implements OnInit {
         Validators.min(0),
         Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
-    sex: new FormControl(null, Validators.required),
-    activity: new FormControl(null, Validators.required),
-    target: new FormControl(null, Validators.required),
+    sex: new FormControl(null, [Validators.required]),
+    activity: new FormControl(null, [Validators.required]),
+    target: new FormControl(null, [Validators.required]),
     kg: new FormControl(null),
     lb: new FormControl(null),
     cm: new FormControl(null),
@@ -74,6 +74,8 @@ export class CalcKcalComponent extends AbstractComponent implements OnInit {
   }
 
   calculate(value) {
+    if (this.calcKcalForm.invalid) { return; }
+
     const data = this.calcService.calculateKcal(value);
     const calorieRequirment = this.demandService.transformKcalToMakro(data);
 

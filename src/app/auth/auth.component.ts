@@ -34,6 +34,9 @@ export class AuthComponent extends AbstractComponent {
   }
 
   auth() {
+    if (this.form.invalid) {
+      return;
+    }
     this.isLoading = true;
     this.formType === AuthFormType.login ?
       this.authService.login(this.form.value).pipe(finalize(() => this.isLoading = false)).subscribe(token => {

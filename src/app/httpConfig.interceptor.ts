@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
         const token: string = localStorage.getItem('token');
 
         if (token) {

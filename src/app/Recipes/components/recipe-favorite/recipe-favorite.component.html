@@ -1,0 +1,22 @@
+<div class="content-box">
+  <div class="content-box__header">
+    <mat-card-title>
+      Przepisy ulubione
+    </mat-card-title>
+    <mat-card-subtitle>Wszystkie przepisy, które zostały przez Ciebie oznaczone jako ulubione.
+    </mat-card-subtitle>
+    <div class="actions">
+      <button mat-raised-button [routerLink]="['/recipes/new']">
+        <mat-icon>add</mat-icon>
+        Nowy przepis
+      </button>
+    </div>
+  </div>
+  <app-transparent-loader-container [loading]="isLoading">
+    <div class="row">
+      <div class="recipe" *ngFor="let recipe of recipes$ | async">
+        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+      </div>
+    </div>
+  </app-transparent-loader-container>
+</div>

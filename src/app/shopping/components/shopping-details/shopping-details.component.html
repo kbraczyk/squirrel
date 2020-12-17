@@ -52,7 +52,7 @@
         <mat-icon class="button-icon">delete_outline</mat-icon>
         Usuń
       </button>
-      <button mat-raised-button color="primary"
+      <button mat-raised-button [disabled]="!userExist" color="primary"
         (click)="createOrEdit(slide.checked)">{{shopList && !shopList.id ? 'Utwórz' : 'Edytuj'}}</button>
     </div>
   </div>

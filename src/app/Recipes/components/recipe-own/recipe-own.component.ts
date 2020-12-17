@@ -16,7 +16,7 @@ export class RecipeOwnComponent extends AbstractComponent {
   constructor(private resource: RecipeRestService) {
     super();
     this.isLoading = true;
-    this.resource.getOwnRecipe().pipe(
+    this.resource.getOwnRecipes().pipe(
       filter(f => !!f),
       finalize(() => this.isLoading = false))
       .subscribe(recipes => this.recipes$.next(recipes as any));

@@ -14,7 +14,7 @@
   </div>
   <mat-card-content>
     <app-transparent-loader-container [loading]="isLoading">
-      <mat-list role="list">
+      <mat-list *ngIf="userExist" role="list">
         <mat-list-item role="listitem" *ngFor="let list of shoppingLists$ | async" (click)="setListData(list)">
           <mat-icon *ngIf="list.isRealized" class="success" matTooltip="Zrealizowana">check_circle
           </mat-icon>
@@ -28,6 +28,14 @@
           </div>
         </mat-list-item>
       </mat-list>
+
+      <div *ngIf="!userExist" [@fadeInOnEnter]>
+        <div class="no-content">
+          <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
+          <h4 class="no-content__info">{{noContentInfo}}</h4>
+          <p class="no-content__sugestion">{{sugestionInfo}}</p>
+        </div>
+      </div>
     </app-transparent-loader-container>
   </mat-card-content>
 </div>

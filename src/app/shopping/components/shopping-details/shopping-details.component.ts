@@ -6,6 +6,7 @@ import { AbstractComponent } from '@shared/components/abstract.component';
 import { ShopList, ShopListProduct } from '@app/shared/resource/shop-list/shop-list.interface';
 import { ShopListResourceService } from '@app/shared/resource/shop-list/shop-list.service';
 import { EventService, EventSquirrel } from '@app/shared/service/event.service';
+import { SessionService } from '@app/shared/service/session.service';
 
 @Component({
   selector: 'squirrel-shopping-details',
@@ -20,6 +21,8 @@ export class ShoppingDetailsComponent extends AbstractComponent {
   form: FormGroup;
   removedIds: Array<number> = [];
 
+  public userExist: boolean = this.session.sessionExist();
+
   get products(): FormArray {
     return this.form.get('products') as FormArray;
   }
@@ -28,13 +31,15 @@ export class ShoppingDetailsComponent extends AbstractComponent {
     private fb: FormBuilder,
     private resource: ShopListResourceService,
     private notification: NotificationsService,
-    private eventService: EventService) {
+    private eventService: EventService,
+    private session: SessionService
+  ) {
     super();
 
     this.headerTitle = 'Szczegóły Listy zakupów';
     this.headerSubtitle = `Sekcja umożliwia wykonywanie akcji na liście zakupów. Z tego miejsca możesz dodać, edytować lub
     przeglądnąć szczegóły wybranej listy zakupów.`;
-    this.headerIcon = 'list';
+    // this.headerIcon = 'list';
     this.noContentInfo = 'Nie wybrano listy zakupów.';
     this.sugestionInfo = 'Wybierz jedną z list, aby zobaczyć jej szczegóły.';
 
@@ -63,10 +68,13 @@ export class ShoppingDetailsComponent extends AbstractComponent {
   addProduct = () => this.products.push(this.fb.control(''));
 
   remove = (controlName) => {
-    const finded: any = this.shopList.products.filter(f => f.name === this.products.controls[controlName].value)[0];
-    if (finded) {
-      this.removedIds.push(finded.id);
+    if (this.shopList && this.shopList.products) {
+      const finded: any = this.shopList.products.filter(f => f.name === this.products.controls[controlName].value)[0];
+      if (finded) {
+        this.removedIds.push(finded.id);
+      }
     }
+
     this.products.removeAt(controlName);
   }
 

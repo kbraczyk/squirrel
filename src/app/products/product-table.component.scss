@@ -11,6 +11,7 @@
   }
 
   .container {
+    width: 90%;
     margin-top: 20px;
     box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
 
@@ -100,4 +101,10 @@
 
 .mat-cell {
   font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: unset;
+  }
 }

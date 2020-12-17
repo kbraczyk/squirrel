@@ -7,6 +7,10 @@ export interface UserProfile {
     user?: User;
 }
 
+export interface AvatarModel {
+    avatar: string;
+}
+
 export interface User {
     readonly id: number;
     email: string;

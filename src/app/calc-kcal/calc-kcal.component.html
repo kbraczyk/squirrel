@@ -11,15 +11,15 @@
   <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
     <div class="col-sm-12 col-md-6">
       <mat-form-field>
-        <input matInput [placeholder]="heightPlaceholder" formControlName="height">
+        <input matInput required [placeholder]="heightPlaceholder" formControlName="height">
         <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [placeholder]="weightPlaceholder" formControlName="weight">
+        <input matInput required [placeholder]="weightPlaceholder" formControlName="weight">
         <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Wiek" formControlName="age">
+        <input matInput required placeholder="Wiek" formControlName="age">
         <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
       </mat-form-field>
     </div>

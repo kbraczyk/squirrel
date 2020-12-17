@@ -1,5 +1,6 @@
 export interface RecipeModel {
     id?: number;
+    isFavorite?: boolean;
     name: string;
     preparation: string;
     prep_time: number;
@@ -11,6 +12,11 @@ export interface RecipeModel {
     proteins: number;
     created_date: string;
     photo: string;
+}
+
+export interface FavoriteRecipeModel {
+    id: number;
+    recipe: RecipeModel;
 }
 
 export enum DifficultyRecipeEnum {

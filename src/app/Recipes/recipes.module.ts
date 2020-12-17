@@ -11,18 +11,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormModule } from '@app/shared/form.module';
 import { RecipeOwnComponent } from './components/recipe-own/recipe-own.component';
+import { RecipeFavoriteComponent } from './components/recipe-favorite/recipe-favorite.component';
 
 const components = [
   RecipiesComponent,
   RecipeItemComponent,
   RecipesUserComponent,
   RecipeFormComponent,
+  RecipeOwnComponent,
+  RecipeFavoriteComponent
 ];
 
 @NgModule({
   declarations: [
     ...components,
-    RecipeOwnComponent,
   ],
   imports: [
     CommonModule,

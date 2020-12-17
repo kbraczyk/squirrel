@@ -17,11 +17,11 @@ export class RestService<T> {
   public getAll = (pager?: PageModel, sort?: SortModel): Observable<T> => {
     let url = this.baseUrl + this.resource;
 
-    if (sort) {
+    if (sort && sort.field) {
       url = url + `?sort=${sort.direction === 'asc' ? '+' : '-'}${sort.field}`;
     }
     if (pager) {
-      url = url + `?pageSize=${pager.perPage}&pageIndex=${pager.offset}`;
+      url = url + `?offset=${pager.perPage}&page=${pager.offset}`;
     }
 
     return this.http.get<T>(url) as Observable<T>;

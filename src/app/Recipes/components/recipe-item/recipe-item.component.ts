@@ -8,8 +8,7 @@ import { RecipeModel } from '@app/shared/resource/recipe/recipe.interface';
   styleUrls: ['./recipe-item.component.scss'],
 })
 export class RecipeItemComponent {
-  public isFavorite: boolean = false;
   @Input() recipe: RecipeModel;
-
+  @Input() availableFavorite: boolean = true;
   constructor() { }
 }
