@@ -1,6 +1,6 @@
 <div class="content-box">
   <div class="content-box__header">
-    <mat-icon class="content-box__header__icon">{{headerIcon}}</mat-icon>
+    <mat-icon class="content-box__header__icon d-none d-lg-block">{{headerIcon}}</mat-icon>
     <div>
       <mat-card-title>
         {{headerTitle}}
@@ -12,15 +12,15 @@
     <div class="col-sm-12 col-md-6">
       <mat-form-field>
         <input matInput required [placeholder]="heightPlaceholder" formControlName="height">
-        <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
+        <squirrel-error-form [control]="height"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
         <input matInput required [placeholder]="weightPlaceholder" formControlName="weight">
-        <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
+        <squirrel-error-form [control]="weight"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
         <input matInput required placeholder="Wiek" formControlName="age">
-        <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
+        <squirrel-error-form [control]="age"></squirrel-error-form>
       </mat-form-field>
     </div>
     <div class="col-12 col-sm-12 col-md-6">
@@ -31,7 +31,7 @@
             {{sex}}
           </mat-option>
         </mat-select>
-        <squirrel-error-form [control]="calcKcalForm.controls.sex"></squirrel-error-form>
+        <squirrel-error-form [control]="sex"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Aktywność</mat-label>
@@ -40,7 +40,7 @@
             {{active.name}}
           </mat-option>
         </mat-select>
-        <squirrel-error-form [control]="calcKcalForm.controls.activity"></squirrel-error-form>
+        <squirrel-error-form [control]="activity"></squirrel-error-form>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Cel</mat-label>
@@ -49,30 +49,9 @@
             {{target.name}}
           </mat-option>
         </mat-select>
-        <squirrel-error-form [control]="calcKcalForm.controls.target"></squirrel-error-form>
+        <squirrel-error-form [control]="target"></squirrel-error-form>
       </mat-form-field>
     </div>
-    <h5 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h5>
-    <div class="footer-form col-sm-12 col-md-8 col-lg-6">
-      <div class="unit col">
-        <p>Wagi</p>
-        <mat-slide-toggle name="kg" (change)=toogle($event) color="primary" formControlName="kg">
-          Kg
-        </mat-slide-toggle>
-        <mat-slide-toggle name="lb" (change)=toogle($event) color="primary" formControlName="lb">
-          Lb
-        </mat-slide-toggle>
-      </div>
-      <button type="submit" mat-raised-button color="primary" class="col">OBLICZ</button>
-      <div class="unit col" style="align-items: flex-end;">
-        <p>Wzrostu</p>
-        <mat-slide-toggle name="cm" (change)=toogle($event) color="primary" formControlName="cm">
-          Cm
-        </mat-slide-toggle>
-        <mat-slide-toggle name="ft" (change)=toogle($event) color="primary" formControlName="ft">
-          Ft/in
-        </mat-slide-toggle>
-      </div>
-    </div>
+    <button type="submit" mat-raised-button color="primary" class="col">OBLICZ</button>
   </form>
 </div>

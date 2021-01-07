@@ -20,7 +20,9 @@ export class MenuComponent extends AbstractComponent implements OnDestroy {
 
   @Input() isOpen: boolean = false;
 
-  constructor(private session: SessionService, private eventService: EventService, private profile: ProfileRestService, private router: Router) {
+  constructor(
+    private session: SessionService, private eventService: EventService,
+    private profile: ProfileRestService, private router: Router) {
     super();
     this.sub.push(this.eventService.getEvent(EventSquirrel.login).subscribe(data => {
       this.userExist = !!window.localStorage.getItem('token');

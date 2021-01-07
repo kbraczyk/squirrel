@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
 export class CalcKcalService {
 
   private readonly _sex: Array<string> = ['Mężczyzna', 'Kobieta'];
-  private readonly _activity: Array<{ value, name }> = [
+  private readonly _activity: Array<{ value: number, name: string }> = [
     { value: 1.2, name: 'Niska aktywność' },
     { value: 1.35, name: 'Mała aktywność' },
     { value: 1.55, name: 'Średnia aktywność' },
@@ -22,9 +21,6 @@ export class CalcKcalService {
   get sex(): Array<string> { return this._sex; }
   get activity(): Array<{ value, name }> { return this._activity; }
   get target(): Array<{ value, name }> { return this._target; }
-
-
-  constructor() { }
 
   public calculateKcal(value): number {
     // BMR

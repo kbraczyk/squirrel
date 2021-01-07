@@ -1,14 +1,14 @@
-@import './../../../Styles/variable';
+@import "./../../../Styles/variable";
+@import "./../../../Styles/mixin";
 
 :host {
   .dialog-header {
-    display: flex;
+    @include flex-box(row, center, unset, unset);
     border-bottom: 1px solid rgba(78, 37, 107, 0.3);
-    align-items: center;
   }
 
   .title {
-    color: #363636;
+    color: $primary-color-dark;
     flex: 1;
     margin: 0;
   }

@@ -41,6 +41,9 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.rest.resource = this.tabs[0].value;
     this.dataSource.loadData();
+    if (window.innerWidth < 601) {
+      this.columnsToDisplay = this.columnsToDisplay.filter(f => f !== 'sugar');
+    }
   }
 
   ngAfterViewInit() {
@@ -49,12 +52,12 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
-  activeTab(indexTab) {
+  activeTabChanged(indexTab) {
     this.rest.resource = this.tabs[indexTab].value;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.table.dataSource = this.dataSource;
-    this.dataSource.loadData(null, null);
+    this.dataSource.loadData();
   }
 
 }

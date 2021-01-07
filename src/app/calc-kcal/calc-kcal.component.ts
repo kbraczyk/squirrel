@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultKcalComponent } from './result-kcal/result-kcal.component';
@@ -11,7 +11,7 @@ import { DemandKcalService } from '@app/shared/service/demand-kcal.service';
   templateUrl: './calc-kcal.component.html',
   styleUrls: ['./calc-kcal.component.scss'],
 })
-export class CalcKcalComponent extends AbstractComponent implements OnInit {
+export class CalcKcalComponent extends AbstractComponent {
 
   protected sexValues: Array<string>;
   protected activityValues: Array<{ value, name }>;
@@ -46,16 +46,15 @@ export class CalcKcalComponent extends AbstractComponent implements OnInit {
     sex: new FormControl(null, [Validators.required]),
     activity: new FormControl(null, [Validators.required]),
     target: new FormControl(null, [Validators.required]),
-    kg: new FormControl(null),
-    lb: new FormControl(null),
-    cm: new FormControl(null),
-    ft: new FormControl(null),
   });
 
-  public get kg() { return this.calcKcalForm.get('kg'); }
-  public get lb() { return this.calcKcalForm.get('lb'); }
-  public get cm() { return this.calcKcalForm.get('cm'); }
-  public get ft() { return this.calcKcalForm.get('ft'); }
+  public get height() { return this.calcKcalForm.get('height'); }
+  public get weight() { return this.calcKcalForm.get('weight'); }
+  public get age() { return this.calcKcalForm.get('age'); }
+  public get sex() { return this.calcKcalForm.get('sex'); }
+  public get activity() { return this.calcKcalForm.get('activity'); }
+  public get target() { return this.calcKcalForm.get('target'); }
+
 
   constructor(private dialogService: MatDialog, private calcService: CalcKcalService, private demandService: DemandKcalService) {
     super();
@@ -69,15 +68,9 @@ export class CalcKcalComponent extends AbstractComponent implements OnInit {
     this.targetValues = calcService.target;
   }
 
-  ngOnInit() {
-    this.setPopulateUnits();
-  }
-
   calculate(value) {
     if (this.calcKcalForm.invalid) { return; }
-
-    const data = this.calcService.calculateKcal(value);
-    const calorieRequirment = this.demandService.transformKcalToMakro(data);
+    const calorieRequirment = this.demandService.transformKcalToMakro(this.calcService.calculateKcal(value));
 
     if (calorieRequirment) {
       this.dialogRef = this.dialogService.open(ResultKcalComponent, {
@@ -90,30 +83,10 @@ export class CalcKcalComponent extends AbstractComponent implements OnInit {
       this.dialogRef.afterClosed().subscribe(() => {
         this.calcKcalForm.reset();
         Object.keys(this.calcKcalForm.controls).forEach(key => this.calcKcalForm.get(key).setErrors(null));
-        this.setPopulateUnits();
       });
 
     } else {
       this.calcKcalForm.updateValueAndValidity();
     }
-  }
-
-  toogle(event) {
-    if (event.source.name === 'kg') {
-      event.checked ? this.lb.setValue(false) : this.lb.setValue(true);
-    } else if (event.source.name === 'lb') {
-      event.checked ? this.kg.setValue(false) : this.kg.setValue(true);
-    } else if (event.source.name === 'cm') {
-      event.checked ? this.ft.setValue(false) : this.ft.setValue(true);
-    } else {
-      event.checked ? this.cm.setValue(false) : this.cm.setValue(true);
-    }
-  }
-
-  setPopulateUnits(): any {
-    this.kg.setValue(true);
-    this.kg.valueChanges.subscribe(val => val ? this.weightPlaceholder = 'Waga (kg)' : this.weightPlaceholder = 'Waga (lb)');
-    this.cm.setValue(true);
-    this.cm.valueChanges.subscribe(val => val ? this.heightPlaceholder = 'Wzrost (cm)' : this.heightPlaceholder = 'Wzrost (Ft/in)');
   }
 }

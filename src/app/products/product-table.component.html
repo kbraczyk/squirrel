@@ -2,9 +2,8 @@
   <div class="table">
     <h3 class="table__title">{{title}}</h3>
     <p class="table__subtitle">{{subTitle}}</p>
-    <img class="table__filter" src="assets/icon/filter.svg" alt="ikona filtrów">
   </div>
-  <squirrel-tabs [tabsOptions]="tabs" (selectedTab)="activeTab($event)"></squirrel-tabs>
+  <squirrel-tabs [tabsOptions]="tabs" (selectedTab)="activeTabChanged($event)"></squirrel-tabs>
 
   <mat-table (matSortChange)="dataSource.sortChange($event)" class="col" matSort [dataSource]="dataSource">
     <ng-container matColumnDef="name">
