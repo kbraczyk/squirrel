@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { ProfileRestService } from '@app/shared/resource/profile/profile.service';
+import { EventService, EventSquirrel } from '@app/shared/service/event.service';
 import { NotificationsService } from 'angular2-notifications';
 import { filter, finalize, map } from 'rxjs/operators';
 import { apiConfig } from 'src/environments/environment';
@@ -28,7 +29,7 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
     repeadPassword: new FormControl()
   });
 
-  constructor(private profileService: ProfileRestService, private growl: NotificationsService) {
+  constructor(private profileService: ProfileRestService, private growl: NotificationsService, private event: EventService) {
     super();
     this.headerIcon = 'person_outline';
     this.headerTitle = 'Profil użytkownika';
@@ -68,8 +69,8 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
   }
 
   preview() {
-    const mimeType = this.fileToUpload.type;
-    if (mimeType.match(/image\/*/) == null) {
+    const { type } = this.fileToUpload;
+    if (!type || type.match(/image\/*/) == null) {
       return;
     }
 
@@ -82,8 +83,9 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
 
   uploadFileToActivity() {
     this.profileService.changeAvatar(this.fileToUpload).subscribe(data => {
-    }, error => {
-    });
+      this.growl.success('Pomyślnie zmieniono awatar');
+      this.event.emitEvent(EventSquirrel.changeAvatar);
+    }, error => this.growl.error(error.error.message));
   }
 
   getAvatar() {

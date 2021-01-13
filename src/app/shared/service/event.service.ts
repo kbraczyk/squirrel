@@ -27,5 +27,6 @@ export interface EventApp {
 export enum EventSquirrel {
   login,
   newShopList,
-  updateShopList
+  updateShopList,
+  changeAvatar
 }

@@ -16,17 +16,34 @@ import { apiConfig } from 'src/environments/environment';
 export class MenuComponent extends AbstractComponent implements OnDestroy {
   public userMenuState: boolean = false;
   public userExist: boolean = false;
-  public userAvatar = this.profile.getAvatar().pipe(map(data => apiConfig.baseUrl + 'profile/avatar/' + data.avatar));
+
+  public userData$ = this.profile.getUserData().pipe(
+    map(data => {
+      data.avatar = apiConfig.baseUrl + 'profile/avatar/' + data.avatar;
+      return data;
+    })
+  );
+
 
   @Input() isOpen: boolean = false;
 
   constructor(
-    private session: SessionService, private eventService: EventService,
-    private profile: ProfileRestService, private router: Router) {
+    private session: SessionService,
+    private eventService: EventService,
+    private profile: ProfileRestService,
+    private router: Router) {
     super();
-    this.sub.push(this.eventService.getEvent(EventSquirrel.login).subscribe(data => {
-      this.userExist = !!window.localStorage.getItem('token');
-    }));
+    this.sub.push(this.eventService.getEvent(EventSquirrel.login).subscribe(() =>
+      this.userExist = !!window.localStorage.getItem('token')
+    ));
+
+    this.sub.push(this.eventService.getEvent(EventSquirrel.changeAvatar).subscribe(() =>
+      this.userData$ = this.profile.getUserData().pipe(
+        map(data => {
+          data.avatar = apiConfig.baseUrl + 'profile/avatar/' + data.avatar;
+          return data;
+        }))
+    ));
   }
 
   ngOnDestroy() {

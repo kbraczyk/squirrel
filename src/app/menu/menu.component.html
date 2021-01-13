@@ -3,9 +3,9 @@
     <img class="logo__img" src="assets/log.png" alt="logo">
     <h5 class="logo__text">Żywieniowy przyjaciel</h5>
   </div>
-  <div *ngIf="userExist" class="active-user" (click)="userMenuState = !userMenuState">
-    <ngx-avatar [src]="userAvatar | async"></ngx-avatar>
-    <span class="active-user__name">Krzysztof Brączyk</span>
+  <div *ngIf="userExist && (userData$ | async) as user" class=" active-user" (click)="userMenuState = !userMenuState">
+    <ngx-avatar [src]="user.avatar"></ngx-avatar>
+    <span class="active-user__name" *ngIf="userData$ | async as user">{{user.firstName}} {{user.lastName}}</span>
     <mat-icon class="material-icons expand" [ngClass]="{'expand--less': userMenuState}">expand_more</mat-icon>
   </div>
   <div *ngIf="!userExist" class="auth">

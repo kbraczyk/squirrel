@@ -13,6 +13,10 @@ export class ProfileRestService extends RestService<UserProfile> {
     this.resource = Resource.profile;
   }
 
+  getUserData() {
+    return this.http.get<UserProfile>(this.baseUrl + this.resource);
+  }
+
   updateProfile(data: UserProfile) {
     return this.http.patch(this.baseUrl + this.resource, data);
   }

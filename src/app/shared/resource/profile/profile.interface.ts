@@ -1,4 +1,4 @@
-export interface UserProfile {
+export interface UserProfile extends AvatarModel {
     readonly id: number;
     avatar: string;
     firstName: string;

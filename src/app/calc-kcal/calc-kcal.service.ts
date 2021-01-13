@@ -23,18 +23,17 @@ export class CalcKcalService {
   get target(): Array<{ value, name }> { return this._target; }
 
   public calculateKcal(value): number {
-    // BMR
     let basicMetabolicRate: number;
-    // CPM
     let totalMetabolicRate: number;
 
     if (value.sex === 'Kobieta') {
-      basicMetabolicRate = (9.99 * value.weight) + (6.25 * value.height - (4.92 * value.age)) - 161;
+      basicMetabolicRate = (10 * value.weight) + (6.25 * value.height - (5 * value.age)) - 161;
     } else {
-      basicMetabolicRate = (9.99 * value.weight) + (6.25 * value.height - (4.92 * value.age)) + 5;
+      basicMetabolicRate = (10 * value.weight) + (6.25 * value.height - (5 * value.age)) + 5;
     }
 
     totalMetabolicRate = (basicMetabolicRate * value.activity) * value.target;
     return totalMetabolicRate as number;
   }
 }
+
