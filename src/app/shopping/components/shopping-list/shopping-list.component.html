@@ -36,6 +36,17 @@
           <p class="no-content__sugestion">{{sugestionInfo}}</p>
         </div>
       </div>
+
+      <div *ngIf="!(shoppingLists$ | async).length && userExist" [@fadeInOnEnter]>
+        <div class="no-content">
+          <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
+          <h4 class="no-content__info">Brak list do wyświetlenia</h4>
+          <p class="no-content__sugestion">Dodaj pierwszą listę zakupów!</p>
+        </div>
+      </div>
+      <mat-paginator *ngIf="userExist" [length]="(shoppingLists$ | async).length" [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 15, 20]">
+      </mat-paginator>
     </app-transparent-loader-container>
   </mat-card-content>
 </div>

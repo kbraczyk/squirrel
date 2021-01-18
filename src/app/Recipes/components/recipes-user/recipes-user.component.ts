@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { RecipeModel } from '@app/shared/resource/recipe/recipe.interface';
-import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
+import { RecipeCategory, RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 import { SessionService } from '@app/shared/service/session.service';
 import { BehaviorSubject, forkJoin } from 'rxjs';
 import { filter, finalize, map } from 'rxjs/operators';
@@ -10,20 +10,24 @@ import { filter, finalize, map } from 'rxjs/operators';
   templateUrl: './recipes-user.component.html',
   styleUrls: ['./recipes-user.component.scss']
 })
-export class RecipesUserComponent extends AbstractComponent {
+export class RecipesUserComponent extends AbstractComponent implements OnInit {
+  @Input() category: RecipeCategory;
+
   public recipes$: BehaviorSubject<RecipeModel[]> = new BehaviorSubject([]);
   public availableFavorite = true;
 
-  constructor(private resource: RecipeRestService, private session: SessionService) {
+  constructor(private resource: RecipeRestService, session: SessionService) {
     super();
     this.isLoading = true;
-    const sessionExist = session.sessionExist();
-    sessionExist ? this.getRecipeWithFavorite() : this.getRecipe();
-    sessionExist ? this.availableFavorite = true : this.availableFavorite = false;
+    this.availableFavorite = session.sessionExist();
+  }
+
+  ngOnInit() {
+    this.availableFavorite ? this.getRecipeWithFavorite() : this.getRecipe();
   }
 
   private getRecipeWithFavorite() {
-    forkJoin([this.resource.getFavoriteRecipe(), this.resource.getRecipes()]).pipe(
+    forkJoin([this.resource.getFavoriteRecipe(), this.resource.getRecipes(this.category)]).pipe(
       filter(f => !!f),
       finalize(() => this.isLoading = false),
       map(data => ({ favorite: data[0], recipes: data[1] })),
@@ -40,7 +44,7 @@ export class RecipesUserComponent extends AbstractComponent {
   }
 
   private getRecipe() {
-    this.resource.getRecipes().pipe(
+    this.resource.getRecipes(this.category).pipe(
       filter(f => !!f),
       finalize(() => this.isLoading = false)).subscribe(data => this.recipes$.next(data));
   }

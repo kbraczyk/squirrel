@@ -22,6 +22,7 @@
     width: max-content;
   }
 
+
   ::ng-deep mat-card-subtitle {
     display: block;
     width: 100%;
@@ -95,5 +96,18 @@
     &__sugestion {
       opacity: .4;
     }
+  }
+}
+
+
+:host ::ng-deep.mat-paginator {
+  border-top: 1px solid rgba(209, 144, 255, 0.72);
+
+  .mat-paginator-container {
+    justify-content: center;
+  }
+
+  .mat-paginator-page-size-select {
+    margin: 0px 4px;
   }
 }

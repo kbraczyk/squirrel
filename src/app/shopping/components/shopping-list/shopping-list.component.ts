@@ -3,17 +3,20 @@ import { ShopListResourceService } from '@app/shared/resource/shop-list/shop-lis
 import { EventService, EventSquirrel } from '@app/shared/service/event.service';
 import { SessionService } from '@app/shared/service/session.service';
 import { AbstractComponent } from '@shared/components/abstract.component';
+import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { ShoppingService } from '../../shopping.service';
 
 @Component({
   selector: 'squirrel-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.scss']
+  styleUrls: ['./shopping-list.component.scss'],
+  animations: [
+    fadeInOnEnterAnimation({ duration: 500 }),
+  ],
 })
 export class ShoppingListComponent extends AbstractComponent implements OnDestroy {
-  public shoppingLists$ = new BehaviorSubject(null);
+  public shoppingLists$: BehaviorSubject<any> = new BehaviorSubject([]);
   public userExist = this.session.sessionExist();
 
   constructor(

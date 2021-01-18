@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resource, RestService } from '@app/shared/service/rest.service';
-import { Observable } from 'rxjs';
 import { FavoriteRecipeModel, RecipeModel } from './recipe.interface';
 
 @Injectable({
@@ -14,8 +13,12 @@ export class RecipeRestService extends RestService<any> {
     this.resource = Resource.recipe;
   }
 
-  public getRecipes() {
-    return this.http.get<Array<RecipeModel>>(this.baseUrl + this.resource);
+  public getRecipes(type?: RecipeCategory) {
+    let url = this.baseUrl + this.resource;
+    if (type) {
+      url += `/${type}`;
+    }
+    return this.http.get<Array<RecipeModel>>(url);
   }
 
   public getOwnRecipes() {
@@ -34,4 +37,14 @@ export class RecipeRestService extends RestService<any> {
     formData.append('file', fileToUpload, fileToUpload.name);
     return this.http.post(this.baseUrl + this.resource + `/${recipeId}/image`, formData);
   }
+}
+
+
+export enum RecipeCategory {
+  'breakfast' = 'breakfast',
+  'dinner' = 'dinner',
+  'supper' = 'supper',
+  'dessert' = 'dessert',
+  'snack' = 'snack',
+  'coctail' = 'coctail'
 }

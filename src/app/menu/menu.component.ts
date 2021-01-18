@@ -19,7 +19,7 @@ export class MenuComponent extends AbstractComponent implements OnDestroy {
 
   public userData$ = this.profile.getUserData().pipe(
     map(data => {
-      data.avatar = apiConfig.baseUrl + 'profile/avatar/' + data.avatar;
+      data.avatar = data.avatar ? apiConfig.baseUrl + 'profile/avatar/' + data.avatar : null;
       return data;
     })
   );

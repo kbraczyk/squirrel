@@ -9,7 +9,6 @@ import { ShoppingDetailsComponent } from './components/shopping-details/shopping
 import { ShoppingService } from './shopping.service';
 import { ShoppingRoutingModule } from './shopping-routing.module';
 import { SharedSquirrelModule } from '@app/shared/shared.module';
-
 @NgModule({
     declarations: [ShoppingComponent, ShoppingListComponent, ShoppingDetailsComponent],
     imports: [

@@ -12,9 +12,11 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormModule } from '@app/shared/form.module';
 import { RecipeOwnComponent } from './components/recipe-own/recipe-own.component';
 import { RecipeFavoriteComponent } from './components/recipe-favorite/recipe-favorite.component';
+import { RecipesHomeComponent } from './components/recipes-home/recipes-home.component';
 
 const components = [
   RecipiesComponent,
+  RecipesHomeComponent,
   RecipeItemComponent,
   RecipesUserComponent,
   RecipeFormComponent,
