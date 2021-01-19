@@ -11,67 +11,103 @@
   <form class="form" [formGroup]="form">
     <app-transparent-loader-container [loading]="isLoading">
       <div class="row">
-        <mat-form-field class="col-md-4">
-          <mat-label>Nazwa przepisu</mat-label>
-          <input type="text" formControlName="name" matInput>
-          <squirrel-error-form [control]="form.controls.name"></squirrel-error-form>
-        </mat-form-field>
+        <mat-accordion multi class="col-md-8">
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Podstawowe informacje o przepisie
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-form-field class="col-md-6">
+              <mat-label>Nazwa przepisu</mat-label>
+              <input type="text" formControlName="name" matInput>
+              <squirrel-error-form [control]="form.controls.name"></squirrel-error-form>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-2">
-          <mat-label>Liczba porcji</mat-label>
-          <input type="text" formControlName="portions" matInput>
-          <squirrel-error-form [control]="form.controls.portions"></squirrel-error-form>
-        </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <mat-label>Kategoria</mat-label>
+              <mat-select formControlName="categorie">
+                <mat-option *ngFor="let cat of categories" [value]="cat">
+                  {{cat.label}}
+                </mat-option>
+              </mat-select>
+              <!-- <squirrel-error-form [control]="category"></squirrel-error-form> -->
+            </mat-form-field>
 
-        <mat-form-field class="col-md-2">
-          <mat-label>Czas przygotowania</mat-label>
-          <input type="text" matInput formControlName="prep_time">
-          <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
-        </mat-form-field>
+            <mat-form-field class="col-md-3">
+              <mat-label>Liczba porcji</mat-label>
+              <input type="text" formControlName="portions" matInput>
+              <squirrel-error-form [control]="form.controls.portions"></squirrel-error-form>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-4">
-          <mat-label>Stopień trudności</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let hard of hardPrep" [value]="hard.value">
-              {{hard.label}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-form-field class="col-md-3">
+              <mat-label>Czas przygotowania</mat-label>
+              <input type="text" matInput formControlName="prep_time">
+              <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4">
+              <mat-label>Stopień trudności</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let hard of hardPrep" [value]="hard.value">
+                  {{hard.label}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
 
       <div class="row">
-        <mat-form-field class="col-md-3">
-          <mat-label>Kalorie</mat-label>
-          <input type="text" matInput formControlName="energy">
-          <squirrel-error-form [control]="form.controls.energy"></squirrel-error-form>
-        </mat-form-field>
+        <mat-accordion multi class="col-md-8">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Kaloryczność posiłku
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-form-field class="col-md-3">
+              <mat-label>Kalorie</mat-label>
+              <input type="text" matInput formControlName="energy">
+              <squirrel-error-form [control]="form.controls.energy"></squirrel-error-form>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-3">
-          <mat-label>Węglowodany</mat-label>
-          <input type="text" matInput formControlName="carbo">
-          <squirrel-error-form [control]="form.controls.carbo"></squirrel-error-form>
-        </mat-form-field>
+            <mat-form-field class="col-md-3">
+              <mat-label>Węglowodany</mat-label>
+              <input type="text" matInput formControlName="carbo">
+              <squirrel-error-form [control]="form.controls.carbo"></squirrel-error-form>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-3">
-          <mat-label>Tłuszcz</mat-label>
-          <input type="text" matInput formControlName="fat">
-          <squirrel-error-form [control]="form.controls.fat"></squirrel-error-form>
-        </mat-form-field>
+            <mat-form-field class="col-md-3">
+              <mat-label>Tłuszcz</mat-label>
+              <input type="text" matInput formControlName="fat">
+              <squirrel-error-form [control]="form.controls.fat"></squirrel-error-form>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-3">
-          <mat-label>Białko</mat-label>
-          <input type="text" matInput formControlName="protein">
-          <squirrel-error-form [control]="form.controls.protein"></squirrel-error-form>
-        </mat-form-field>
+            <mat-form-field class="col-md-3">
+              <mat-label>Białko</mat-label>
+              <input type="text" matInput formControlName="protein">
+              <squirrel-error-form [control]="form.controls.protein"></squirrel-error-form>
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-        <mat-accordion multi class="colr-md-6">
+        <mat-accordion multi class="col-md-8">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Składniki niezbędne do wykonania przepisu
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <squirrel-ingredients formControlName="ingredient"></squirrel-ingredients>
+            <div formArrayName="ingredients" class="row form-group__control--dynamic">
+              <div class="d-flex" *ngFor="let item of ingredients.controls; let i=index">
+                <squirrel-ingredients [formControlName]="i"></squirrel-ingredients>
+                <mat-icon title="Usuń" (click)="remove(i)">delete_outline</mat-icon>
+              </div>
+            </div>
+            <button type="button" color="primary" class="d-block center" (click)="addIngredient()" mat-mini-fab>
+              <mat-icon>add</mat-icon>
+            </button>
           </mat-expansion-panel>
         </mat-accordion>
       </div>

@@ -12,7 +12,10 @@ const routes: Array<Route> = [{
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: RecipesHomeComponent },
     { path: 'own', component: RecipeOwnComponent, canActivate: [SessionGuard] },
-    { path: 'new', component: RecipeFormComponent, canActivate: [SessionGuard] },
+    {
+      path: 'new', component: RecipeFormComponent,
+      //  canActivate: [SessionGuard]
+    },
     { path: 'favorite', component: RecipeFavoriteComponent, canActivate: [SessionGuard] }
   ]
 }];

@@ -17,7 +17,7 @@ import { of } from 'rxjs';
 export class IngredientsInputComponent implements ControlValueAccessor {
   public name: string;
   public quantity: number;
-  public unit: any;
+  public selectedUnit: string = 'g';
   public unitOptions = ['ml', 'l', 'g', 'kg'];
   _value;
 
@@ -41,21 +41,20 @@ export class IngredientsInputComponent implements ControlValueAccessor {
   addEvent($event) {
     this._value = {
       name: this.name,
-      quantity: this.quantity,
-      unit: this.unit
+      quantity: Number(this.quantity),
+      unit: this.selectedUnit
     };
     this.propagateChange(this._value);
   }
 
   get value() {
-    const email = this._value;
-    return email;
+    return this._value;
   }
   set value(val: { name: string, quantity: number, unit: any }) {
     if (val) {
       this._value = val;
       this.name = val.name;
-      this.unit = val.unit;
+      this.selectedUnit = val.unit;
       this.quantity = val.quantity;
       this.propagateChange(this._value);
     }

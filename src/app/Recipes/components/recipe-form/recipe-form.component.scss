@@ -45,6 +45,14 @@
   }
 
   .mat-accordion {
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 15px 0px;
+  }
+
+  .mat-expansion-panel-header-title {
+    font-weight: 500;
+  }
+
+  .center {
+    margin: 0 auto;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractComponent } from '@app/shared/components/abstract.component';
 import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -18,6 +18,9 @@ export class RecipeFormComponent extends AbstractComponent {
   public fileToUpload: File = null;
   public avatarPreview = null;
   public readonly hardPrep = [{ value: 1, label: 'Łatwy' }, { value: 2, label: 'Średni' }, { value: 3, label: 'Trudny' }];
+  public readonly categories = [{ value: 'breakfast', label: 'Śniadanie' },
+  { value: 'dinner', label: 'Obiad' }, { value: 'dessert', label: 'Deser' },
+  { value: 'supper', label: 'Kolacja' }];
 
   @ViewChild('cke', { static: false }) cke: any;
 
@@ -29,8 +32,13 @@ export class RecipeFormComponent extends AbstractComponent {
     carbo: new FormControl(null, [Validators.required]),
     fat: new FormControl(null, [Validators.required]),
     protein: new FormControl(null, [Validators.required]),
-    ingredient: new FormControl(null)
+    ingredients: new FormArray([new FormControl('')]),
+    categorie: new FormControl(null, [Validators.required]),
   });
+
+  get ingredients(): FormArray {
+    return this.form.get('ingredients') as FormArray;
+  }
 
   constructor(private resource: RecipeRestService, private growl: NotificationsService) {
     super();
@@ -63,6 +71,7 @@ export class RecipeFormComponent extends AbstractComponent {
       const formValue = this.form.value;
       const description = this.cke.editorInstance.getData();
       formValue.preparation = description;
+      formValue.categorie = formValue.categorie.value;
       this.resource.createRecipe(formValue).pipe(finalize(() => this.isLoading = false)).subscribe(data => {
         this.resource.uploadImage(this.fileToUpload, data.id).pipe(finalize(() => this.isLoading = false)).subscribe(
           () => this.growl.success(null, 'Przepis został dodany poprawnie'),
@@ -71,6 +80,14 @@ export class RecipeFormComponent extends AbstractComponent {
       },
         err => this.growl.error(null, 'Wystąpił błąd podczas dodawania przepisu'));
     }
+  }
+
+  public addIngredient() {
+    this.ingredients.push(new FormControl(''));
+  }
+
+  remove = (controlName) => {
+    this.ingredients.removeAt(controlName);
   }
 
 }
