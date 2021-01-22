@@ -35,7 +35,7 @@
             </mat-form-field>
 
             <mat-form-field class="col-md-3">
-              <mat-label>Liczba porcji</mat-label>
+              <mat-label>Liczba porcji </mat-label>
               <input type="text" formControlName="portions" matInput>
               <squirrel-error-form [control]="form.controls.portions"></squirrel-error-form>
             </mat-form-field>
@@ -43,6 +43,7 @@
             <mat-form-field class="col-md-3">
               <mat-label>Czas przygotowania</mat-label>
               <input type="text" matInput formControlName="prep_time">
+              <span matSuffix>(min)</span>
               <squirrel-error-form [control]="form.controls.prep_time"></squirrel-error-form>
             </mat-form-field>
 
@@ -76,18 +77,21 @@
               <mat-label>Węglowodany</mat-label>
               <input type="text" matInput formControlName="carbo">
               <squirrel-error-form [control]="form.controls.carbo"></squirrel-error-form>
+              <span matSuffix>(g)</span>
             </mat-form-field>
 
             <mat-form-field class="col-md-3">
               <mat-label>Tłuszcz</mat-label>
               <input type="text" matInput formControlName="fat">
               <squirrel-error-form [control]="form.controls.fat"></squirrel-error-form>
+              <span matSuffix>(g)</span>
             </mat-form-field>
 
             <mat-form-field class="col-md-3">
               <mat-label>Białko</mat-label>
               <input type="text" matInput formControlName="protein">
               <squirrel-error-form [control]="form.controls.protein"></squirrel-error-form>
+              <span matSuffix>(g)</span>
             </mat-form-field>
           </mat-expansion-panel>
         </mat-accordion>

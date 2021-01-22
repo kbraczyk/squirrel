@@ -6,16 +6,15 @@
     <mat-card-subtitle>Wszystkie przepisy, które zostały dodane przez Ciebie.
     </mat-card-subtitle>
     <div class="actions">
-      <button mat-raised-button [routerLink]="['/recipes/new']">
+      <button mat-button color="accent" [routerLink]="['/recipes/new']">Nowy przepis
         <mat-icon>add</mat-icon>
-        Nowy przepis
       </button>
     </div>
   </div>
   <app-transparent-loader-container [loading]="isLoading">
     <div class="row">
       <div class="recipe" *ngFor="let recipe of recipes$ | async">
-        <squirrel-recipe-item [recipe]="recipe"></squirrel-recipe-item>
+        <squirrel-recipe-item [recipe]="recipe" [availableFavorite]="false"></squirrel-recipe-item>
       </div>
     </div>
   </app-transparent-loader-container>

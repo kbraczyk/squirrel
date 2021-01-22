@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { AbstractComponent } from '@app/shared/components/abstract.component';
+import { Component, Input } from '@angular/core';
 import { RecipeModel } from '@app/shared/resource/recipe/recipe.interface';
+import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 
 @Component({
   selector: 'squirrel-recipe-item',
@@ -10,5 +10,13 @@ import { RecipeModel } from '@app/shared/resource/recipe/recipe.interface';
 export class RecipeItemComponent {
   @Input() recipe: RecipeModel;
   @Input() availableFavorite: boolean = true;
-  constructor() { }
+  constructor(private resource: RecipeRestService) { }
+
+  public changeFavoriteState(): void {
+
+    !this.recipe.isFavorite ?
+      this.resource.setAsFavorite(this.recipe.id).subscribe() : this.resource.unsetAsFavorite(this.recipe.id).subscribe();
+
+    this.recipe.isFavorite = !this.recipe.isFavorite;
+  }
 }

@@ -50,6 +50,11 @@
     }
   }
 
+  img {
+    height: 260px;
+    object-fit: cover;
+  }
+
   .mat-card-content {
     margin-top: 16px;
   }

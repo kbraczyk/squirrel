@@ -24,8 +24,16 @@ export class RecipeRestService extends RestService<any> {
   public getOwnRecipes() {
     return this.http.get<Array<RecipeModel>>(this.baseUrl + this.resource + '/own');
   }
+
   public getFavoriteRecipe() {
     return this.http.get<Array<FavoriteRecipeModel>>(this.baseUrl + this.resource + '/favorite');
+  }
+
+  public setAsFavorite(id: number) {
+    return this.http.post(this.baseUrl + this.resource + `/favorite/${id}`, {});
+  }
+  public unsetAsFavorite(id: number) {
+    return this.http.delete(this.baseUrl + this.resource + `/favorite/${id}`);
   }
 
   public createRecipe(data) {
