@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { SessionGuard } from '@app/session.guard';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipeFavoriteComponent } from './components/recipe-favorite/recipe-favorite.component';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 import { RecipeOwnComponent } from './components/recipe-own/recipe-own.component';
@@ -13,10 +14,10 @@ const routes: Array<Route> = [{
     { path: 'all', component: RecipesHomeComponent },
     { path: 'own', component: RecipeOwnComponent, canActivate: [SessionGuard] },
     {
-      path: 'new', component: RecipeFormComponent,
-      //  canActivate: [SessionGuard]
+      path: 'new', component: RecipeFormComponent, canActivate: [SessionGuard]
     },
-    { path: 'favorite', component: RecipeFavoriteComponent, canActivate: [SessionGuard] }
+    { path: 'favorite', component: RecipeFavoriteComponent, canActivate: [SessionGuard] },
+    { path: 'details/:id', component: RecipeDetailsComponent }
   ]
 }];
 

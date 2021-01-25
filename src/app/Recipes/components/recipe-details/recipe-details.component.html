@@ -1,0 +1,75 @@
+<div class="content-box">
+  <div class="content-box__header">
+    <mat-card-title>
+      Szczegóły przepisu
+    </mat-card-title>
+    <div class="actions">
+      <button mat-button [routerLink]="['/recipes']">
+        <mat-icon>arrow_back</mat-icon>
+        Wszystkie przepisy
+      </button>
+      <button mat-button color="accent" [routerLink]="['/recipes/new']">Nowy przepis
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <app-transparent-loader-container [loading]="isLoading">
+    <div class="row" *ngIf="(recipe$ | async) as recipe">
+      <div class="col-md-6">
+        <h3 class="recipe__title">{{recipe.name}}</h3>
+        <div class="d-flex justify-content-around">
+          <div class="item">
+            <span class="label">
+              Porcji
+            </span>
+            <span class="value">{{recipe.portions}}</span>
+          </div>
+          <div class="item">
+            <span class="label">Czas wykonania </span>
+            <span class="value">{{recipe.prep_time}} <small>min</small></span>
+          </div>
+          <div class="item">
+            <span class="label">Poziom trudności</span>
+            <span class="value">{{recipe.prep_difficulty | formater: 'dificultyRecipe'}}</span>
+          </div>
+        </div>
+        <div class="calories">
+          <h6>Kaloryczność posiłku</h6>
+          <span> Energia - {{recipe.energy}} <small>kcal</small></span><br>
+          <span>Węglowodany - {{recipe.carbo}} <small>g</small></span><br>
+          <span>Tłuszcze - {{recipe.fat}} <small>g</small></span><br>
+          <span>Białko - {{recipe.protein}} <small>g</small></span>
+        </div>
+        <mat-accordion multi class="col-md-8">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Lista produktów
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul>
+              <li *ngFor="let item of recipe.ingredient">{{item.name}}: {{item.quantity}}<small>{{item.unit}}</small>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion multi class="col-md-8">
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Sposób przygotowania
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span [innerHTML]="recipe.preparation"></span>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="col-md-6">
+        <img src="{{'http://localhost:3000/recipes/'+ recipe.photo + '/image'}}" alt="Zdjęcie potrawy">
+        <span>{{recipe.author.usernames}}</span>
+        <mat-chip class="author" selected color="warn">Utworzony przez: <span>{{recipe.author.username}}</span>
+        </mat-chip>
+      </div>
+    </div>
+  </app-transparent-loader-container>
+</div>

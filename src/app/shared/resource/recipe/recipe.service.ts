@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resource, RestService } from '@app/shared/service/rest.service';
+import { Observable } from 'rxjs';
 import { FavoriteRecipeModel, RecipeModel } from './recipe.interface';
 
 @Injectable({
@@ -21,8 +22,16 @@ export class RecipeRestService extends RestService<any> {
     return this.http.get<Array<RecipeModel>>(url);
   }
 
-  public getOwnRecipes() {
+  public getById = (id: number): Observable<any> => {
+    return this.http.get<RecipeModel>(`${this.baseUrl + this.resource}/details/${id}`);
+  }
+
+  public getOwnRecipes(): Observable<Array<RecipeModel>> {
     return this.http.get<Array<RecipeModel>>(this.baseUrl + this.resource + '/own');
+  }
+
+  public getDetails(id: number): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(this.baseUrl + this.resource + `/details/${id}`);
   }
 
   public getFavoriteRecipe() {

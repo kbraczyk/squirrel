@@ -13,9 +13,9 @@ import { DemandKcalService } from '@app/shared/service/demand-kcal.service';
 })
 export class CalcKcalComponent extends AbstractComponent {
 
-  protected sexValues: Array<string>;
-  protected activityValues: Array<{ value, name }>;
-  protected targetValues: Array<{ value, name }>;
+  public sexValues: Array<string>;
+  public activityValues: Array<{ value, name }>;
+  public targetValues: Array<{ value, name }>;
   public weightPlaceholder: string;
   public heightPlaceholder: string;
   private dialogRef: MatDialogRef<any>;
@@ -23,25 +23,16 @@ export class CalcKcalComponent extends AbstractComponent {
 
   public calcKcalForm = new FormGroup({
     height: new FormControl(null,
-      [
-        Validators.required,
-        Validators.max(250),
-        Validators.min(0),
-        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      [Validators.required, Validators.max(250),
+      Validators.min(0), Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
     weight: new FormControl(null,
-      [
-        Validators.required,
-        Validators.max(200),
-        Validators.min(0),
-        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      [Validators.required, Validators.max(200),
+      Validators.min(0), Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
     age: new FormControl(null,
-      [
-        Validators.required,
-        Validators.max(99),
-        Validators.min(0),
-        Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
+      [Validators.required, Validators.max(99),
+      Validators.min(0), Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')
       ]),
     sex: new FormControl(null, [Validators.required]),
     activity: new FormControl(null, [Validators.required]),

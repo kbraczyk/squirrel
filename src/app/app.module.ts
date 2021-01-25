@@ -23,6 +23,8 @@ import { HttpConfigInterceptor } from './httpConfig.interceptor';
 import { LOCALE_ID } from '@angular/core';
 import localePl from '@angular/common/locales/pl';
 import { FormModule } from './shared/form.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 registerLocaleData(localePl);
 
 
@@ -51,7 +53,8 @@ registerLocaleData(localePl);
     SimpleNotificationsModule.forRoot({
       position: ['top', 'right'],
       timeOut: 4000,
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
   exports: [],

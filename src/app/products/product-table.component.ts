@@ -2,15 +2,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SquirrelDataSource } from '@shared/components/table/dataSource';
 import { RestService, Resource } from '@shared/service/rest.service';
 import { MatSort, MatPaginator, MatTable } from '@angular/material';
-import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'squirrel-product-table',
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss'],
-  animations: [
-    fadeInOnEnterAnimation({ duration: 500 }),
-  ],
 })
 
 export class ProductTableComponent implements OnInit, AfterViewInit {

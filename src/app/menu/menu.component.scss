@@ -40,6 +40,12 @@
       }
     }
 
+    ::ng-deep ngx-avatar {
+      .avatar-content {
+        object-fit: cover;
+      }
+    }
+
     .active-user,
     .auth {
       padding: 15px 0px 15px 15px;

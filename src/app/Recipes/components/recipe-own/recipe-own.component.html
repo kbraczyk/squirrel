@@ -6,6 +6,10 @@
     <mat-card-subtitle>Wszystkie przepisy, które zostały dodane przez Ciebie.
     </mat-card-subtitle>
     <div class="actions">
+      <button mat-button [routerLink]="['/recipes']">
+        <mat-icon>arrow_back</mat-icon>
+        Wszystkie przepisy
+      </button>
       <button mat-button color="accent" [routerLink]="['/recipes/new']">Nowy przepis
         <mat-icon>add</mat-icon>
       </button>

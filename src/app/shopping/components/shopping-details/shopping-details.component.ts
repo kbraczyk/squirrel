@@ -1,9 +1,7 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { fadeInOnEnterAnimation } from 'angular-animations';
 import { NotificationsService } from 'angular2-notifications';
 import { AbstractComponent } from '@shared/components/abstract.component';
-import { ShopList, ShopListProduct } from '@app/shared/resource/shop-list/shop-list.interface';
 import { ShopListResourceService } from '@app/shared/resource/shop-list/shop-list.service';
 import { EventService, EventSquirrel } from '@app/shared/service/event.service';
 import { SessionService } from '@app/shared/service/session.service';
@@ -12,9 +10,6 @@ import { SessionService } from '@app/shared/service/session.service';
   selector: 'squirrel-shopping-details',
   templateUrl: './shopping-details.component.html',
   styleUrls: ['./shopping-details.component.scss'],
-  animations: [
-    fadeInOnEnterAnimation({ duration: 500 }),
-  ],
 })
 export class ShoppingDetailsComponent extends AbstractComponent {
   shopList = null;

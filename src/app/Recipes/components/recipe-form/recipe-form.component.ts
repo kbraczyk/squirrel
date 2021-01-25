@@ -49,15 +49,14 @@ export class RecipeFormComponent extends AbstractComponent {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.preview();
+    const mimeType = this.fileToUpload.type;
+
+    if (mimeType.match(/image\/*/)) {
+      this.preview();
+    }
   }
 
   preview() {
-    const mimeType = this.fileToUpload.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-
     const reader = new FileReader();
     reader.readAsDataURL(this.fileToUpload);
     reader.onload = (_event) => {
@@ -66,6 +65,13 @@ export class RecipeFormComponent extends AbstractComponent {
   }
 
   createRecipe() {
+    const mimeType = this.fileToUpload.type;
+
+    if (mimeType.match(/image\/*/)) {
+      this.growl.warn(null, 'Wgrany plik nie jest obrazem!');
+      return;
+    }
+
     if (this.form.valid) {
       this.isLoading = true;
       const formValue = this.form.value;

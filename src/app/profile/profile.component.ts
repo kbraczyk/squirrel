@@ -64,16 +64,16 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.preview();
-    this.uploadFileToActivity();
+    const { type } = this.fileToUpload;
+    if (type && type.match(/image\/*/)) {
+      this.preview();
+      this.uploadFileToActivity();
+    } else {
+      this.growl.warn(null, 'Wybrany plik nie jest obrazem!');
+    }
   }
 
   preview() {
-    const { type } = this.fileToUpload;
-    if (!type || type.match(/image\/*/) == null) {
-      return;
-    }
-
     const reader = new FileReader();
     reader.readAsDataURL(this.fileToUpload);
     reader.onload = (_event) => {

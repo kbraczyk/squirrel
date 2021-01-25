@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { RecipeModel } from '@app/shared/resource/recipe/recipe.interface';
 import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 
@@ -10,7 +11,7 @@ import { RecipeRestService } from '@app/shared/resource/recipe/recipe.service';
 export class RecipeItemComponent {
   @Input() recipe: RecipeModel;
   @Input() availableFavorite: boolean = true;
-  constructor(private resource: RecipeRestService) { }
+  constructor(private resource: RecipeRestService, private router: Router) { }
 
   public changeFavoriteState(): void {
 
@@ -18,5 +19,9 @@ export class RecipeItemComponent {
       this.resource.setAsFavorite(this.recipe.id).subscribe() : this.resource.unsetAsFavorite(this.recipe.id).subscribe();
 
     this.recipe.isFavorite = !this.recipe.isFavorite;
+  }
+
+  public showDetails() {
+    this.router.navigate(['/recipes/details', this.recipe.id]);
   }
 }

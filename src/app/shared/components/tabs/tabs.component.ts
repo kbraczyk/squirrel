@@ -12,7 +12,7 @@ export class TabsComponent {
   @Output() selectedTab = new EventEmitter<number>();
 
   public active: number = 0;
-  protected showTooltip: boolean = false;
+  public showTooltip: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

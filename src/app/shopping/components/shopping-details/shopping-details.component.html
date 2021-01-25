@@ -27,8 +27,7 @@
 
       <div class="form-group__control">
         <mat-label class="slide-label" (click)="toogleStatus(slide)">Status</mat-label>
-        <mat-slide-toggle #slide [color]="primary" [checked]="shopList.isRealized"
-          [disabled]="shopList && !shopList.id">
+        <mat-slide-toggle #slide color="primary" [checked]="shopList.isRealized" [disabled]="shopList && !shopList.id">
           {{ slide.checked ? 'Zrealizowana' : 'Niezrealizowana' }}
         </mat-slide-toggle>
       </div>

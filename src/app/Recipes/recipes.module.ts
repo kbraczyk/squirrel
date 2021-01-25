@@ -13,6 +13,8 @@ import { FormModule } from '@app/shared/form.module';
 import { RecipeOwnComponent } from './components/recipe-own/recipe-own.component';
 import { RecipeFavoriteComponent } from './components/recipe-favorite/recipe-favorite.component';
 import { RecipesHomeComponent } from './components/recipes-home/recipes-home.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { MatChipsModule } from '@angular/material';
 
 const components = [
   RecipiesComponent,
@@ -21,7 +23,8 @@ const components = [
   RecipesUserComponent,
   RecipeFormComponent,
   RecipeOwnComponent,
-  RecipeFavoriteComponent
+  RecipeFavoriteComponent,
+  RecipeDetailsComponent,
 ];
 
 @NgModule({
@@ -34,6 +37,7 @@ const components = [
     ReactiveFormsModule,
     SharedSquirrelModule,
     MaterialModule,
+    MatChipsModule,
     RecipesRoutingModule,
     CKEditorModule,
     FormModule

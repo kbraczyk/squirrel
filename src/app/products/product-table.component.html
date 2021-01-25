@@ -43,7 +43,7 @@
   </mat-paginator>
   <!-- LOADER -->
   <mat-card *ngIf="!dataSource.hasData" style="display: flex; justify-content: center; align-items: center">
-    <mat-card-content *ngIf="!(dataSource.isLoading$ | async)" [@fadeInOnEnter]>
+    <mat-card-content *ngIf="!(dataSource.isLoading | async)" [@fadeInOnEnter]>
       <div>
         <div class="no-content">
           <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
