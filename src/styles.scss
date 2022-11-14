@@ -1,0 +1,130 @@
+// Custom color theme for Angular Material
+@import "~@angular/material/theming";
+@include mat-core();
+
+$squirrel-primary: mat-palette($mat-purple, 500, 600, 900);
+$squirrel-accent: mat-palette($mat-purple, A200, A100, A400);
+$squirrel-warn: mat-palette($mat-orange, 900);
+$squirrel-theme: mat-light-theme($squirrel-primary, $squirrel-accent, $squirrel-warn);
+
+@include angular-material-theme($squirrel-theme);
+
+@import "Styles/_variable";
+@import "Styles/mixin";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100% !important;
+  box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  color: $primary-color;
+
+  button {
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.m-r-s {
+  margin-right: 8px;
+}
+
+.title {
+  color: $primary-color;
+}
+
+.pull-right {
+  justify-content: flex-end;
+}
+
+mat-icon,
+.slide-label {
+  cursor: pointer;
+}
+
+mat-card-title {
+  width: 100%;
+  margin-bottom: 0px !important;
+}
+
+.content-box {
+  margin: $content-box-margin;
+  padding: $content-box-padding;
+  background-color: $content-box-color;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
+
+  &__header {
+    @include flex-box(row, center, unset, wrap);
+    border-bottom: 1px solid $primary-color-light;
+    padding-bottom: 15px;
+
+    mat-icon {
+      margin-right: 15px;
+    }
+
+    mat-card-subtitle {
+      margin-bottom: -5px;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+// Buttons
+html .button-center {
+  display: block;
+  margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $second-color;
+}
+
+::-webkit-scrollbar-track {
+  background: $primary-color;
+}
+
+@include media-breakpoint-down(sm) {
+  .content-box {
+    margin: $content-box-margin - 10px;
+  }
+}
+
+@include media-breakpoint-between(sm, lg) {
+  .content-box {
+    margin: $content-box-margin - 5px;
+  }
+}

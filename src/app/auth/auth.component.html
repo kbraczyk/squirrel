@@ -1,0 +1,38 @@
+<section class="auth content-box">
+  <div class="row">
+    <div class="col">
+      <form class="auth__form" [formGroup]="form">
+        <mat-form-field>
+          <mat-label>Nazwa użytkownika</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Hasło</mat-label>
+          <input type="password" formControlName="password" matInput>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="warn" (click)="auth()">Zaloguj</button>
+      </form>
+    </div>
+  </div>
+  <div class="row info">
+    <div class="col">
+      <div class="flex">
+        <mat-icon>save</mat-icon><span>Zapisuj</span>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="flex">
+        <mat-icon>stacked_line_chart</mat-icon> <span>Analizuj</span>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="flex">
+        <mat-icon>done_all</mat-icon><span> Osiagaj cele</span>
+      </div>
+    </div>
+  </div>
+</section>

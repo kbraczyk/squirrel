@@ -1,0 +1,6 @@
+<div class="no-content">
+  <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
+  <h4 *ngIf="!content" class="no-content__info">Brak danych do wyświetlenia.</h4>
+  <h4 *ngIf="content" class="no-content__info">{{content}}</h4>
+  <p *ngIf="sugestion" class="no-content__sugestion">{{sugestion}}</p>
+</div>

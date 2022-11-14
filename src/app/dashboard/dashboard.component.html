@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="menu-sticky">
+    <squirrel-menu [isOpen]="menuOpenState"></squirrel-menu>
+  </div>
+  <div class="main-panel">
+    <div class="header">
+      <button *ngIf="!menuOpenState" mat-mini-fab color="primary" (click)="changeMenuState()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button class="menu__hidden" *ngIf="menuOpenState" mat-mini-fab color="primary" (click)="changeMenuState()">
+        <mat-icon>menu_open</mat-icon>
+      </button>
+    </div>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

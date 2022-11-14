@@ -1,0 +1,37 @@
+<div class="content-box">
+  <div>
+    <div class="content-box__header">
+      <mat-icon>list</mat-icon>
+      <mat-card-title>
+        Listy zakupów
+      </mat-card-title>
+      <mat-card-subtitle>Sekcja prezentuje listy zakupów dodane przez Ciebie. Już nigdy nie zapomnisz najważniejszych
+        produktów.</mat-card-subtitle>
+      <div class="actions">
+        <button mat-raised-button (click)="newList()">
+          <mat-icon>add</mat-icon>
+          Nowa lista
+        </button>
+      </div>
+    </div>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let list of service.shoppingLists$ | async"
+          (click)="selectedList.emit(list)">
+          <div class="margin-x">
+            <mat-icon *ngIf="list.realized" class="success" matTooltip="Zrealizowana">check_circle
+            </mat-icon>
+            <mat-icon *ngIf="!list.realized" class="cancel" matTooltip="Niezrealizowana">
+              cancel</mat-icon>
+          </div>
+          <div class="col-sm-12">
+            <div class="name">{{list.name}}</div>
+            <div class="date">Utworzona: {{list.creationDate}}</div>
+            <div *ngIf="list.realized" class="date">Zrealizowano: {{list.realizationDate}}</div>
+            <div class="date">Produktów: {{list.products.length}}</div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </div>
+</div>

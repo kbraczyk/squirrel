@@ -1,0 +1,17 @@
+@import "../../../Styles/variable";
+
+:host {
+    display: inline-block;
+
+    .sub-title{
+        color: $primary-color;
+        font-size: 1.35rem;
+        font-weight: 500;
+    }
+  }
+  p, .list {
+    font-size: 1.15rem;
+  }
+.list{
+  margin-left: 40px;
+}

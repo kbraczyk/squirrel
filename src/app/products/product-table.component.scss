@@ -1,0 +1,48 @@
+@import "../../Styles/variable";
+@import "../../Styles/mixin";
+
+:host {
+  .container {
+    .table {
+      position: relative;
+      margin: 0;
+      padding: 5px;
+      background-color: $primary-color;
+      border-radius: 5px;
+      margin-bottom: 15px;
+
+      &__title,
+      &__subtitle {
+        padding: 0 30px;
+        margin: 0;
+        color: $linkcolor;
+      }
+
+      &__subtitle {
+        opacity: 0.8;
+      }
+
+      &__filter {
+        cursor: pointer;
+        @include absolute(16px, 30px);
+        width: 35px;
+      }
+    }
+  }
+}
+
+.loader {
+  width: 100%;
+}
+
+.mat-header-cell {
+  @include flex-box(column, unset);
+  color: $dark-text-color;
+  font-size: 1.2em;
+}
+
+.mat-cell {
+  font-size: 16px;
+  text-align: center;
+  justify-content: center;
+}

@@ -1,0 +1,34 @@
+@import '../../../../Styles/mixin';
+
+:host {
+  .no-content {
+    @include flex-box(column, center, center, nowrap);
+    min-height: 300px;
+
+    &__icon {
+      height: 65px;
+      width: 65px;
+      font-size: 65px;
+      opacity: .4;
+      margin: 10px;
+    }
+
+    &__sugestion {
+      opacity: .4;
+    }
+  }
+
+  .form-group {
+    @include flex-box(column, unset, unset, nowrap);
+
+    &__control {
+      width: 33%;
+      margin: 7px 0px;
+
+      &--dynamic {
+        width: 100%;
+        margin: 7px -15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../Styles/variable';
+@import "../../Styles/mixin";
+
+:host ::ng-deep {
+  .content-box {
+    overflow: hidden;
+  }
+
+  .mat-card-title {
+    width: 100%;
+  }
+
+  .total-value {
+    margin-top: 55px;
+    font-size: 36px;
+  }
+
+  .total-label {
+    font-size: 24px;
+  }
+
+  .progres-total,
+  .progres-protein,
+  .progres-carbs,
+  .progres-fat {
+    display: block;
+    height: 7px;
+    border-radius: 3px;
+  }
+
+  .total {
+    position: relative;
+  }
+
+  .progres-total {
+    width: 100%;
+  }
+
+  .progres-protein,
+  .progres-fat,
+  .progres-carbs {
+    position: absolute;
+    top: 24px;
+  }
+
+  .progres-protein {
+    background: #9500ff;
+  }
+
+  .progres-fat {
+    background: #000000;
+  }
+
+  .progres-carbs {
+    background: rgb(230, 81, 0);
+  }
+}

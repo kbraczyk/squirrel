@@ -1,0 +1,14 @@
+@mixin flex-box($direction: row, $align: center, $justify: center, $wrap: nowrap ) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    flex-wrap: wrap;
+}
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null){
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}

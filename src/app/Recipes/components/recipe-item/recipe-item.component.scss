@@ -1,0 +1,56 @@
+@import "../../../../Styles/variable";
+@import "../../../../Styles/mixin";
+
+:host {
+  .recipe {
+    position: relative;
+    display: block;
+    margin: 10px;
+    width: 360px;
+
+    &__title {
+      margin-bottom: 10px !important;
+    }
+
+    .favorite {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      color: #ff3f3ff2;
+    }
+  }
+
+  ::ng-deep mat-card-header {
+    text-align: center;
+    border-bottom: 2px solid rgba(0, 0, 0, .32);
+
+    .mat-card-header-text {
+      width: 100%;
+    }
+
+    mat-card-subtitle {
+      @include flex-box(row, center, space-between);
+      height: 26px;
+
+      .info-recipe {
+        @include flex-box(row, center);
+
+        img {
+          filter: invert(0.5);
+          height: 20px;
+        }
+
+        .mat-18 {
+          height: 20px;
+          width: 20px;
+          font-size: 20px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .mat-card-content {
+    margin-top: 16px;
+  }
+}

@@ -1,0 +1,62 @@
+<div class="content-box">
+  <div>
+    <div class="content-box__header">
+      <mat-icon>list</mat-icon>
+      <mat-card-title>
+        Szczegóły Listy zakupów
+      </mat-card-title>
+      <mat-card-subtitle>Sekcja umożliwia wykonywanie akcji na liście zakupów. Z tego miejsca możesz dodać, edytować lub
+        przeglądnąć szczegóły wybranej listy zakupów.
+      </mat-card-subtitle>
+    </div>
+  </div>
+
+  <div *ngIf="list" [@fadeInOnEnter]>
+    <form class="form-group" [formGroup]="form">
+      <mat-form-field class="form-group__control">
+        <mat-label>Nazwa listy zakupów</mat-label>
+        <input matInput required name="name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="form-group__control">
+        <mat-label>Data utworzenia</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="creationDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="form-group__control">
+        <mat-label class="slide-label" (click)="toogleStatus(slide)">Status </mat-label>
+        <mat-slide-toggle #slide [color]="primary" [checked]="list.realized" [disabled]="list && !list.name">
+          {{ slide.checked ? 'Zrealizowana' : 'Niezrealizowana' }}
+        </mat-slide-toggle>
+      </div>
+
+      <div formArrayName="products" class="row form-group__control--dynamic">
+        <div class="col-12 flex">
+          <h5 class="m-r-s">Produkty</h5>
+          <mat-icon title="Dodaj kolejny" (click)="addProduct()">add_circle_outline</mat-icon>
+        </div>
+        <div class="col-4" *ngFor="let item of product.controls; let i=index">
+          <mat-form-field>
+            <mat-label>Produkt</mat-label>
+            <input name="{{i}}" matInput [formControlName]="i">
+          </mat-form-field>
+          <mat-icon title="Usuń" (click)="remove(i)">delete_outline</mat-icon>
+        </div>
+      </div>
+    </form>
+    <div class="flex pull-right">
+      <button mat-raised-button color="primary"
+        (click)="createOrEdit(slide)">{{list && !list.name ? 'Utwórz' : 'Edytuj'}}</button>
+    </div>
+  </div>
+
+  <div *ngIf="!list" [@fadeInOnEnter]>
+    <div class="no-content">
+      <mat-icon class="no-content__icon">sentiment_very_dissatisfied</mat-icon>
+      <h4 class="no-content__info">{{noContentInfo}}</h4>
+      <p class="no-content__sugestion">{{sugestionInfo}}</p>
+    </div>
+  </div>
+</div>

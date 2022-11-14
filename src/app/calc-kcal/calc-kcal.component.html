@@ -1,0 +1,74 @@
+<div class="content-box">
+  <h3 class="title">Kalkulator zapotrzebowania kalorycznego <mat-icon class="d-md-none" (click)="openInfo()">info
+    </mat-icon>
+  </h3>
+  <p class="info">Poznaj swoje zapotrzebowanie kaloryczne i kontroluj ilość spożywanego pokarmu </p>
+  <squirrel-calk-kcal-info class="d-none d-md-block"></squirrel-calk-kcal-info>
+  <form [formGroup]="calcKcalForm" (ngSubmit)="calculate(calcKcalForm.value)" class="row">
+    <div class="col-12 col-sm-12 col-md-5 ">
+      <mat-form-field>
+        <input name="height" matInput [placeholder]="heightPlaceholder" formControlName="height">
+        <squirrel-error-form [control]="calcKcalForm.controls.height"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field>
+        <input name="weight" matInput [placeholder]="weightPlaceholder" formControlName="weight">
+        <squirrel-error-form [control]="calcKcalForm.controls.weight"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field>
+        <input name="age" matInput placeholder="Wiek" formControlName="age">
+        <squirrel-error-form [control]="calcKcalForm.controls.age"></squirrel-error-form>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-12 col-md-5">
+      <mat-form-field>
+        <mat-label>Płeć</mat-label>
+        <mat-select name="sex" formControlName="sex">
+          <mat-option *ngFor="let sex of sexValues" [value]="sex">
+            {{sex}}
+          </mat-option>
+        </mat-select>
+        <squirrel-error-form [control]="calcKcalForm.controls.sex"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Aktywność</mat-label>
+        <mat-select name="activity" formControlName="activity">
+          <mat-option *ngFor="let active of activityValues" [value]="active.value">
+            {{active.name}}
+          </mat-option>
+        </mat-select>
+        <squirrel-error-form [control]="calcKcalForm.controls.activity"></squirrel-error-form>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cel</mat-label>
+        <mat-select name="target" formControlName="target">
+          <mat-option *ngFor="let target of targetValues" [value]="target.value">
+            {{target.name}}
+          </mat-option>
+        </mat-select>
+        <squirrel-error-form [control]="calcKcalForm.controls.target"></squirrel-error-form>
+      </mat-form-field>
+    </div>
+    <h4 class="col-12" style="text-align: center; margin-bottom: 0; margin-top: 35px;">Jednostki kalkulatora</h4>
+    <div class="footer-form col-sm-12 col-md-8 col-lg-6">
+      <div class="unit col">
+        <p>Wagi</p>
+        <mat-slide-toggle name="kg" (change)=toogle($event) color="primary" formControlName="kg">
+          Kg
+        </mat-slide-toggle>
+        <mat-slide-toggle name="lb" (change)=toogle($event) color="primary" formControlName="lb">
+          Lb
+        </mat-slide-toggle>
+      </div>
+      <button type="submit" mat-raised-button color="primary" class="col">OBLICZ</button>
+      <div class="unit col" style="align-items: flex-end;">
+        <p>Wzrostu</p>
+        <mat-slide-toggle name="cm" (change)=toogle($event) color="primary" formControlName="cm">
+          Cm
+        </mat-slide-toggle>
+        <mat-slide-toggle name="ft" (change)=toogle($event) color="primary" formControlName="ft">
+          Ft/in
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </form>
+</div>

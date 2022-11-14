@@ -1,0 +1,17 @@
+:host {
+  .auth {
+    display: inline-block;
+    min-width: 425px;
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        width: max-content;
+        min-width: 135px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
