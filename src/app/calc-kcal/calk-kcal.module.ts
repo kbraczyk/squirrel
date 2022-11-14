@@ -23,7 +23,6 @@ const components = [
     ReactiveFormsModule,
     MaterialModule,
     CalkKcalRoutingModule
-  ],
-  entryComponents: [ResultKcalComponent, CalkKcalInfoComponent]
+  ]
 })
 export class CalkKcalModule { }
